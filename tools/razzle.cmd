@@ -341,7 +341,7 @@ if exist %RazzleToolPath%\x86\perl\site\lib\auto\win32\ipc\ipc.dll (
 if exist %RazzleToolPath%\perl\bin\perl.exe (
     for /f %%R in ('xcopy /ld %RazzleToolPath%\perl\bin\perl.CheckedInExe %RazzleToolPath%\perl\bin\perl.exe') do (
         if %%R == 0 (
-	    goto :eof
+	    goto :eof1
 	)
     )
 )
@@ -381,7 +381,9 @@ for /f %%Q in ('dir /s /b %RazzleToolPath%\perl\*.CheckedInExe') do (
         )
     )
 )
-	    
+
+:eof1
+
 endlocal
 
 set RazzleToolPath_Perl=%RazzleToolPath%\perl\bin;
@@ -535,98 +537,6 @@ if "%_BuildPocketPC%" == "" (
     set _BuildWTitle=Build Window: %_BuildPocketPC% %_BuildArch%/%_BuildType%%_KernelType%/%_BuildOpt%/%_BuildBins%%_PostBuildBins%
 )
 
-set BATCH_NMAKE=1
-
-@rem Make sure the sd client is current
-
-if "%_ArgNoSDRefresh%" == "false" (
-setlocal
-
-@rem Make sure sd.exe exists so xcopy will always work.
-
-if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe goto UpdateSD
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
-goto SD_Updated
-
-:UpdateSD
-
-@rem See if xcopy would have updated sdclient.exe over sd.exe
-
-for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe') do set _SDCHANGE=%%i
-if "%_SDCHANGE%" == "0" goto SD_Updated
-
-@rem Then do it (save the original as sdold.exe in case anyone needs to use it).
-
-del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold.exe
-ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe sdold.exe
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
-
-:SD_Updated
-
-@rem Don't bother with sdwin for now.  The new authentication scheme breaks it - BryanT/ChrisAnt 9/13/99
-if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
-if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe
-goto SDWin_Updated
-
-@rem Same song, different verse.  Update sdwin.exe using the same protocol.
-
-if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe goto UpdateSDWin
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
-goto SDWin_Updated
-
-:UpdateSDWin
-
-for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe') do set _SDWINCHANGE=%%i
-if "%_SDWINCHANGE%" == "0" goto SDWin_Updated
-del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe
-ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe sdold_win.exe
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
-
-:SDWin_Updated
-
-@rem Refrain: sdapiclient.dll becomes sdapi.dll
-
-if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll goto UpdateSDAPI
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
-goto SDAPI_Updated
-
-:UpdateSDAPI
-
-@rem See if xcopy would have updated sdapiclient.dll over sdapi.dll
-
-for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll') do set _SDAPICHANGE=%%i
-if "%_SDAPICHANGE%" == "0" goto SDAPI_Updated
-
-@rem Then do it (save the original as sdapi_old.dll in case anyone needs to use it).
-
-del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi_old.dll
-ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll sdapi_old.dll
-copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
-attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
-
-:SDAPI_Updated
-
-
-
-@rem
-@rem INFRA is using new DNS alias names for the SD servers
-@rem maybe update the user's SD.INIs/SD.MAP
-@rem
-findstr /I coppermtn %SDXROOT%\sd.map >nul
-if "%ERRORLEVEL%" == "0" (
-	sd -p margo:2001 sync %SDXROOT%\tools\projects.* %SDXROOT%\tools\sdx.* 2>NUL >NUL
-	echo Updating SD.MAP/SD.INIs with new depot names...
-	sdx repair -i -q 2>NUL >NUL
-)
-
-endlocal
-)
-
 @rem Set the SignTool_Sign variable appropriately.
 if "%_ArgOffline%" == "true" (
    @rem Offline: Use the driver.pfx file for test signing (only available in OEM source kit)
@@ -646,7 +556,7 @@ for /f %%i in ('tfindcer -a"Microsoft Test Root Authority" -s root -S ^| findstr
     set __certinstalled=1
 )
 
-if defined __certinstalled goto :eof
+if defined __certinstalled goto :eof2
 echo TestRoot does NOT appear to be installed yet.  Installing now...
 
 @rem Install testroot certificate.
@@ -658,7 +568,7 @@ for /f %%i in ('tfindcer -a"Microsoft Test Root Authority" -s root -S ^| findstr
     set __certinstalled=1
 )
 
-if defined __certinstalled echo TestRoot installed successfully&&goto :eof
+if defined __certinstalled echo TestRoot installed successfully&&goto :eof2
 echo TestRoot still not installed.  You may have to do this manually.  Simply
 echo log on as a local administrator and issue the following command:
 echo
@@ -673,7 +583,7 @@ for /f %%i in ('tfindcer -a"Microsoft Test PCA" -s ca -S ^| findstr /c:"87382E1E
     set __certinstalled=1
 )
 
-if defined __certinstalled goto :eof
+if defined __certinstalled goto :eof2
 echo Test PCA does NOT appear to be installed yet.  Installing now...
 
 @rem Install test pca certificate.
@@ -685,11 +595,12 @@ for /f %%i in ('tfindcer -a"Microsoft Test PCA" -s ca -S ^| findstr /c:"87382E1E
     set __certinstalled=1
 )
 
-if defined __certinstalled echo Test PCA installed successfully&&goto :eof
+if defined __certinstalled echo Test PCA installed successfully&&goto :eof2
 echo Test PCA Certificate still not installed.  You may have to do this manually.  Simply
 echo log on as a local administrator and issue the following command:
 echo
 echo certmgr -add %RazzleToolPath%\testpca.cer -r localMachine -s ca
+:eof2
 endlocal
 @rem ======================================
 @rem ========== SignTest.cmd ==========
@@ -706,7 +617,7 @@ if %GotLock% EQU FALSE (
 		goto TRY_AGAIN
 		)
 	echo Unable to perform test signature at this time.
-	goto _EOF
+	goto _EOF3
 	)
 if %SignTest% EQU FAILURE (
 	echo ************************************************************
@@ -716,7 +627,7 @@ if %SignTest% EQU FAILURE (
 	echo ************************************************************
 	)
 del %TEMP%\signtest.lock >nul 2>&1
-goto :_EOF
+goto :_EOF3
 
 
 :CRITICALSECTION
@@ -741,9 +652,9 @@ if %ERRORLEVEL% EQU 0 (
 REM Delete the temporary cat file
 del %TEMP%\signtest.cat >nul 2>&1
 REM End Critical Section
-goto :_EOF
+goto :_EOF3
 
-:_EOF
+:_EOF3
 endlocal
 @rem ==================================
 :NoCertCheck
@@ -890,7 +801,7 @@ for /f "delims=, tokens=1,2,3,4,5,6" %%i in (%RazzleToolPath%\BuildMachines.txt)
 
 set OFFICIAL_BUILD_MACHINE=
 
-goto :_eof
+goto :_eof4
 
 
 :FoundIt
@@ -899,15 +810,15 @@ goto :_eof
 @rem Make sure the OFFICIAL_BUILD_MACHINE is upper-case for consistency
 @rem
 
-if /I "%OFFICIAL_BUILD_MACHINE%" == "primary" set OFFICIAL_BUILD_MACHINE=PRIMARY&goto :eof
-if /I "%OFFICIAL_BUILD_MACHINE%" == "secondary" set OFFICIAL_BUILD_MACHINE=SECONDARY&goto :eof
+if /I "%OFFICIAL_BUILD_MACHINE%" == "primary" set OFFICIAL_BUILD_MACHINE=PRIMARY&goto :_eof4
+if /I "%OFFICIAL_BUILD_MACHINE%" == "secondary" set OFFICIAL_BUILD_MACHINE=SECONDARY&goto :_eof4
 
 @echo ERROR: "%OFFICIAL_BUILD_MACHINE%" is an invalid value. Please correct buildmachines.txt.
 set OFFICIAL_BUILD_MACHINE=
 
-goto :_eof
+goto :_eof4
 
-:_eof
+:_eof4
 )
 
 set __BUILDMACHINE__=%_BuildBranch%
