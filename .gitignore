@@ -1,1 +1,12 @@
+# Folders
 developer/*
+**/obj/*
+
+# Files
+build.err
+build.log
+build.wrn
+BuildName.txt
+__blddate__
+__bldnum__
+publish.log
