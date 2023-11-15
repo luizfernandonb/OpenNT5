@@ -1,1 +1,0 @@
-perl %RazzleToolPath%\checkdepots.pl

@@ -870,7 +870,7 @@ $(O)\layout.inx : $(_INX)\layout.inx
 !endif
 
 $(_COVINF)\layout.inx : $(_INX)\layout.inx $(_INX)\$(@B).mcv
-    call MergeFiles.cmd $(_INX)\layout.inx $(_INX)\$(@B).mcv $(_COVINF)\layout.tmp
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(_INX)\layout.inx $(_INX)\$(@B).mcv $(_COVINF)\layout.tmp
     $(CC) $(PREFLAGS) $(_COVINF)\layout.tmp > $@
     del $(_COVINF)\layout.tmp
 !if "$(PRODSWITCH)" == "w"
@@ -959,7 +959,7 @@ $(_RSCOVINF)\layout.inf: $(O)\layout.inx $(_INX)\$(@B).mcv $(_RSCOVINF)\dosnet.i
 !endif
                       $(O)\layout.txt
     copy $(O)\$(@B).inx+$(O)\$(@B).txt $(O)\$(@B).tmp1
-    call MergeFiles.cmd $(O)\$(@B).tmp1 $(_INX)\$(@B).mcv $(O)\$(@B).tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(O)\$(@B).tmp1 $(_INX)\$(@B).mcv $(O)\$(@B).tmp2
     prodfilt -s $(O)\$(@B).tmp2 $(O)\$(@B).tmp1 +$(PRODSWITCH)
     prodfilt -s $(O)\$(@B).tmp1 $(O)\$(@B).tmp2 +$(PLATFORM_SWITCH)
     copy $(O)\$(@B).tmp2 $@
@@ -1063,7 +1063,7 @@ $(_COVINF)\syssetup.inf: $(O)\syssetup.inx $(_INX)\$(@B).mcv \
     copy /b $(O)\$(@B).inx+$(O)\$(@B).txt1 $(O)\$(@B).tmp1
     prodfilt -s $(O)\$(@B).tmp1 $(O)\$(@B).tmp2 +$(PRODSWITCH)
     prodfilt -s $(O)\$(@B).tmp2 $(O)\$(@B).tmp1 +$(PLATFORM_SWITCH)
-    call MergeFiles.cmd $(O)\$(@B).tmp1 $(_INX)\$(@B).mcv $@
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(O)\$(@B).tmp1 $(_INX)\$(@B).mcv $@
     @del $(O)\$(@B).tmp1
     @del $(O)\$(@B).tmp2
     @del $(O)\$(@B).txt1
@@ -1667,7 +1667,7 @@ $(_COVINF)\hivesys.inf: $(_INX)\hivesys.inx $(_LNG)\hivesys.txt $(_INX)\$(@B).mc
     $(C_COMPILER_NAME) -EP $(CDEFINES) $(O)\$(@B).tmp1 >$(O)\$(@B).tmp2
     prodfilt $(O)\$(@B).tmp2 $(O)\$(@B).tmp3 +$(PRODSWITCH)
     prodfilt $(O)\$(@B).tmp3 $(O)\$(@B).tmp2 +$(PLATFORM_SWITCH)
-    call MergeFiles.cmd $(O)\$(@B).tmp2 $(_INX)\$(@B).mcv $(@)
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(O)\$(@B).tmp2 $(_INX)\$(@B).mcv $(@)
     @del $(O)\$(@B).tmp1
     @del $(O)\$(@B).tmp2
     @del $(O)\$(@B).tmp3
@@ -4290,7 +4290,7 @@ $(_RSCOVINF)\txtsetup.sif: $(O)\txtsetup.inx $(_LNG)\txtsetup.txt $(_COVINF)\dsk
     copy $(O)\$(@B).inx+$(O)\txtsetup.txt1+$(O)\dskspace.txt1 $(O)\txtsetup.tmp1
     prodfilt -s $(O)\txtsetup.tmp1 $(O)\txtsetup.tmp2 +$(PLATFORM_SWITCH)
     prodfilt -s $(O)\txtsetup.tmp2 $(O)\txtsetup.tmp1 +$(PRODSWITCH)
-    call MergeFiles.cmd $(O)\txtsetup.tmp1 $(_INX)\$(@B).mcv $(O)\txtsetup.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(O)\txtsetup.tmp1 $(_INX)\$(@B).mcv $(O)\txtsetup.tmp2
     copy $(_RSCOVINF)\layout.inf+$(O)\txtsetup.tmp2 $(_RSCOVINF)\txtsetup.sif
     @del $(O)\txtsetup.tmp1 $(O)\txtsetup.tmp2 $(O)\txtsetup.txt1 $(O)\dskspace.txt1
     $(COVER_RSBINPLACE_CMD)
@@ -4320,7 +4320,7 @@ $(_COVINF)\txtsetup.sif: $(O)\txtsetup.inx $(_LNG)\txtsetup.txt $(_COVINF)\dsksp
     copy $(O)\$(@B).inx+$(O)\txtsetup.txt1+$(O)\dskspace.txt1 $(O)\txtsetup.tmp1
     prodfilt -s $(O)\txtsetup.tmp1 $(O)\txtsetup.tmp2 +$(PLATFORM_SWITCH)
     prodfilt -s $(O)\txtsetup.tmp2 $(O)\txtsetup.tmp1 +$(PRODSWITCH)
-    call MergeFiles.cmd $(O)\txtsetup.tmp1 $(_INX)\$(@B).mcv $(O)\txtsetup.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(O)\txtsetup.tmp1 $(_INX)\$(@B).mcv $(O)\txtsetup.tmp2
     copy $(_COVINF)\layout.inf+$(O)\txtsetup.tmp2 $(_COVINF)\txtsetup.sif
     @del $(O)\txtsetup.tmp1 $(O)\txtsetup.tmp2 $(O)\txtsetup.txt1 $(O)\dskspace.txt1
     $(COVER_TSBINPLACE_CMD)
@@ -4378,11 +4378,11 @@ $(_RSCOVINF)\dosnet.inf: $(_RSCOVINF)\dosnet.inx $(_LNG)\dosnet.txt $(_INX)\dosn
     $(CC) $(PREFLAGS) $(_LNG)\dosnet.txt > $(_RSCOVINF)\dosnet.txt1
     $(CC) $(PREFLAGS) $(_COVINF)\dskspace.txt > $(_RSCOVINF)\dskspace.txt1
     copy $(_RSCOVINF)\dosnet.inx+$(_RSCOVINF)\dosnet.txt1+$(_RSCOVINF)\dskspace.txt1 $(_RSCOVINF)\dosnet.tmp1
-    call MergeFiles.cmd $(_RSCOVINF)\dosnet.tmp1 $(_INX)\dosnet.mcv $(_RSCOVINF)\dosnet.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(_RSCOVINF)\dosnet.tmp1 $(_INX)\dosnet.mcv $(_RSCOVINF)\dosnet.tmp2
     prodfilt -s $(_RSCOVINF)\dosnet.tmp2 $(_RSCOVINF)\dosnet.tmp1 +$(PLATFORM_SWITCH)
     prodfilt -s $(_RSCOVINF)\dosnet.tmp1 $(_RSCOVINF)\dosnet.tmp2 +$(PRODSWITCH)
     copy $(O)\layout.inx+$(O)\layout.txt $(_RSCOVINF)\lydosnet.tmp1
-    call MergeFiles.cmd $(_RSCOVINF)\lydosnet.tmp1 $(_INX)\layout.mcv $(_RSCOVINF)\lydosnet.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(_RSCOVINF)\lydosnet.tmp1 $(_INX)\layout.mcv $(_RSCOVINF)\lydosnet.tmp2
     prodfilt -s $(_RSCOVINF)\lydosnet.tmp2 $(_RSCOVINF)\lydosnet.tmp1 +$(PRODSWITCH)
     prodfilt -s $(_RSCOVINF)\lydosnet.tmp1 $(_RSCOVINF)\lydosnet.tmp2 +$(PLATFORM_SWITCH)
 !IF $(WIN64)
@@ -4454,11 +4454,11 @@ $(_COVINF)\dosnet.inf: $(_COVINF)\dosnet.inx $(_LNG)\dosnet.txt $(_INX)\dosnet.m
     $(CC) $(PREFLAGS) $(_LNG)\dosnet.txt > $(_COVINF)\dosnet.txt1
     $(CC) $(PREFLAGS) $(_COVINF)\dskspace.txt > $(_COVINF)\dskspace.txt1
     copy $(_COVINF)\dosnet.inx+$(_COVINF)\dosnet.txt1+$(_COVINF)\dskspace.txt1 $(_COVINF)\dosnet.tmp1
-    call MergeFiles.cmd $(_COVINF)\dosnet.tmp1 $(_INX)\dosnet.mcv $(_COVINF)\dosnet.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(_COVINF)\dosnet.tmp1 $(_INX)\dosnet.mcv $(_COVINF)\dosnet.tmp2
     prodfilt -s $(_COVINF)\dosnet.tmp2 $(_COVINF)\dosnet.tmp1 +$(PLATFORM_SWITCH)
     prodfilt -s $(_COVINF)\dosnet.tmp1 $(_COVINF)\dosnet.tmp2 +$(PRODSWITCH)
     copy $(O)\layout.inx+$(_INX)\layout.tst+$(O)\layout.txt $(_COVINF)\lydosnet.tmp1
-    call MergeFiles.cmd $(_COVINF)\lydosnet.tmp1 $(_INX)\layout.mcv $(_COVINF)\lydosnet.tmp2
+    perl $(_NTBINDIR)\tools\MergeFiles.pl $(_COVINF)\lydosnet.tmp1 $(_INX)\layout.mcv $(_COVINF)\lydosnet.tmp2
     prodfilt -s $(_COVINF)\lydosnet.tmp2 $(_COVINF)\lydosnet.tmp1 +$(PRODSWITCH)
     prodfilt -s $(_COVINF)\lydosnet.tmp1 $(_COVINF)\lydosnet.tmp2 +$(PLATFORM_SWITCH)
 !IF $(WIN64)

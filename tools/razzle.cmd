@@ -1,4 +1,86 @@
 @if "%_echo%"=="" echo off
+
+if "%PROCESSOR_ARCHITECTURE%" == "AMD64" (
+rem check some tree stuff is in order
+
+pushd tools\tools16
+
+if not exist buildmsg.16.exe (
+  move buildmsg.exe buildmsg.16.exe
+  ..\x86\msdos32.exe -v7.10 -cbuildmsg.exe buildmsg.16.exe
+)
+if not exist exe2bin.16.exe (
+  move exe2bin.exe exe2bin.16.exe
+  ..\x86\msdos32.exe -v7.10 -cexe2bin.exe exe2bin.16.exe
+)
+if not exist nosrvbld.16.exe (
+  move nosrvbld.exe nosrvbld.16.exe
+  ..\x86\msdos32.exe -v7.10 -cnosrvbld.exe nosrvbld.16.exe
+)
+
+rem rc16 doesn't work well when msdos32-wrapped, use bat redirect instead
+if exist rc16.exe (
+  move rc16.exe rc16.16.exe
+)
+if exist rclater.exe (
+  move rclater.exe rclater.16.exe
+)
+
+rem these seem to sometimes get 0xc0000417 error when msdos32 wrapper is attached
+if not exist fixexe.16.exe (
+  move fixexe.exe fixexe.16.exe
+)
+if not exist reloc.16.exe (
+  move reloc.exe reloc.16.exe
+)
+
+rem cleanup pre-v9e files
+if exist stripdd.16.exe (
+  del stripdd.16.exe
+  del stripdd.bat
+  move stripdd.exe stripdd.16.exe
+)
+if exist h2inc.16.exe (
+  del h2inc.16.exe
+)
+if exist stripz.16.exe (
+  del stripz.16.exe
+)
+
+popd
+
+if not exist printscan\faxsrv\print\faxprint\faxdrv\win9x\sdk\binw16\rc.16.exe (
+  move printscan\faxsrv\print\faxprint\faxdrv\win9x\sdk\binw16\rc.exe printscan\faxsrv\print\faxprint\faxdrv\win9x\sdk\binw16\rc.16.exe
+)
+
+rem below dirs get a 16-bit buildmsg.exe built inside them, which gets ran to build the rest of the dir
+rem wrap these buildmsg.exe calls with a batch file
+if not exist base\mvdm\dos\v86\cmd\command\chs\buildmsg.bat (
+  copy tools\tools16\buildmsg_thunk.bat base\mvdm\dos\v86\cmd\command\chs\buildmsg.bat
+)
+if not exist base\mvdm\dos\v86\cmd\command\cht\buildmsg.bat (
+  copy tools\tools16\buildmsg_thunk.bat base\mvdm\dos\v86\cmd\command\cht\buildmsg.bat
+)
+if not exist base\mvdm\dos\v86\cmd\command\jpn\buildmsg.bat (
+  copy tools\tools16\buildmsg_thunk.bat base\mvdm\dos\v86\cmd\command\jpn\buildmsg.bat
+)
+if not exist base\mvdm\dos\v86\cmd\command\kor\buildmsg.bat (
+  copy tools\tools16\buildmsg_thunk.bat base\mvdm\dos\v86\cmd\command\kor\buildmsg.bat
+)
+if not exist base\mvdm\dos\v86\cmd\command\usa\buildmsg.bat (
+  copy tools\tools16\buildmsg_thunk.bat base\mvdm\dos\v86\cmd\command\usa\buildmsg.bat
+)
+popd
+
+rem make razzle think this is x86 box, so it'll use x86 build tools instead of broken amd64 ones
+set PROCESSOR_ARCHITECTURE=x86
+
+rem prefer .bat files over .exe, so our batch wrapper files will be preferred (todo: is this still needed?)
+set PATHEXT=.BAT;.COM;.EXE;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.RB;.RBW
+
+popd
+)
+
 rem setting title based on some info
 
 @rem
@@ -172,12 +254,6 @@ for /f "tokens=3 delims=.]" %%i in ('ver') do set OS_BUILDNUMBER=%%i
 @rem Previous line doesn't work on NT4.  [Some ancient build machines still use NT4.]
 if "%OS_BUILDNUMBER%" == "" set OS_BUILDNUMBER=1381
 
-if %OS_BUILDNUMBER% GEQ 2410 (
-    if %OS_BUILDNUMBER% LEQ 2480 (
-        regini %RazzleToolPath%\delsip.ini
-    )
-)
-
 @rem
 @rem Start with a pure system path.  If people want to muck it up they can do so in their setenv.cmd
 @rem This will ensure we can build 16-bit stuff (16-bit tools sometimes puke on long paths) AND start
@@ -321,8 +397,65 @@ if "%RazzleToolPath_CrossPlatform%" == "" (
 set BUILD_DEFAULT_TARGETS=-%_BuildArch%
 set %_BuildArch%=1
 
-        @rem Make sure the perl binaries are current
-        call %RazzleToolPath%\perlrefresh.cmd
+@rem Make sure the perl binaries are current
+setlocal
+
+@rem delete some old turds that perl keeps finding on the path before
+@rem the real binaries in tools\perl.
+if exist %RazzleToolPath%\x86\perl\site\lib\auto\win32\ipc\ipc.dll (
+    del %RazzleToolPath%\x86\perl\site\lib\auto\win32\ipc\ipc.dll >nul 2>&1
+    del %RazzleToolPath%\x86\perl\site\lib\auto\win32\mutex\mutex.dll >nul 2>&1
+    rd /s /q %RazzleToolPath%\x86\perl >nul 2>&1
+)
+
+@rem Make sure the binaries exists so xcopy will always work.
+
+@rem Check perl.exe only.  If it's current, assume the rest are also.
+if exist %RazzleToolPath%\perl\bin\perl.exe (
+    for /f %%R in ('xcopy /ld %RazzleToolPath%\perl\bin\perl.CheckedInExe %RazzleToolPath%\perl\bin\perl.exe') do (
+        if %%R == 0 (
+	    goto :eof
+	)
+    )
+)
+
+echo Updating perl binaries...
+
+for /f %%Q in ('dir /s /b %RazzleToolPath%\perl\*.CheckedInDll') do (
+    if NOT exist %%~dQ%%~pQ%%~nQ.dll (
+        copy %%Q %%~dQ%%~pQ%%~nQ.dll > nul
+        attrib +r %%~dQ%%~pQ%%~nQ.dll
+    ) else (
+        for /f %%R in ('xcopy /ld %%Q %%~dQ%%~pQ%%~nQ.dll') do (
+	    if NOT %%R == 0 (
+                attrib -r %%~dQ%%~pQ%%~nQ.dll
+                del %%~dQ%%~pQ%%~nQ.dll.old >nul 2>&1
+                ren %%~dQ%%~pQ%%~nQ.dll %%~nQ.dll.old
+                copy %%Q %%~dQ%%~pQ%%~nQ.dll > nul
+                attrib +r %%~dQ%%~pQ%%~nQ.dll
+            )
+	)
+    )
+)
+
+for /f %%Q in ('dir /s /b %RazzleToolPath%\perl\*.CheckedInExe') do (
+    if NOT exist %%~dQ%%~pQ%%~nQ.exe (
+        copy %%Q %%~dQ%%~pQ%%~nQ.exe > nul
+        attrib +r %%~dQ%%~pQ%%~nQ.exe
+    ) else (
+        for /f %%R in ('xcopy /ld %%Q %%~dQ%%~pQ%%~nQ.exe') do (
+	    if NOT %%R == 0 (
+                attrib -r %%~dQ%%~pQ%%~nQ.exe
+                del %%~dQ%%~pQ%%~nQ.exe.old >nul 2>&1
+                ren %%~dQ%%~pQ%%~nQ.exe %%~nQ.exe.old
+                copy %%Q %%~dQ%%~pQ%%~nQ.exe > nul
+                attrib +r %%~dQ%%~pQ%%~nQ.exe
+            )
+        )
+    )
+)
+	    
+endlocal
 
 set RazzleToolPath_Perl=%RazzleToolPath%\perl\bin;
 set PERL5LIB=%RazzleToolPath%\perl\site\lib;%RazzleToolPath%\perl\lib
@@ -479,7 +612,93 @@ set BATCH_NMAKE=1
 
 @rem Make sure the sd client is current
 
-if "%_ArgNoSDRefresh%" == "false" call sdrefresh.cmd
+if "%_ArgNoSDRefresh%" == "false" (
+setlocal
+
+@rem Make sure sd.exe exists so xcopy will always work.
+
+if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe goto UpdateSD
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
+goto SD_Updated
+
+:UpdateSD
+
+@rem See if xcopy would have updated sdclient.exe over sd.exe
+
+for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe') do set _SDCHANGE=%%i
+if "%_SDCHANGE%" == "0" goto SD_Updated
+
+@rem Then do it (save the original as sdold.exe in case anyone needs to use it).
+
+del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold.exe
+ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe sdold.exe
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sd.exe
+
+:SD_Updated
+
+@rem Don't bother with sdwin for now.  The new authentication scheme breaks it - BryanT/ChrisAnt 9/13/99
+if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
+if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe
+goto SDWin_Updated
+
+@rem Same song, different verse.  Update sdwin.exe using the same protocol.
+
+if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe goto UpdateSDWin
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
+goto SDWin_Updated
+
+:UpdateSDWin
+
+for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe') do set _SDWINCHANGE=%%i
+if "%_SDWINCHANGE%" == "0" goto SDWin_Updated
+del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdold_win.exe
+ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe sdold_win.exe
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdclient_win.exe %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdwin.exe
+
+:SDWin_Updated
+
+@rem Refrain: sdapiclient.dll becomes sdapi.dll
+
+if exist %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll goto UpdateSDAPI
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
+goto SDAPI_Updated
+
+:UpdateSDAPI
+
+@rem See if xcopy would have updated sdapiclient.dll over sdapi.dll
+
+for /f %%i in ('xcopy /ld %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll') do set _SDAPICHANGE=%%i
+if "%_SDAPICHANGE%" == "0" goto SDAPI_Updated
+
+@rem Then do it (save the original as sdapi_old.dll in case anyone needs to use it).
+
+del /f %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi_old.dll
+ren %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll sdapi_old.dll
+copy %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapiclient.dll %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
+attrib +r %RazzleToolPath%\%PROCESSOR_ARCHITECTURE%\sdapi.dll
+
+:SDAPI_Updated
+
+
+
+@rem
+@rem INFRA is using new DNS alias names for the SD servers
+@rem maybe update the user's SD.INIs/SD.MAP
+@rem
+findstr /I coppermtn %SDXROOT%\sd.map >nul
+if "%ERRORLEVEL%" == "0" (
+	sd -p margo:2001 sync %SDXROOT%\tools\projects.* %SDXROOT%\tools\sdx.* 2>NUL >NUL
+	echo Updating SD.MAP/SD.INIs with new depot names...
+	sdx repair -i -q 2>NUL >NUL
+)
+
+endlocal
+)
 
 @rem Set the SignTool_Sign variable appropriately.
 if "%_ArgOffline%" == "true" (
@@ -492,9 +711,114 @@ if "%_ArgOffline%" == "true" (
 
 if "%_ArgNoCertCheck%" == "true" goto NoCertCheck
 @rem make sure the test root certificate is installed (so signcode etc will work).
-call CheckTestRoot.cmd
-call CheckTestPCA.cmd
-call SignTest.cmd
+@rem ========== checktestroot.cmd ==========
+@setlocal
+echo Verifying that the Testroot Certificate is installed...
+set __certinstalled=
+for /f %%i in ('tfindcer -a"Microsoft Test Root Authority" -s root -S ^| findstr /c:"6D220B9D F2450CAF 5801F436 6653B913 CAAFEB6D"') do (
+    set __certinstalled=1
+)
+
+if defined __certinstalled goto :eof
+echo TestRoot does NOT appear to be installed yet.  Installing now...
+
+@rem Install testroot certificate.
+certmgr -add %RazzleToolPath%\testroot.cer -r localMachine -s root
+
+echo Check again to see if Testroot is installed...
+set __certinstalled=
+for /f %%i in ('tfindcer -a"Microsoft Test Root Authority" -s root -S ^| findstr /c:"6D220B9D F2450CAF 5801F436 6653B913 CAAFEB6D"') do (
+    set __certinstalled=1
+)
+
+if defined __certinstalled echo TestRoot installed successfully&&goto :eof
+echo TestRoot still not installed.  You may have to do this manually.  Simply
+echo log on as a local administrator and issue the following command:
+echo
+echo certmgr -r localMachine -add %RazzleToolPath%\testroot.cer -s root
+endlocal
+@rem =======================================
+@rem ========== CheckTestPCA.cmd ==========
+@setlocal
+echo Verifying that the Test PCA Certificate is installed...
+set __certinstalled=
+for /f %%i in ('tfindcer -a"Microsoft Test PCA" -s ca -S ^| findstr /c:"87382E1E D9544D41 ECD4F68C 374E477D 113CF497"') do (
+    set __certinstalled=1
+)
+
+if defined __certinstalled goto :eof
+echo Test PCA does NOT appear to be installed yet.  Installing now...
+
+@rem Install test pca certificate.
+certmgr -add %RazzleToolPath%\testpca.cer -r localMachine -s ca
+
+echo Check again to see if Test PCA Certificate is installed...
+set __certinstalled=
+for /f %%i in ('tfindcer -a"Microsoft Test PCA" -s ca -S ^| findstr /c:"87382E1E D9544D41 ECD4F68C 374E477D 113CF497"') do (
+    set __certinstalled=1
+)
+
+if defined __certinstalled echo Test PCA installed successfully&&goto :eof
+echo Test PCA Certificate still not installed.  You may have to do this manually.  Simply
+echo log on as a local administrator and issue the following command:
+echo
+echo certmgr -add %RazzleToolPath%\testpca.cer -r localMachine -s ca
+endlocal
+@rem ======================================
+@rem ========== SignTest.cmd ==========
+setlocal ENABLEEXTENSIONS
+set Attempt=1
+set GotLock=FALSE
+
+:TRY_AGAIN
+call :CRITICALSECTION 2> %TEMP%\signtest.lock
+if %GotLock% EQU FALSE (
+	if %Attempt% LSS 5 (
+		sleep 1
+		set /a Attempt=%Attempt% + 1
+		goto TRY_AGAIN
+		)
+	echo Unable to perform test signature at this time.
+	goto _EOF
+	)
+if %SignTest% EQU FAILURE (
+	echo ************************************************************
+	echo You are unable to create a test signature. If this problem
+	echo continues for more than 24 hours, please read the help
+	echo document at http://winweb/wem/docs/BuildVerCerts.doc
+	echo ************************************************************
+	)
+del %TEMP%\signtest.lock >nul 2>&1
+goto :_EOF
+
+
+:CRITICALSECTION
+echo Verifying your ability to create a test signature...
+set GotLock=TRUE
+REM Creating test file to sign:
+copy /y %RazzleToolPath%\signtest.cat %TEMP% 1>&2
+
+REM Test signing the cat file:
+signtool sign /q %SIGNTOOL_SIGN% %TEMP%\signtest.cat 1>&2
+if %ERRORLEVEL% EQU 0 (
+	REM SUCCESS
+	set SignTest=SUCCESS
+	) else (
+	REM FAILURE
+	set SignTest=FAILURE
+	REM Repro the failure and show us the output this time
+	copy /y %RazzleToolPath%\signtest.cat %TEMP% 1>&2
+	signtool sign %SIGNTOOL_SIGN% %TEMP%\signtest.cat 2>&1
+	)
+
+REM Delete the temporary cat file
+del %TEMP%\signtest.cat >nul 2>&1
+REM End Critical Section
+goto :_EOF
+
+:_EOF
+endlocal
+@rem ==================================
 :NoCertCheck
 
 @rem
@@ -616,7 +940,49 @@ if /I "%_BuildBranch%" == "Lab03_DEV" (
 @rem
 @rem Set the OFFICIAL_BUILD_MACHINE variable if appropriate
 @rem
-if "%_ArgOfficial%" == "true" call VerifyBuildMachine.cmd
+if "%_ArgOfficial%" == "true" (
+for /f "delims=, tokens=1,2,3,4,5,6" %%i in (%RazzleToolPath%\BuildMachines.txt) do (
+    if /I "%%i" == "%COMPUTERNAME%" (
+        if /I "%%k" == "%_BuildBranch%" (
+            if /I "%%l" == "%_BuildArch%" (
+                if /I "%%m" == "%_BuildType%" (
+                    set OFFICIAL_BUILD_MACHINE=%%j
+                    set _BuildNotifyDL=%%n
+                    goto :FoundIt
+                )
+            )
+        )
+    )
+)
+
+@rem Didn't find the machine.
+
+@echo ERROR: "%COMPUTERNAME%" is not a valid official build machine for this
+@echo build type on this branch. Update %RazzleToolPath%\BuildMachines.txt
+@echo if you feel differently. Clearing OFFICIAL_BUILD_MACHINE variable.
+
+set OFFICIAL_BUILD_MACHINE=
+
+goto :_eof
+
+
+:FoundIt
+
+@rem
+@rem Make sure the OFFICIAL_BUILD_MACHINE is upper-case for consistency
+@rem
+
+if /I "%OFFICIAL_BUILD_MACHINE%" == "primary" set OFFICIAL_BUILD_MACHINE=PRIMARY&goto :eof
+if /I "%OFFICIAL_BUILD_MACHINE%" == "secondary" set OFFICIAL_BUILD_MACHINE=SECONDARY&goto :eof
+
+@echo ERROR: "%OFFICIAL_BUILD_MACHINE%" is an invalid value. Please correct buildmachines.txt.
+set OFFICIAL_BUILD_MACHINE=
+
+goto :_eof
+
+:_eof
+)
+
 set __BUILDMACHINE__=%_BuildBranch%
 set NO_PDB_PATHS=1
 if NOT defined OFFICIAL_BUILD_MACHINE goto NotBuildMachine
@@ -674,7 +1040,7 @@ remote /s cmd %RemoteName% /V %RemoteIDsAccepted%
 :NoRemote
 
 
-if "%_ArgCheckDepots%" == "true" call checkdepots.cmd
+if "%_ArgCheckDepots%" == "true" perl %RazzleToolPath%\checkdepots.pl
 
 :Cleanup
 
