@@ -1167,3 +1167,8 @@ UNDEFINED_DEF_ENTRY( REMGETINFOFORCID        )
 UNDEFINED_DEF_ENTRY( OLE1CLASSFROMCLSID2     )
 UNDEFINED_DEF_ENTRY( REMLOOKUPSHUNK          )
 UNDEFINED_DEF_ENTRY( REMFREEOID              )
+
+//
+// 4chan: some reason this is needed here when using newer compiler...
+//
+UNDEFINED_DEF_ENTRY( CORUNMODALLOOP          )

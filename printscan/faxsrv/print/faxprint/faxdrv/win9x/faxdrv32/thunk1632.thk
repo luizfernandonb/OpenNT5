@@ -1,0 +1,200 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+enablemapdirect1632 = true;     
+win31compat = true;
+
+
+
+typedef unsigned char   BYTE,*PBYTE,*LPBYTE;
+typedef char            *LPSTR,*LPCSTR,CHAR;
+typedef unsigned long   *LPDWORD,DWORD;
+typedef unsigned short  WORD,*LPWORD;
+typedef void            VOID,*PVOID,*LPVOID;
+typedef WORD            HWND;
+
+
+
+
+
+
+typedef struct _devicemode 
+{
+    BYTE dmDeviceName[32];
+    WORD dmSpecVersion;
+    WORD dmDriverVersion;
+    WORD dmSize;
+    WORD dmDriverExtra;
+    DWORD dmFields;
+    short dmOrientation;
+    short dmPaperSize;
+    short dmPaperLength;
+    short dmPaperWidth;
+    short dmScale;
+    short dmCopies;
+    short dmDefaultSource;
+    short dmPrintQuality;
+    short dmColor;
+    short dmDuplex;
+    short dmYResolution;
+    short dmTTOption;
+    short dmCollate;
+    BYTE   dmFormName[32];
+    WORD   dmLogPixels;
+    DWORD  dmBitsPerPel;
+    DWORD  dmPelsWidth;
+    DWORD  dmPelsHeight;
+    DWORD  dmDisplayFlags;
+    DWORD  dmDisplayFrequency;
+    DWORD  dmICMMethod;
+    DWORD  dmICMIntent;
+    DWORD  dmMediaType;
+    DWORD  dmDitherType;
+    DWORD  dmReserved1;
+    DWORD  dmReserved2;
+} DEVMODE, *PDEVMODE, *LPDEVMODE;
+
+typedef struct _DOCINFOA {
+    short    cbSize;
+    LPCSTR   lpszDocName;
+    LPCSTR   lpszOutput;
+    LPCSTR   lpszDatatype;
+    DWORD    fwType;
+} DOCINFO, *LPDOCINFO;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+bool 
+FaxStartDoc(DWORD dwPtr, LPDOCINFO lpdi)
+{
+    faulterrorcode = -1;
+}
+
+
+bool 
+FaxAddPage(DWORD  dwPtr,
+           LPBYTE lpBitmapData,
+           DWORD  dwPxlsWidth,
+           DWORD  dwPxlsHeight)
+{
+    faulterrorcode = -1;
+}
+
+
+bool 
+FaxEndDoc(DWORD dwPtr,
+          bool  bAbort)
+{
+    faulterrorcode = -1;
+}
+
+bool 
+FaxResetDC(LPDWORD pdwOldPtr,
+           LPDWORD pdwNewPtr)
+{
+    faulterrorcode = -1;
+}
+
+
+bool 
+FaxDevInstall(LPSTR lpDevName,
+              LPSTR lpOldPort,
+              LPSTR lpNewPort)
+{
+    faulterrorcode = -1;
+}
+
+
+bool 
+FaxCreateDriverContext(LPSTR      lpDeviceName,
+                       LPSTR      lpPort,
+                       LPDEVMODE  lpDevMode,
+                       LPDWORD    lpDrvContext)
+{
+    faulterrorcode = -1;
+}
+
+bool 
+FaxDisable(DWORD dwPtr)
+{
+    faulterrorcode = -1;
+}
+
+
+
+

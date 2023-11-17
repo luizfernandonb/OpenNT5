@@ -13,9 +13,8 @@
          DECLSPEC_UUID(), MIDL_INTERFACE()
 */
 //@@MIDL_FILE_HEADING(  )
-#pragma warning( disable: 4206 )  /* nonstandard extension used : translation unit is empty */
 
-//#if !defined(_M_IA64) && !defined(_M_AMD64)
+#if !defined(_M_IA64) && !defined(_M_AMD64)
 
 
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
@@ -78,8 +77,8 @@ extern const MIDL_STUBLESS_PROXY_INFO IFileHandleCache_ProxyInfo;
 
 
 
-#if !defined(_M_IA64) && !defined(_M_AMD64) // !defined(__RPC_WIN32__)
-	#error Invalid build platform for this stub.
+#if !defined(__RPC_WIN32__)
+#error  Invalid build platform for this stub.
 #endif
 
 #if !(TARGET_IS_NT50_OR_LATER)
@@ -729,9 +728,9 @@ CINTERFACE_PROXY_VTABLE(10) _IFileHandleCacheProxyVtbl =
 {
     &IFileHandleCache_ProxyInfo,
     &IID_IFileHandleCache,
-    &IUnknown_QueryInterface_Proxy,
-    &IUnknown_AddRef_Proxy,
-    &IUnknown_Release_Proxy ,
+    IUnknown_QueryInterface_Proxy,
+    IUnknown_AddRef_Proxy,
+    IUnknown_Release_Proxy ,
     (void *) (INT_PTR) -1 /* IFileHandleCache::HrRegisterWorkerProcess */ ,
     (void *) (INT_PTR) -1 /* IFileHandleCache::HrGetGUIDString */ ,
     (void *) (INT_PTR) -1 /* IFileHandleCache::HrGetNewLockData */ ,
@@ -827,4 +826,5 @@ const ExtendedProxyFileInfo fhcache_ProxyFileInfo =
 #endif
 
 
-//#endif /* !defined(_M_IA64) && !defined(_M_AMD64)*/
+#endif /* !defined(_M_IA64) && !defined(_M_AMD64)*/
+

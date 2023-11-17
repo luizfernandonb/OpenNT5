@@ -1,0 +1,49 @@
+<?xml version ="1.0"?>
+<Schema name = "ComCatData_v6"
+  xmlns="urn:schemas-microsoft-com:xml-data"
+  xmlns:dt="urn:schemas-microsoft-com:datatypes">
+
+  <ElementType name = "webconfig" content = "eltOnly" order = "many" model="open"/>
+  <ElementType name = "InterceptorWiring" content = "eltOnly" order = "seq" model="closed">
+      <element type = "Intercept" minOccurs = "0" maxOccurs = "*"/>
+  </ElementType>
+  <ElementType name = "Intercept" content = "empty" order = "many" model="closed">
+      <AttributeType name = "ConfigType" dt:type="string" required = "yes"/><attribute type = "ConfigType"/>
+      <AttributeType name = "Protocol" dt:type="string" required = "yes"/><attribute type = "Protocol"/>
+      <AttributeType name = "Order" dt:type="ui4" required = "yes"/><attribute type = "Order"/>
+      <AttributeType name = "InterceptorClass" dt:type="string" required = "no"/><attribute type = "InterceptorClass"/>
+      <AttributeType name = "InterceptorType" dt:type="enumeration" dt:values="Reader Writer Transformer Merger Validator " required = "yes"/><attribute type = "InterceptorType"/>
+      <AttributeType name = "InterceptorFlags" dt:type="ui4" required = "no"/><attribute type = "InterceptorFlags"/>
+  </ElementType>
+  <ElementType name = "SchemaFiles" content = "eltOnly" order = "seq" model="closed">
+      <element type = "SchemaFile" minOccurs = "0" maxOccurs = "*"/>
+  </ElementType>
+  <ElementType name = "SchemaFile" content = "empty" order = "many" model="closed">
+      <AttributeType name = "Name" dt:type="string" required = "yes"/><attribute type = "Name"/>
+      <AttributeType name = "Path" dt:type="string" required = "no"/><attribute type = "Path"/>
+  </ElementType>
+  <ElementType name = "TRANSFORMER_META" content = "eltOnly" order = "seq" model="closed">
+      <element type = "TransformerWiring" minOccurs = "0" maxOccurs = "*"/>
+  </ElementType>
+  <ElementType name = "TransformerWiring" content = "empty" order = "many" model="closed">
+      <AttributeType name = "TF_Protocol" dt:type="string" required = "yes"/><attribute type = "TF_Protocol"/>
+      <AttributeType name = "TF_Type" dt:type="enumeration" dt:values="FileTransformer WebHierarchyTransformer AppDomainTransformer LocalMachineTransformer ConfigTransformer ShellTransformer " required = "yes"/><attribute type = "TF_Type"/>
+      <AttributeType name = "DllName" dt:type="string" required = "no"/><attribute type = "DllName"/>
+  </ElementType>
+  <ElementType name = "ASSOC_META" content = "eltOnly" order = "seq" model="closed">
+      <element type = "Association" minOccurs = "0" maxOccurs = "*"/>
+  </ElementType>
+  <ElementType name = "Association" content = "empty" order = "many" model="closed">
+      <AttributeType name = "Type" dt:type="string" required = "yes"/><attribute type = "Type"/>
+      <AttributeType name = "TableName" dt:type="string" required = "yes"/><attribute type = "TableName"/>
+  </ElementType>
+  
+
+  <ElementType name = "configuration" content = "eltOnly" order = "many" model="open">
+      <element minOccurs = "0"  maxOccurs = "1"  type = "InterceptorWiring"/>
+      <element minOccurs = "0"  maxOccurs = "1"  type = "SchemaFiles"/>
+      <element minOccurs = "0"  maxOccurs = "1"  type = "TRANSFORMER_META"/>
+      <element minOccurs = "0"  maxOccurs = "1"  type = "ASSOC_META"/>
+      <element minOccurs = "0"  maxOccurs = "1"  type = "webconfig"/>
+  </ElementType>
+</Schema>

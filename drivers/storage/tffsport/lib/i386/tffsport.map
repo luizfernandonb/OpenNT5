@@ -1,0 +1,714 @@
+ tffsport
+
+ Timestamp is 65563a2e (Thu Nov 16 12:50:06 2023)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0001a148H .text                   CODE
+ 0002:00000000 00000154H .idata$5                DATA
+ 0002:00000160 000000b6H .rdata                  DATA
+ 0002:00000218 00000053H .rdata$debug            DATA
+ 0003:00000000 00000120H .data                   DATA
+ 0003:00000120 00005ebcH .bss                    DATA
+ 0004:00000000 00000c57H PAGE                    CODE
+ 0005:00000000 000001aeH INIT                    CODE
+ 0005:000001b0 0000003cH .idata$2                CODE
+ 0005:000001ec 00000014H .idata$3                CODE
+ 0005:00000200 00000154H .idata$4                CODE
+ 0005:00000354 00000710H .idata$6                CODE
+ 0006:00000000 000000d0H .rsrc$01                DATA
+ 0006:000000d0 00000598H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0001:00000016       _TrueffsFetchKeyValue@16   00011016 f   tffsport.obj
+ 0001:000003ec       _TrueffsDetectRegistryValues@8 000113ec f   tffsport.obj
+ 0001:0000069a       _TrueffsCrashDumpOpen@8    0001169a f   tffsport.obj
+ 0001:000006d8       _TrueffsCrashDumpWrite@8   000116d8 f   tffsport.obj
+ 0001:00000792       _TrueffsTranslateAddress@32 00011792 f   tffsport.obj
+ 0001:00000810       _TrueffsFreeTranslatedAddress@12 00011810 f   tffsport.obj
+ 0001:00000844       _TrueffsCreateDevObject@12 00011844 f   tffsport.obj
+ 0001:000009ae       _TrueffsGetInfoNumber@4    000119ae f   tffsport.obj
+ 0001:000009d0       _TrueffsStopRemoveDevice@4 000119d0 f   tffsport.obj
+ 0001:00000af6       _TrueffsCreateSymblicLinks@4 00011af6 f   tffsport.obj
+ 0001:00000c6c       _TrueffsDeleteSymblicLinks@4 00011c6c f   tffsport.obj
+ 0001:00000d4e       _TrueffsUnload@4           00011d4e f   tffsport.obj
+ 0001:00000da8       _TrueffsQueryProperty@8    00011da8 f   tffsport.obj
+ 0001:00000fb8       _TrueffsCreateClose@8      00011fb8 f   tffsport.obj
+ 0001:00000fce       _queryInterfaceCompletionRoutine@12 00011fce f   socketnt.obj
+ 0001:00000fce       _TrueffsSyncSendIrpCompletionRoutine@12 00011fce f   tffsport.obj
+ 0001:00000fe4       _TrueffsCallDriverSyncCompletion@12 00011fe4 f   tffsport.obj
+ 0001:00000ffa       _TrueffsFdoPowerCompletionRoutine@12 00011ffa f   tffsport.obj
+ 0001:0000106c       _TrueffsFdoChildReportPowerDown@4 0001206c f   tffsport.obj
+ 0001:000010a2       _TrueffsScsiRequests@8     000120a2 f   tffsport.obj
+ 0001:0000119a       _QueueIrpToThread@8        0001219a f   tffsport.obj
+ 0001:000011e6       _TrueffsTranslateSRBStatus@4 000121e6 f   tffsport.obj
+ 0001:00001230       _DeviceBuildInstanceId@8   00012230 f   tffsport.obj
+ 0001:0000128c       _CopyField@16              0001228c f   tffsport.obj
+ 0001:000012e0       _TrueffsGetDeviceTypeString@4 000122e0 f   tffsport.obj
+ 0001:000012fa       _TrueffsGetDeviceTypeStringFDO@4 000122fa f   tffsport.obj
+ 0001:00001314       _TrueffsGetCompatibleIdString@4 00012314 f   tffsport.obj
+ 0001:0000132e       _TrueffsGetCompatibleIdStringFDO@4 0001232e f   tffsport.obj
+ 0001:00001348       _TrueffsQueryDeviceRelations@12 00012348 f   tffsport.obj
+ 0001:00001462       _TrueffsOkToDetectLegacy@4 00012462 f   tffsport.obj
+ 0001:00001490       _TrueffsRegQueryRoutine@24 00012490 f   tffsport.obj
+ 0001:00001500       _AllocatePdo@4             00012500 f   tffsport.obj
+ 0001:000015d8       _TrueffsDeviceQueryCapabilities@8 000125d8 f   tffsport.obj
+ 0001:00001626       _TrueffsWmiInit@0          00012626 f   tffsport.obj
+ 0001:00001642       _TrueffsWmiDeregister@4    00012642 f   tffsport.obj
+ 0001:00001654       _TrueffsWmiSystemControl@8 00012654 f   tffsport.obj
+ 0001:000016ae       _TrueffsQueryWmiDataBlock@32 000126ae f   tffsport.obj
+ 0001:0000174e       _TrueffsQueryWmiRegInfo@24 0001274e f   tffsport.obj
+ 0001:000017a0       _TrueffsSetWmiDataBlock@24 000127a0 f   tffsport.obj
+ 0001:000017d4       _TrueffsSetWmiDataItem@28  000127d4 f   tffsport.obj
+ 0001:00001808       _PRINTF                    00012808 f   tffsport.obj
+ 0001:00001808       _flSysfunInit@0            00012808 f   flsystem.obj
+ 0001:00001808       _TrueffsCrashDumpFinish@0  00012808 f   tffsport.obj
+ 0001:0000180a       _TrueffsCrashDumpDriverEntry@4 0001280a f   tffsport.obj
+ 0001:0000183a       _TrueffsDispatchSystemControl@8 0001283a f   tffsport.obj
+ 0001:0000188e       _TrueffsFindDiskOnChip@24  0001288e f   tffsport.obj
+ 0001:00001a34       _TrueffsCheckDiskOnChip@24 00012a34 f   tffsport.obj
+ 0001:00001b8e       _TrueffsResetDiskOnChip@16 00012b8e f   tffsport.obj
+ 0001:00001c12       _TrueffsStartSubDevice@20  00012c12 f   tffsport.obj
+ 0001:00001c5c       _TrueffsAddDevice@8        00012c5c f   tffsport.obj
+ 0001:00001c72       _TrueffsStartDeviceOnDetect@12 00012c72 f   tffsport.obj
+ 0001:00001f04       _TrueffsStartDevice@12     00012f04 f   tffsport.obj
+ 0001:000021e8       _TrueffsDeviceControl@8    000131e8 f   tffsport.obj
+ 0001:00002468       _TrueffsSyncSendIrp@12     00013468 f   tffsport.obj
+ 0001:00002522       _TrueffsCallDriverSync@8   00013522 f   tffsport.obj
+ 0001:00002574       _TrueffsFdoDevicePowerIrpCompletionRoutine@20 00013574 f   tffsport.obj
+ 0001:00002610       _TrueffsPdoCompletePowerIrp@8 00013610 f   tffsport.obj
+ 0001:0000269c       _TrueffsPdoRequestPowerCompletionRoutine@20 0001369c f   tffsport.obj
+ 0001:000026b6       _TrueffsParentPowerUpCompletionRoutine@8 000136b6 f   tffsport.obj
+ 0001:000027ce       _TrueffsFdoChildRequestPowerUpCompletionRoutine@20 000137ce f   tffsport.obj
+ 0001:000027fc       _TrueffsStartIo@8          000137fc f   tffsport.obj
+ 0001:000028fa       _DeviceBuildBusId@8        000138fa f   tffsport.obj
+ 0001:00002a00       _DeviceBuildCompatibleId@8 00013a00 f   tffsport.obj
+ 0001:00002b5e       _DeviceBuildHardwareId@8   00013b5e f   tffsport.obj
+ 0001:00002e30       _TrueffsWmiRegister@4      00013e30 f   tffsport.obj
+ 0001:00002e72       _TrueffsMountMedia@4       00013e72 f   tffsport.obj
+ 0001:00002fe4       _TrueffsSetFdoPowerState@8 00013fe4 f   tffsport.obj
+ 0001:00003154       _TrueffsSetPdoSystemPowerState@8 00014154 f   tffsport.obj
+ 0001:000031ba       _TrueffsFdoChildRequestPowerUp@12 000141ba f   tffsport.obj
+ 0001:00003218       _TrueffsDeviceQueryId@12   00014218 f   tffsport.obj
+ 0001:0000332c       _TrueffsDetectDiskOnChip@8 0001432c f   tffsport.obj
+ 0001:000036e4       _TrueffsPnpDeviceControl@8 000146e4 f   tffsport.obj
+ 0001:00003ee6       _TrueffsSetPdoDevicePowerState@8 00014ee6 f   tffsport.obj
+ 0001:00003f92       _TrueffsSetPdoPowerState@8 00014f92 f   tffsport.obj
+ 0001:00003fe6       _TrueffsPowerControl@8     00014fe6 f   tffsport.obj
+ 0001:00004078       _TrueffsOpenServiceSubKey@8 00015078 f   tffsport.obj
+ 0001:00004124       _TrueffsGetParameterFromServiceSubKey@24 00015124 f   tffsport.obj
+ 0001:00004238       _cfiscsByteSize@4          00015238 f   cfiscs.obj
+ 0001:000043ee       _cfiscsByteIdentify@4      000153ee f   cfiscs.obj
+ 0001:0000454e       _cfiscsWordSize@4          0001554e f   cfiscs.obj
+ 0001:0000465c       _getByteCFI@4              0001565c f   cfiscs.obj
+ 0001:00004992       _getWordCFI@4              00015992 f   cfiscs.obj
+ 0001:00004bc8       _cfiscsByteWrite@20        00015bc8 f   cfiscs.obj
+ 0001:00004e8e       _cfiscsWordWrite@20        00015e8e f   cfiscs.obj
+ 0001:000050c2       _makeCommand@12            000160c2 f   cfiscs.obj
+ 0001:000050ee       _getData@12                000160ee f   cfiscs.obj
+ 0001:00005110       _cfiscsByteErase@12        00016110 f   cfiscs.obj
+ 0001:0000539a       _cfiscsWordErase@12        0001639a f   cfiscs.obj
+ 0001:000054f2       _i28f016Map@12             000164f2 f   i28f016.obj
+ 0001:000054f2       _cfiscsMap@12              000164f2 f   cfiscs.obj
+ 0001:000054f2       _i28f008Map@12             000164f2 f   i28f008.obj
+ 0001:000054f2       _amdMTDMap@12              000164f2 f   amdmtd.obj
+ 0001:00005512       _cfiscsRead@20             00016512 f   cfiscs.obj
+ 0001:00005512       _i28f008Read@20            00016512 f   i28f008.obj
+ 0001:00005512       _i28f016Read@20            00016512 f   i28f016.obj
+ 0001:00005512       _amdMTDRead@20             00016512 f   amdmtd.obj
+ 0001:00005586       _cfiscsIdentify@4          00016586 f   cfiscs.obj
+ 0001:000056b4       _flRegisterCFISCS@0        000166b4 f   cfiscs.obj
+ 0001:000056d6       _mapBase@16                000166d6 f   amdmtd.obj
+ 0001:000056fc       _amdCommand@16             000166fc f   amdmtd.obj
+ 0001:000057e0       _amdMTDWrite@20            000167e0 f   amdmtd.obj
+ 0001:00005b34       _eraseFirstBlockLV008@8    00016b34 f   amdmtd.obj
+ 0001:00005c5e       _amdMTDErase@12            00016c5e f   amdmtd.obj
+ 0001:00005dc0       _amdMTDIdentify@4          00016dc0 f   amdmtd.obj
+ 0001:00005fce       _flRegisterAMDMTD@0        00016fce f   amdmtd.obj
+ 0001:00005ff0       _i28f008Write@20           00016ff0 f   i28f008.obj
+ 0001:00006210       _i28f008Erase@12           00017210 f   i28f008.obj
+ 0001:0000635e       _i28f008Identify@4         0001735e f   i28f008.obj
+ 0001:00006498       _flRegisterI28F008@0       00017498 f   i28f008.obj
+ 0001:000064ba       _i28f016WordSize@4         000174ba f   i28f016.obj
+ 0001:000065a4       _i28f016Write@20           000175a4 f   i28f016.obj
+ 0001:0000693c       _i28f016Erase@12           0001793c f   i28f016.obj
+ 0001:00006ae4       _i28f016Identify@4         00017ae4 f   i28f016.obj
+ 0001:00006bf4       _flRegisterI28F016@0       00017bf4 f   i28f016.obj
+ 0001:00006c16       _updatePcmciaSocketParams@4 00017c16 f   socketnt.obj
+ 0001:00006d2a       _VppOn_socketnt@4          00017d2a f   socketnt.obj
+ 0001:00006d68       _VppOff_socketnt@4         00017d68 f   socketnt.obj
+ 0001:00006da2       _setMappingContext_socketnt@8 00017da2 f   socketnt.obj
+ 0001:00006e64       _writeProtected_socketnt@4 00017e64 f   socketnt.obj
+ 0001:00006e9a       _flDelayMsecs@4            00017e9a f   flsystem.obj
+ 0001:00006e9a       _freeSocket_socketnt@4     00017e9a f   socketnt.obj
+ 0001:00006e9a       _VccOn_socketnt@4          00017e9a f   socketnt.obj
+ 0001:00006e9a       _VccOff_socketnt@4         00017e9a f   socketnt.obj
+ 0001:00006e9a       _flDeleteMutex@4           00017e9a f   flsystem.obj
+ 0001:00006ed4       _flRegisterNT5PCIC@0       00017ed4 f   socketnt.obj
+ 0001:00006f74       _flInitGlobalVars@0        00017f74 f   blockdev.obj
+ 0001:00007066       _dismountVolume@4          00018066 f   blockdev.obj
+ 0001:0000708e       _setBusy@12                0001808e f   blockdev.obj
+ 0001:0000710c       _findSector@8              0001810c f   blockdev.obj
+ 0001:00007120       _absMountVolume@4          00018120 f   blockdev.obj
+ 0001:000074f0       _replaceFATsector@12       000184f0 f   blockdev.obj
+ 0001:000079d4       _flBuildGeometry@20        000189d4 f   blockdev.obj
+ 0001:00007bda       _flInit@0                  00018bda f   blockdev.obj
+ 0001:00007e0c       _flExit@0                  00018e0c f   blockdev.obj
+ 0001:00007ebc       _flSetEnvVolume@20         00018ebc f   blockdev.obj
+ 0001:000080ee       _flSetEnvSocket@16         000190ee f   blockdev.obj
+ 0001:00008182       _flSetEnvAll@12            00019182 f   blockdev.obj
+ 0001:000085c2       _bdCall@8                  000195c2 f   blockdev.obj
+ 0001:00008d1e       _bdkInit@0                 00019d1e f   docbdk.obj
+ 0001:00008e38       _bdkRetrieveHeader@4       00019e38 f   docbdk.obj
+ 0001:000091e2       _bdkCopyBootAreaBlock@12   0001a1e2 f   docbdk.obj
+ 0001:00009324       _bdkUpdateBootAreaBlock@8  0001a324 f   docbdk.obj
+ 0001:00009602       _bdkGetProtectionType@4    0001a602 f   docbdk.obj
+ 0001:00009668       _bdkInsertKey@4            0001a668 f   docbdk.obj
+ 0001:00009698       _bdkRemoveKey@0            0001a698 f   docbdk.obj
+ 0001:000096c4       _bdkLockEnable@4           0001a6c4 f   docbdk.obj
+ 0001:0000977c       _bdkChangeKey@4            0001a77c f   docbdk.obj
+ 0001:00009820       _bdkSetProtectionType@4    0001a820 f   docbdk.obj
+ 0001:00009aee       _bdkGetBootPartitionInfo@20 0001aaee f   docbdk.obj
+ 0001:00009b56       _bdkCopyBootAreaInit@12    0001ab56 f   docbdk.obj
+ 0001:00009bb2       _bdkUpdateBootAreaInit@16  0001abb2 f   docbdk.obj
+ 0001:00009c28       _bdkEraseBootArea@12       0001ac28 f   docbdk.obj
+ 0001:00009d7c       _bdkCreateBootArea@12      0001ad7c f   docbdk.obj
+ 0001:00009eda       _bdkCall@12                0001aeda f   docbdk.obj
+ 0001:0000acee       _verifySectors@8           0001bcee f   inftl.obj
+ 0001:0000c7ac       _retrieveHeader@16         0001d7ac f   inftl.obj
+ 0001:0000e478       _flRegisterINFTL@0         0001f478 f   inftl.obj
+ 0001:00010162       _swapUnits@4               00021162 f   nftllite.obj
+ 0001:00010ac0       _flRegisterNFTL@0          00021ac0 f   nftllite.obj
+ 0001:00010b0e       _flFlashOf@4               00021b0e f   flflash.obj
+ 0001:00010b78       _flIntelIdentify@12        00021b78 f   flflash.obj
+ 0001:00010c26       _flIntelSize@12            00021c26 f   flflash.obj
+ 0001:00010d62       _flIdentifyFlash@8         00021d62 f   flflash.obj
+ 0001:00010ed8       _mapThroughBuffer@12       00021ed8 f   flflash.obj
+ 0001:000113ee       _flDosFormat@8             000223ee f   dosformt.obj
+ 0001:00011462       _flSocketNoOf@4            00022462 f   flsocket.obj
+ 0001:0001146c       _flSocketOf@4              0002246c f   flsocket.obj
+ 0001:0001147c       _flBufferOf@4              0002247c f   flsocket.obj
+ 0001:0001148a       _flReadBackBufferOf@4      0002248a f   flsocket.obj
+ 0001:00011498       _flWriteProtected@4        00022498 f   flsocket.obj
+ 0001:000114a4       _flResetCardChanged@4      000224a4 f   flsocket.obj
+ 0001:000114bc       _flMediaCheck@4            000224bc f   flsocket.obj
+ 0001:000114f8       _flMap@8                   000224f8 f   flsocket.obj
+ 0001:00011540       _flSetWindowBusWidth@8     00022540 f   flsocket.obj
+ 0001:00011556       _flSetWindowSpeed@8        00022556 f   flsocket.obj
+ 0001:0001156c       _flSetWindowSize@8         0002256c f   flsocket.obj
+ 0001:0001159a       _flSocketSetBusy@8         0002259a f   flsocket.obj
+ 0001:000115c4       _flNeedVcc@4               000225c4 f   flsocket.obj
+ 0001:000115ee       _flDontNeedVcc@4           000225ee f   flsocket.obj
+ 0001:00011600       _flNeedVpp@4               00022600 f   flsocket.obj
+ 0001:00011624       _flDontNeedVpp@4           00022624 f   flsocket.obj
+ 0001:00011636       _flSetPowerOnCallback@12   00022636 f   flsocket.obj
+ 0001:0001164c       _flIntervalRoutine@4       0002264c f   flsocket.obj
+ 0001:000116ae       _updateSocketParameters@8  000226ae f   flsocket.obj
+ 0001:000116c6       _flExitSocket@4            000226c6 f   flsocket.obj
+ 0001:00011704       _flInitSockets@0           00022704 f   flsocket.obj
+ 0001:000117ae       _markUnitBad@8             000227ae f   fltl.obj
+ 0001:000117f0       _check43Format@4           000227f0 f   fltl.obj
+ 0001:000119ca       _flPreMount@12             000229ca f   fltl.obj
+ 0001:00011b64       _flMount@20                00022b64 f   fltl.obj
+ 0001:00011c4e       _flFormat@12               00022c4e f   fltl.obj
+ 0001:00013244       _flRegisterFTL@0           00024244 f   ftllite.obj
+ 0001:000133e8       _releasePowerDown@4        000243e8 f   mdocplus.obj
+ 0001:000134f0       _chkASICmode@4             000244f0 f   mdocplus.obj
+ 0001:000150f6       _changeInterleave@8        000260f6 f   mdocplus.obj
+ 0001:00015ba6       _docPlusIdentify@4         00026ba6 f   mdocplus.obj
+ 0001:00015f66       _flRegisterDOCPLUS@0       00026f66 f   mdocplus.obj
+ 0001:00015f88       _protectionBoundries@20    00026f88 f   protectp.obj
+ 0001:0001605e       _tryKey@12                 0002705e f   protectp.obj
+ 0001:000160e4       _protectionKeyInsert@12    000270e4 f   protectp.obj
+ 0001:000161a4       _protectionKeyRemove@8     000271a4 f   protectp.obj
+ 0001:0001620c       _protectionType@12         0002720c f   protectp.obj
+ 0001:00016370       _protectionSet@32          00027370 f   protectp.obj
+ 0001:00016872       _flDocMemWinSizeNoShift@0  00027872 f   docsys.obj
+ 0001:00016878       _flDocMemWinSizeSingleShift@0 00027878 f   docsys.obj
+ 0001:0001687e       _flDocMemWinSizeDoubleShift@0 0002787e f   docsys.obj
+ 0001:00016884       _flWrite16bitDummy@12      00027884 f   docsys.obj
+ 0001:00016888       _flWrite16bitUsing16bitsNoShift@12 00027888 f   docsys.obj
+ 0001:000168a0       _flWrite16bitUsing32bitsSingleShift@12 000278a0 f   docsys.obj
+ 0001:000168b6       _flRead16bitDummy@8        000278b6 f   docsys.obj
+ 0001:000168bc       _flRead16bitUsing16bitsNoShift@8 000278bc f   docsys.obj
+ 0001:000168ce       _flRead16bitUsing32bitsSingleShift@8 000278ce f   docsys.obj
+ 0001:000168e0       _flWrite8bitUsing8bitsNoShift@12 000278e0 f   docsys.obj
+ 0001:000168f4       _flWrite8bitUsing16bitsNoShift@12 000278f4 f   docsys.obj
+ 0001:0001690c       _flWrite8bitUsing16bitsSingleShift@12 0002790c f   docsys.obj
+ 0001:00016922       _flWrite8bitUsing32bitsSingleShift@12 00027922 f   docsys.obj
+ 0001:00016938       _flWrite8bitUsing32bitsDoubleShift@12 00027938 f   docsys.obj
+ 0001:0001694c       _flRead8bitUsing8bitsNoShift@8 0002794c f   docsys.obj
+ 0001:0001695c       _flRead8bitUsing16bitsNoShift@8 0002795c f   docsys.obj
+ 0001:0001697e       _flRead8bitUsing16bitsSingleShift@8 0002797e f   docsys.obj
+ 0001:0001698e       _flRead8bitUsing32bitsSingleShift@8 0002798e f   docsys.obj
+ 0001:000169b0       _flRead8bitUsing32bitsDoubleShift@8 000279b0 f   docsys.obj
+ 0001:000169c0       _fl8bitDocReadNoShift@16   000279c0 f   docsys.obj
+ 0001:000169ec       _fl8bitDocWriteNoShift@16  000279ec f   docsys.obj
+ 0001:00016a0a       _fl8bitDocSetNoShift@16    00027a0a f   docsys.obj
+ 0001:00016a2a       _fl8bitDocReadSingleShift@16 00027a2a f   docsys.obj
+ 0001:00016a66       _fl8bitDocWriteSingleShift@16 00027a66 f   docsys.obj
+ 0001:00016a94       _fl8bitDocSetSingleShift@16 00027a94 f   docsys.obj
+ 0001:00016ac0       _fl8bitDocReadDoubleShift@16 00027ac0 f   docsys.obj
+ 0001:00016afc       _fl8bitDocWriteDoubleShift@16 00027afc f   docsys.obj
+ 0001:00016b28       _fl8bitDocSetDoubleShift@16 00027b28 f   docsys.obj
+ 0001:00016b52       _fl16bitDocReadNoShift@16  00027b52 f   docsys.obj
+ 0001:00016bc2       _fl16bitDocWriteNoShift@16 00027bc2 f   docsys.obj
+ 0001:00016c38       _fl16bitDocSetNoShift@16   00027c38 f   docsys.obj
+ 0001:00016c82       _fl16bitDocReadNoShiftIgnoreHigher8bits@16 00027c82 f   docsys.obj
+ 0001:00016cba       _fl16bitDocWriteNoShiftIgnoreHigher8bits@16 00027cba f   docsys.obj
+ 0001:00016ce4       _fl16bitDocSetNoShiftIgnoreHigher8bits@16 00027ce4 f   docsys.obj
+ 0001:00016d0c       _fl16bitDocReadSingleShift@16 00027d0c f   docsys.obj
+ 0001:00016d70       _fl16bitDocWriteSingleShift@16 00027d70 f   docsys.obj
+ 0001:00016dca       _fl16bitDocSetSingleShift@16 00027dca f   docsys.obj
+ 0001:00016df8       _fl16bitDocReadSingleShiftIgnoreHigher8bits@16 00027df8 f   docsys.obj
+ 0001:00016e36       _fl16bitDocWriteSingleShiftIgnoreHigher8bits@16 00027e36 f   docsys.obj
+ 0001:00016e64       _fl16bitDocSetSingleShiftIgnoreHigher8bits@16 00027e64 f   docsys.obj
+ 0001:00016e8e       _setBusTypeOfFlash@8       00027e8e f   docsys.obj
+ 0001:00017106       _updateDocSocketParams@4   00028106 f   docsoc.obj
+ 0001:00017158       _cardDetected_socketnt@4   00028158 f   socketnt.obj
+ 0001:0001715e       _setWindow_socketnt@4      0002815e f   socketnt.obj
+ 0001:00017180       _getAndClearCardChangeIndicator_socketnt@4 00028180 f   socketnt.obj
+ 0001:00017180       _initSocket_socketnt@4     00028180 f   socketnt.obj
+ 0001:00017186       _docSocketInit@4           00028186 f   docsoc.obj
+ 0001:000171de       _windowBaseAddress@4       000281de f   docsoc.obj
+ 0001:000171fe       _flRegisterDOCSOC@8        000281fe f   docsoc.obj
+ 0001:000178f0       _flDecodeEDC@16            000288f0 f   reedsol.obj
+ 0001:00017a1a       _flCheckAndFixEDC@12       00028a1a f   reedsol.obj
+ 0001:0001925a       _flRegisterDOC2000@0       0002a25a f   diskonc.obj
+ 0001:0001927c       _flSetEnvVar@0             0002a27c f   flcustom.obj
+ 0001:00019292       _flRegisterComponents@0    0002a292 f   flcustom.obj
+ 0001:000192ee       _toUNAL@8                  0002a2ee f   flbase.obj
+ 0001:00019300       _fromUNAL@4                0002a300 f   flbase.obj
+ 0001:00019314       _toUNALLONG@8              0002a314 f   flbase.obj
+ 0001:0001932e       _fromUNALLONG@4            0002a32e f   flbase.obj
+ 0001:0001935e       _myMalloc@4                0002a35e f   flsystem.obj
+ 0001:00019372       _timerRoutine@16           0002a372 f   flsystem.obj
+ 0001:0001937c       _startIntervalTimer@0      0002a37c f   flsystem.obj
+ 0001:000193a4       _flRemoveTimer@0           0002a3a4 f   flsystem.obj
+ 0001:000193d8       _flRandByte@0              0002a3d8 f   flsystem.obj
+ 0001:00019402       _flCreateMutex@4           0002a402 f   flsystem.obj
+ 0001:00019418       _flTakeMutex@4             0002a418 f   flsystem.obj
+ 0001:00019438       _flFreeMutex@4             0002a438 f   flsystem.obj
+ 0001:0001944c       _flAddLongToFarPointer@8   0002a44c f   flsystem.obj
+ 0001:0001945a       _flmemcpy@12               0002a45a f   flsystem.obj
+ 0001:0001947a       _flmemset@12               0002a47a f   flsystem.obj
+ 0001:000194b0       _flmemcmp@12               0002a4b0 f   flsystem.obj
+ 0001:000194e0       _flInstallTimer@8          0002a4e0 f   flsystem.obj
+ 0001:0001951a       _flIOctl@4                 0002a51a f   flioctl.obj
+ 0001:00019998       _getExbInfo@16             0002a998 f   doc2exb.obj
+ 0001:00019b18       _waitForFullBuffer@20      0002ab18 f   doc2exb.obj
+ 0001:00019bc0       _firstTimeInit@28          0002abc0 f   doc2exb.obj
+ 0001:00019d42       _placeExbByBuffer@20       0002ad42 f   doc2exb.obj
+ 0001:0001a116       ___report_gsfailure        0002b116 f   BufferOverflowK:gs_support.obj
+ 0001:0001a128       @__security_check_cookie@4 0002b128 f   BufferOverflowK:secchk.obj
+ 0001:0001a136       __aulldiv                  0002b136 f   ntoskrnl:ntoskrnl.exe
+ 0001:0001a13c       _WmiSystemControl@16       0002b13c f   wmilib:WMILIB.SYS
+ 0001:0001a142       _WmiCompleteRequest@20     0002b142 f   wmilib:WMILIB.SYS
+ 0002:00000000       __imp_@ExAcquireFastMutex@4 0002c000     hal:HAL.dll
+ 0002:00000004       __imp_@KfReleaseSpinLock@8 0002c004     hal:HAL.dll
+ 0002:00000008       __imp__HalTranslateBusAddress@24 0002c008     hal:HAL.dll
+ 0002:0000000c       __imp_@ExReleaseFastMutex@4 0002c00c     hal:HAL.dll
+ 0002:00000010       __imp_@KfAcquireSpinLock@4 0002c010     hal:HAL.dll
+ 0002:00000014       \177HAL_NULL_THUNK_DATA    0002c014     hal:HAL.dll
+ 0002:00000018       __imp__WmiSystemControl@16 0002c018     wmilib:WMILIB.SYS
+ 0002:0000001c       __imp__WmiCompleteRequest@20 0002c01c     wmilib:WMILIB.SYS
+ 0002:00000020       \177WMILIB_NULL_THUNK_DATA 0002c020     wmilib:WMILIB.SYS
+ 0002:00000024       __imp__RtlFreeUnicodeString@4 0002c024     ntoskrnl:ntoskrnl.exe
+ 0002:00000028       __imp__IoCreateDevice@28   0002c028     ntoskrnl:ntoskrnl.exe
+ 0002:0000002c       __imp__RtlAnsiStringToUnicodeString@12 0002c02c     ntoskrnl:ntoskrnl.exe
+ 0002:00000030       __imp__RtlInitString@8     0002c030     ntoskrnl:ntoskrnl.exe
+ 0002:00000034       __imp__sprintf             0002c034     ntoskrnl:ntoskrnl.exe
+ 0002:00000038       __imp__IoCreateSymbolicLink@8 0002c038     ntoskrnl:ntoskrnl.exe
+ 0002:0000003c       __imp__IoGetConfigurationInformation@0 0002c03c     ntoskrnl:ntoskrnl.exe
+ 0002:00000040       __imp__IoDeleteSymbolicLink@4 0002c040     ntoskrnl:ntoskrnl.exe
+ 0002:00000044       __imp__ExFreePoolWithTag@8 0002c044     ntoskrnl:ntoskrnl.exe
+ 0002:00000048       __imp__IoGetDriverObjectExtension@8 0002c048     ntoskrnl:ntoskrnl.exe
+ 0002:0000004c       __imp_@IofCompleteRequest@8 0002c04c     ntoskrnl:ntoskrnl.exe
+ 0002:00000050       __imp__KeSetEvent@12       0002c050     ntoskrnl:ntoskrnl.exe
+ 0002:00000054       __imp__PoStartNextPowerIrp@4 0002c054     ntoskrnl:ntoskrnl.exe
+ 0002:00000058       __imp__PoSetPowerState@12  0002c058     ntoskrnl:ntoskrnl.exe
+ 0002:0000005c       __imp__PoRequestPowerIrp@24 0002c05c     ntoskrnl:ntoskrnl.exe
+ 0002:00000060       __imp__IoStartPacket@16    0002c060     ntoskrnl:ntoskrnl.exe
+ 0002:00000064       __imp__KeReleaseSemaphore@16 0002c064     ntoskrnl:ntoskrnl.exe
+ 0002:00000068       __imp__KeReadStateSemaphore@4 0002c068     ntoskrnl:ntoskrnl.exe
+ 0002:0000006c       __imp_@ExfInterlockedInsertTailList@12 0002c06c     ntoskrnl:ntoskrnl.exe
+ 0002:00000070       __imp__swprintf            0002c070     ntoskrnl:ntoskrnl.exe
+ 0002:00000074       __imp__ExAllocatePoolWithTag@12 0002c074     ntoskrnl:ntoskrnl.exe
+ 0002:00000078       __imp_@IofCallDriver@8     0002c078     ntoskrnl:ntoskrnl.exe
+ 0002:0000007c       __imp_@ObfReferenceObject@4 0002c07c     ntoskrnl:ntoskrnl.exe
+ 0002:00000080       __imp__ZwClose@4           0002c080     ntoskrnl:ntoskrnl.exe
+ 0002:00000084       __imp__IoWMIRegistrationControl@8 0002c084     ntoskrnl:ntoskrnl.exe
+ 0002:00000088       __imp__RtlInitUnicodeString@8 0002c088     ntoskrnl:ntoskrnl.exe
+ 0002:0000008c       __imp__READ_REGISTER_UCHAR@4 0002c08c     ntoskrnl:ntoskrnl.exe
+ 0002:00000090       __imp__WRITE_REGISTER_UCHAR@8 0002c090     ntoskrnl:ntoskrnl.exe
+ 0002:00000094       __imp__IoFreeIrp@4         0002c094     ntoskrnl:ntoskrnl.exe
+ 0002:00000098       __imp__KeWaitForSingleObject@20 0002c098     ntoskrnl:ntoskrnl.exe
+ 0002:0000009c       __imp__IoAllocateIrp@8     0002c09c     ntoskrnl:ntoskrnl.exe
+ 0002:000000a0       __imp__PoCallDriver@8      0002c0a0     ntoskrnl:ntoskrnl.exe
+ 0002:000000a4       __imp__IoAttachDeviceToDeviceStack@8 0002c0a4     ntoskrnl:ntoskrnl.exe
+ 0002:000000a8       __imp__MmMapLockedPagesSpecifyCache@24 0002c0a8     ntoskrnl:ntoskrnl.exe
+ 0002:000000ac       __imp__KeClearEvent@4      0002c0ac     ntoskrnl:ntoskrnl.exe
+ 0002:000000b0       __imp_@ExfInterlockedRemoveHeadList@8 0002c0b0     ntoskrnl:ntoskrnl.exe
+ 0002:000000b4       __imp__PsTerminateSystemThread@4 0002c0b4     ntoskrnl:ntoskrnl.exe
+ 0002:000000b8       __imp__RtlInitAnsiString@8 0002c0b8     ntoskrnl:ntoskrnl.exe
+ 0002:000000bc       __imp__RtlxAnsiStringToUnicodeSize@4 0002c0bc     ntoskrnl:ntoskrnl.exe
+ 0002:000000c0       __imp__NlsMbCodePageTag    0002c0c0     ntoskrnl:ntoskrnl.exe
+ 0002:000000c0       _NlsMbCodePageTag          0002c0c0     ntoskrnl:ntoskrnl.exe
+ 0002:000000c4       __imp__strncpy             0002c0c4     ntoskrnl:ntoskrnl.exe
+ 0002:000000c8       __imp__ObReferenceObjectByHandle@24 0002c0c8     ntoskrnl:ntoskrnl.exe
+ 0002:000000cc       __imp__PsCreateSystemThread@28 0002c0cc     ntoskrnl:ntoskrnl.exe
+ 0002:000000d0       __imp__KeCancelTimer@4     0002c0d0     ntoskrnl:ntoskrnl.exe
+ 0002:000000d4       __imp__IoDetachDevice@4    0002c0d4     ntoskrnl:ntoskrnl.exe
+ 0002:000000d8       __imp__IoReportDetectedDevice@32 0002c0d8     ntoskrnl:ntoskrnl.exe
+ 0002:000000dc       __imp__IoReportResourceForDetection@28 0002c0dc     ntoskrnl:ntoskrnl.exe
+ 0002:000000e0       __imp__IoGetAttachedDeviceReference@4 0002c0e0     ntoskrnl:ntoskrnl.exe
+ 0002:000000e4       __imp__IoInvalidateDeviceRelations@8 0002c0e4     ntoskrnl:ntoskrnl.exe
+ 0002:000000e8       __imp_@ObfDereferenceObject@4 0002c0e8     ntoskrnl:ntoskrnl.exe
+ 0002:000000ec       __imp__PoRegisterDeviceForIdleDetection@16 0002c0ec     ntoskrnl:ntoskrnl.exe
+ 0002:000000f0       __imp__RtlCopyUnicodeString@8 0002c0f0     ntoskrnl:ntoskrnl.exe
+ 0002:000000f4       __imp__IoAllocateDriverObjectExtension@16 0002c0f4     ntoskrnl:ntoskrnl.exe
+ 0002:000000f8       __imp__ZwCreateKey@28      0002c0f8     ntoskrnl:ntoskrnl.exe
+ 0002:000000fc       __imp__ZwOpenKey@12        0002c0fc     ntoskrnl:ntoskrnl.exe
+ 0002:00000100       __imp__ZwSetValueKey@24    0002c100     ntoskrnl:ntoskrnl.exe
+ 0002:00000104       __imp__READ_REGISTER_USHORT@4 0002c104     ntoskrnl:ntoskrnl.exe
+ 0002:00000108       __imp__WRITE_REGISTER_USHORT@8 0002c108     ntoskrnl:ntoskrnl.exe
+ 0002:0000010c       __imp__READ_REGISTER_ULONG@4 0002c10c     ntoskrnl:ntoskrnl.exe
+ 0002:00000110       __imp__WRITE_REGISTER_ULONG@8 0002c110     ntoskrnl:ntoskrnl.exe
+ 0002:00000114       __imp__KeSetTimerEx@20     0002c114     ntoskrnl:ntoskrnl.exe
+ 0002:00000118       _KeTickCount               0002c118     ntoskrnl:ntoskrnl.exe
+ 0002:00000118       __imp__KeTickCount         0002c118     ntoskrnl:ntoskrnl.exe
+ 0002:0000011c       __imp__KeInitializeTimer@4 0002c11c     ntoskrnl:ntoskrnl.exe
+ 0002:00000120       __imp__KeInitializeDpc@12  0002c120     ntoskrnl:ntoskrnl.exe
+ 0002:00000124       __imp__KeBugCheckEx@20     0002c124     ntoskrnl:ntoskrnl.exe
+ 0002:00000128       __imp__IoDeleteDevice@4    0002c128     ntoskrnl:ntoskrnl.exe
+ 0002:0000012c       __imp__KeInitializeSemaphore@12 0002c12c     ntoskrnl:ntoskrnl.exe
+ 0002:00000130       __imp__KeInitializeEvent@12 0002c130     ntoskrnl:ntoskrnl.exe
+ 0002:00000134       __imp__MmUnmapIoSpace@8    0002c134     ntoskrnl:ntoskrnl.exe
+ 0002:00000138       __imp__MmMapIoSpace@16     0002c138     ntoskrnl:ntoskrnl.exe
+ 0002:0000013c       __imp___aulldiv            0002c13c     ntoskrnl:ntoskrnl.exe
+ 0002:00000140       __imp__memmove             0002c140     ntoskrnl:ntoskrnl.exe
+ 0002:00000144       __imp__RtlAppendUnicodeToString@8 0002c144     ntoskrnl:ntoskrnl.exe
+ 0002:00000148       __imp__IoStartNextPacket@8 0002c148     ntoskrnl:ntoskrnl.exe
+ 0002:0000014c       __imp__RtlQueryRegistryValues@20 0002c14c     ntoskrnl:ntoskrnl.exe
+ 0002:00000150       \177ntoskrnl_NULL_THUNK_DATA 0002c150     ntoskrnl:ntoskrnl.exe
+ 0002:0000017c       _TffsDeviceType_tffsport   0002c17c     tffsport.obj
+ 0002:00000188       _TffsDeviceTypeFDO_tffsport 0002c188     tffsport.obj
+ 0002:00000194       ??_C@_0BE@MFFEJGAG@FlashDiskPeripheral?$AA@ 0002c194     tffsport.obj
+ 0002:000001a8       ??_C@_0BE@KMCMMFNF@FlashDiskController?$AA@ 0002c1a8     tffsport.obj
+ 0002:000001bc       ??_C@_0L@LLPHBHJJ@Controller?$AA@ 0002c1bc     tffsport.obj
+ 0002:000001c8       ??_C@_0P@FCCJEAHK@DiskPeripheral?$AA@ 0002c1c8     tffsport.obj
+ 0002:000001d8       ??_C@_07GJBGMEGP@GenDisk?$AA@ 0002c1d8     tffsport.obj
+ 0002:000001e0       ??_C@_04CDOCKIH@Disk?$AA@  0002c1e0     tffsport.obj
+ 0002:000001e8       _WmiTffsportAddressGuid    0002c1e8     tffsport.obj
+ 0002:000001f8       _GUID_PCMCIA_INTERFACE_STANDARD 0002c1f8     socketnt.obj
+ 0003:00000000       _flSectorsVerifiedPerFolding 0002d000     blockdev.obj
+ 0003:00000004       _bdkVol                    0002d004     docbdk.obj
+ 0003:00000118       _pdriveInfo                0002d118     flsystem.obj
+ 0003:0000011c       ___security_cookie         0002d11c     BufferOverflowK:gs_support.obj
+ 0003:00000120       _timerWasStarted           0002d120     tffsport.obj
+ 0003:00000121       _patitionTwo               0002d121     tffsport.obj
+ 0003:00000124       _TrueffsNextDeviceNumber_tffsport 0002d124     tffsport.obj
+ 0003:00000128       _initDone                  0002d128     blockdev.obj
+ 0003:0000012c       _initGlobalVarsDone        0002d12c     blockdev.obj
+ 0003:00000130       _flMsecCounter             0002d130     blockdev.obj
+ 0003:000019c8       _noOfMTDs                  0002e9c8     flflash.obj
+ 0003:00001db0       _noOfSockets               0002edb0     flsocket.obj
+ 0003:00002660       _window                    0002f660     flcustom.obj
+ 0003:00002680       _exbs                      0002f680     <common>
+ 0003:00002860       _timerInterval_flsystem    0002f860     <common>
+ 0003:00002864       _intervalRoutine_flsystem  0002f864     <common>
+ 0003:00002880       _driveInfo                 0002f880     <common>
+ 0003:00002980       _flUseisRAM                0002f980     <common>
+ 0003:00002981       _flUseNFTLCache            0002f981     <common>
+ 0003:00002982       _flUse8Bit                 0002f982     <common>
+ 0003:000029a0       _docMtdVars                0002f9a0     <common>
+ 0003:00002b20       _noOfTLs                   0002fb20     <common>
+ 0003:00002b40       _tlTable                   0002fb40     <common>
+ 0003:00002b64       _dataErrorObject           0002fb64     <common>
+ 0003:00002b80       _mtdTable                  0002fb80     <common>
+ 0003:00002bb0       _ff                        0002fbb0     <common>
+ 0003:00002bc0       _bdkVols                   0002fbc0     <common>
+ 0003:00002ca0       _flVerifyWrite             0002fca0     <common>
+ 0003:00002ce0       _tffsset                   0002fce0     <common>
+ 0003:00002ce4       _flMaxUnitChain            0002fce4     <common>
+ 0003:00002ce5       _flMarkDeleteOnFlash       0002fce5     <common>
+ 0003:00002d00       _handleConversionTable     0002fd00     <common>
+ 0003:00002d20       _tffscpy                   0002fd20     <common>
+ 0003:00002d40       _vols                      0002fd40     <common>
+ 0003:00003830       _tffscmp                   00030830     <common>
+ 0003:00003840       _flMutex                   00030840     <common>
+ 0003:00003880       _flSuspendMode             00030880     <common>
+ 0003:000038a0       _flPolicy                  000308a0     <common>
+ 0003:000038c0       _flBusConfig               000308c0     <common>
+ 0003:000038e0       _noOfDrives                000308e0     <common>
+ 0003:00003900       _driveContext              00030900     <common>
+ 0003:000039e0       _antiCrashWindow_socketnt  000309e0     <common>
+ 0003:000059e0       _mtdVars_amdmtd            000329e0     <common>
+ 0003:00005a40       _mtdVars_cfiscs            00032a40     <common>
+ 0003:00005b40       _timerDpc                  00032b40     <common>
+ 0003:00005b60       _VerifyWriteState          00032b60     <common>
+ 0003:00005b80       _info                      00032b80     <common>
+ 0003:00005c20       _timerObject               00032c20     <common>
+ 0003:00005c60       _driveInfoReferenceMutex   00032c60     <common>
+ 0003:00005c80       _DumpData                  00032c80     <common>
+ 0003:00005fd0       _TrueffsWmiGuidList        00032fd0     <common>
+ 0004:00000000       _TrueffsThread@4           00033000 f   tffsport.obj
+ 0005:00000000       _DriverEntry@8             00034000 f   tffsport.obj
+ 0005:0000017e       _GsDriverEntry@8           0003417e f   BufferOverflowK:gs_support.obj
+ 0005:000001b0       __IMPORT_DESCRIPTOR_ntoskrnl 000341b0     ntoskrnl:ntoskrnl.exe
+ 0005:000001c4       __IMPORT_DESCRIPTOR_HAL    000341c4     hal:HAL.dll
+ 0005:000001d8       __IMPORT_DESCRIPTOR_WMILIB 000341d8     wmilib:WMILIB.SYS
+ 0005:000001ec       __NULL_IMPORT_DESCRIPTOR   000341ec     ntoskrnl:ntoskrnl.exe
+
+ entry point at        0005:0000017e
+
+ Static symbols
+
+ 0001:00006e9a       _freeSocket@4              00017e9a f   socketnt.obj
+ 0001:00006e9a       _VccOff@4                  00017e9a f   socketnt.obj
+ 0001:00006e9a       _VppOff@4                  00017e9a f   socketnt.obj
+ 0001:00006e9a       _VccOn@4                   00017e9a f   socketnt.obj
+ 0001:00006fca       _mountLowLevel@4           00017fca f   blockdev.obj
+ 0001:00006fe6       _findFreeVolume@8          00017fe6 f   blockdev.obj
+ 0001:000071fa       _mountVolume@8             000181fa f   blockdev.obj
+ 0001:000073dc       _bdFormatLogicalDrive@8    000183dc f   blockdev.obj
+ 0001:00007444       _absRead@8                 00018444 f   blockdev.obj
+ 0001:000075e2       _absWrite@8                000185e2 f   blockdev.obj
+ 0001:00007684       _changePassword@4          00018684 f   blockdev.obj
+ 0001:00007726       _writeProtect@8            00018726 f   blockdev.obj
+ 0001:000077b0       _getPhysicalInfo@8         000187b0 f   blockdev.obj
+ 0001:00007834       _physicalRead@8            00018834 f   blockdev.obj
+ 0001:00007884       _physicalWrite@8           00018884 f   blockdev.obj
+ 0001:000078da       _readIPL@12                000188da f   blockdev.obj
+ 0001:00007962       _inquireCapabilities@8     00018962 f   blockdev.obj
+ 0001:00007a80       _volumeInfo@8              00018a80 f   blockdev.obj
+ 0001:00007b88       _socketIntervalRoutine@0   00018b88 f   blockdev.obj
+ 0001:000081e0       _dismountPhysicalDrive@4   000191e0 f   blockdev.obj
+ 0001:00008246       _bdFormatVolume@8          00019246 f   blockdev.obj
+ 0001:000083a4       _bdFormatPhysicalDrive@8   000193a4 f   blockdev.obj
+ 0001:00008d84       _getPhysAddressOfUnit@4    00019d84 f   docbdk.obj
+ 0001:00008f42       _bdkMount@0                00019f42 f   docbdk.obj
+ 0001:00009564       _protectionInit@0          0001a564 f   docbdk.obj
+ 0001:0000959a       _protectionChangeInit@4    0001a59a f   docbdk.obj
+ 0001:000098f4       _getBootAreaInfo@8         0001a8f4 f   docbdk.obj
+ 0001:0000a16a       _onesCount@4               0001b16a f   inftl.obj
+ 0001:0000a17c       _getUnitTailer@20          0001b17c f   inftl.obj
+ 0001:0000a1be       _setUnitTailer@20          0001b1be f   inftl.obj
+ 0001:0000a1f8       _markUnitBad@8             0001b1f8 f   inftl.obj
+ 0001:0000a24c       _formatUnit@12             0001b24c f   inftl.obj
+ 0001:0000a302       _getUnitData@28            0001b302 f   inftl.obj
+ 0001:0000a4fe       _getPrevUnit@12            0001b4fe f   inftl.obj
+ 0001:0000a554       _getSectorFlags@8          0001b554 f   inftl.obj
+ 0001:0000a606       _setUnitData@24            0001b606 f   inftl.obj
+ 0001:0000a752       _discardQuickMountInfo@4   0001b752 f   inftl.obj
+ 0001:0000a782       _markAsIgnored@8           0001b782 f   inftl.obj
+ 0001:0000a7a4       _virtual2Physical@16       0001b7a4 f   inftl.obj
+ 0001:0000a8a4       _initINFTLbasic@8          0001b8a4 f   inftl.obj
+ 0001:0000a90a       _initINFTL@8               0001b90a f   inftl.obj
+ 0001:0000a984       _initTables@4              0001b984 f   inftl.obj
+ 0001:0000a9fc       _firstInChain@12           0001b9fc f   inftl.obj
+ 0001:0000aafe       _writeAndCheck@20          0001bafe f   inftl.obj
+ 0001:0000ab90       _assignUnit@20             0001bb90 f   inftl.obj
+ 0001:0000ac40       _formatChain@8             0001bc40 f   inftl.obj
+ 0001:0000ac8a       _createUnitCount@8         0001bc8a f   inftl.obj
+ 0001:0000b092       _checkVolume@4             0001c092 f   inftl.obj
+ 0001:0000b0a0       _foldUnit@12               0001c0a0 f   inftl.obj
+ 0001:0000b3e0       _foldBestChain@8           0001c3e0 f   inftl.obj
+ 0001:0000b75a       _allocateUnit@8            0001c75a f   inftl.obj
+ 0001:0000b7fe       _checkFolding@12           0001c7fe f   inftl.obj
+ 0001:0000b884       _applyWearleveling@4       0001c884 f   inftl.obj
+ 0001:0000b96e       _mapSector@12              0001c96e f   inftl.obj
+ 0001:0000ba34       _read2Sectors@16           0001ca34 f   inftl.obj
+ 0001:0000bb7a       _readSectors@16            0001cb7a f   inftl.obj
+ 0001:0000bc50       _allocateAndWriteSectors@16 0001cc50 f   inftl.obj
+ 0001:0000bf2a       _write2Sectors@16          0001cf2a f   inftl.obj
+ 0001:0000bfc4       _writeSector@12            0001cfc4 f   inftl.obj
+ 0001:0000bfe8       _writeFullUnit@12          0001cfe8 f   inftl.obj
+ 0001:0000c136       _writeMultiSector@16       0001d136 f   inftl.obj
+ 0001:0000c266       _deleteSector@12           0001d266 f   inftl.obj
+ 0001:0000c30a       _defragment@8              0001d30a f   inftl.obj
+ 0001:0000c38e       _tlSetBusy@8               0001d38e f   inftl.obj
+ 0001:0000c38e       _tlSetBusy@8               0001d38e f   inftl.obj
+ 0001:0000c38e       _tlSetBusy@8               0001d38e f   inftl.obj
+ 0001:0000c394       _sectorsInVolume@4         0001d394 f   inftl.obj
+ 0001:0000c39e       _putGetBuffer@24           0001d39e f   inftl.obj
+ 0001:0000c432       _quickMountData@12         0001d432 f   inftl.obj
+ 0001:0000c656       _dismountINFTL@4           0001d656 f   inftl.obj
+ 0001:0000c96a       _INFTLInfo@8               0001d96a f   inftl.obj
+ 0001:0000c998       _readBBT@16                0001d998 f   inftl.obj
+ 0001:0000caa0       _convertChain@20           0001daa0 f   inftl.obj
+ 0001:0000cae4       _eraseOrphanUnit@8         0001dae4 f   inftl.obj
+ 0001:0000cb72       _checkUnitHead@8           0001db72 f   inftl.obj
+ 0001:0000cbde       _goAlongChain@8            0001dbde f   inftl.obj
+ 0001:0000ce92       _checkQuickMountInfo@4     0001de92 f   inftl.obj
+ 0001:0000cf34       _mountINFTL@16             0001df34 f   inftl.obj
+ 0001:0000d246       _protectionINFTL@16        0001e246 f   inftl.obj
+ 0001:0000d4e4       _preMountINFTL@16          0001e4e4 f   inftl.obj
+ 0001:0000d5dc       _eraseUnit@12              0001e5dc f   inftl.obj
+ 0001:0000d6a6       _formatINFTL@12            0001e6a6 f   inftl.obj
+ 0001:0000e4d8       _getUnitData@16            0001f4d8 f   nftllite.obj
+ 0001:0000e558       _setUnitData@16            0001f558 f   nftllite.obj
+ 0001:0000e5e2       _getNextUnit@12            0001f5e2 f   nftllite.obj
+ 0001:0000e640       _getSectorFlags@8          0001f640 f   nftllite.obj
+ 0001:0000e6f2       _findEndOfEndlessChain@8   0001f6f2 f   nftllite.obj
+ 0001:0000e746       _virtual2Physical@12       0001f746 f   nftllite.obj
+ 0001:0000e834       _getFoldMark@8             0001f834 f   nftllite.obj
+ 0001:0000e864       _getUnitTailer@16          0001f864 f   nftllite.obj
+ 0001:0000e8a2       _setUnitTailer@16          0001f8a2 f   nftllite.obj
+ 0001:0000e8d8       _initNFTL@8                0001f8d8 f   nftllite.obj
+ 0001:0000e9a0       _initTables@4              0001f9a0 f   nftllite.obj
+ 0001:0000e9ce       _markUnitBad@8             0001f9ce f   nftllite.obj
+ 0001:0000ea04       _formatUnit@8              0001fa04 f   nftllite.obj
+ 0001:0000eab2       _lastInChain@8             0001fab2 f   nftllite.obj
+ 0001:0000eb38       _assignUnit@12             0001fb38 f   nftllite.obj
+ 0001:0000ec7e       _formatChain@8             0001fc7e f   nftllite.obj
+ 0001:0000ecbc       _findFreeUnit@8            0001fcbc f   nftllite.obj
+ 0001:0000ed36       _createUnitCount@8         0001fd36 f   nftllite.obj
+ 0001:0000edb8       _mapSector@12              0001fdb8 f   nftllite.obj
+ 0001:0000ee48       _mountUnit@12              0001fe48 f   nftllite.obj
+ 0001:0000ef8c       _sectorsInVolume@4         0001ff8c f   nftllite.obj
+ 0001:0000ef96       _dismountNFTL@4            0001ff96 f   nftllite.obj
+ 0001:0000efc8       _isErased@8                0001ffc8 f   nftllite.obj
+ 0001:0000f072       _formatNFTL@12             00020072 f   nftllite.obj
+ 0001:0000f7de       _NFTLInfo@8                000207de f   nftllite.obj
+ 0001:0000f80a       _readBBT@16                0002080a f   nftllite.obj
+ 0001:0000f87a       _markAsIgnored@8           0002087a f   nftllite.obj
+ 0001:0000f8a2       _verifySectors@8           000208a2 f   nftllite.obj
+ 0001:0000fa5e       _checkVolume@4             00020a5e f   nftllite.obj
+ 0001:0000fa6c       _writeAndCheck@16          00020a6c f   nftllite.obj
+ 0001:0000faea       _foldUnit@12               00020aea f   nftllite.obj
+ 0001:0000fe0a       _foldBestChain@8           00020e0a f   nftllite.obj
+ 0001:0001005e       _allocateUnit@8            0002105e f   nftllite.obj
+ 0001:00010084       _defragment@8              00021084 f   nftllite.obj
+ 0001:00010138       _checkFolding@8            00021138 f   nftllite.obj
+ 0001:0001022e       _allocateAndWriteSector@12 0002122e f   nftllite.obj
+ 0001:00010476       _writeSector@12            00021476 f   nftllite.obj
+ 0001:00010504       _deleteSector@12           00021504 f   nftllite.obj
+ 0001:00010640       _mountNFTL@16              00021640 f   nftllite.obj
+ 0001:00010b20       _flashMap@12               00021b20 f   flflash.obj
+ 0001:00010b34       _flashRead@20              00021b34 f   flflash.obj
+ 0001:00010b58       _flashNoWrite@20           00021b58 f   flflash.obj
+ 0001:00010b5e       _flashNoErase@12           00021b5e f   flflash.obj
+ 0001:00010b64       _setNoCallback@4           00021b64 f   flflash.obj
+ 0001:00010d1e       _isRAM@4                   00021d1e f   flflash.obj
+ 0001:00010f22       _getDriveGeometry@20       00021f22 f   dosformt.obj
+ 0001:00011082       _createMasterBootRecord@12 00022082 f   dosformt.obj
+ 0001:000111a2       _createDOSbootSector@16    000221a2 f   dosformt.obj
+ 0001:0001128a       _createFATs@8              0002228a f   dosformt.obj
+ 0001:00011336       _createRootDirectory@12    00022336 f   dosformt.obj
+ 0001:00011d24       _logical2Physical@8        00022d24 f   ftllite.obj
+ 0001:00011d5c       _mapLogical@8              00022d5c f   ftllite.obj
+ 0001:00011d7a       _mapUnitHeader@12          00022d7a f   ftllite.obj
+ 0001:00011dae       _setupMapCache@8           00022dae f   ftllite.obj
+ 0001:00011e30       _virtual2Logical@8         00022e30 f   ftllite.obj
+ 0001:00011e8c       _verifyFormat@4            00022e8c f   ftllite.obj
+ 0001:00011eac       _formatUnit@8              00022eac f   ftllite.obj
+ 0001:00011f62       _mountUnit@8               00022f62 f   ftllite.obj
+ 0001:00012074       _assignUnit@12             00023074 f   ftllite.obj
+ 0001:0001209e       _bestUnitToTransfer@8      0002309e f   ftllite.obj
+ 0001:0001212e       _unitTransfer@12           0002312e f   ftllite.obj
+ 0001:00012380       _garbageCollect@4          00023380 f   ftllite.obj
+ 0001:00012402       _defragment@8              00023402 f   ftllite.obj
+ 0001:00012432       _findFreeSector@12         00023432 f   ftllite.obj
+ 0001:00012526       _markAllocMap@16           00023526 f   ftllite.obj
+ 0001:0001259e       _deleteLogicalSector@8     0002359e f   ftllite.obj
+ 0001:000125c2       _closeReplacementPage@4    000235c2 f   ftllite.obj
+ 0001:00012654       _setVirtualMap@12          00023654 f   ftllite.obj
+ 0001:0001280c       _checkForWriteInplace@8    0002380c f   ftllite.obj
+ 0001:00012860       _initFTL@8                 00023860 f   ftllite.obj
+ 0001:000128f4       _mapSector@12              000238f4 f   ftllite.obj
+ 0001:00012974       _deleteSector@12           00023974 f   ftllite.obj
+ 0001:000129c4       _sectorsInVolume@4         000239c4 f   ftllite.obj
+ 0001:000129ce       _dismountFTL@4             000239ce f   ftllite.obj
+ 0001:00012a20       _allocateAndWriteSector@16 00023a20 f   ftllite.obj
+ 0001:00012b22       _initTables@4              00023b22 f   ftllite.obj
+ 0001:00012bb8       _writeSector@12            00023bb8 f   ftllite.obj
+ 0001:00012c74       _formatFTL@12              00023c74 f   ftllite.obj
+ 0001:00012f32       _mountFTL@16               00023f32 f   ftllite.obj
+ 0001:000132cc       _chooseDefaultIF_CFG@4     000242cc f   mdocplus.obj
+ 0001:000132e2       _setDOCPlusBusType@16      000242e2 f   mdocplus.obj
+ 0001:00013324       _setIplSize@8              00024324 f   mdocplus.obj
+ 0001:0001335e       _waitForReady@4            0002435e f   mdocplus.obj
+ 0001:000133be       _selectFloor@8             000243be f   mdocplus.obj
+ 0001:0001341a       _recoverFromAccessError@4  0002441a f   mdocplus.obj
+ 0001:00013482       _setASICmode@8             00024482 f   mdocplus.obj
+ 0001:0001354c       _chkASICDownload@8         0002454c f   mdocplus.obj
+ 0001:00013586       _powerDown@8               00024586 f   mdocplus.obj
+ 0001:000135a6       _forceDownLoad@4           000245a6 f   mdocplus.obj
+ 0001:000136e4       _checkToggle@4             000246e4 f   mdocplus.obj
+ 0001:0001371c       _setAddress@8              0002471c f   mdocplus.obj
+ 0001:000137ca       _command@8                 000247ca f   mdocplus.obj
+ 0001:00013802       _rdBuf@12                  00024802 f   mdocplus.obj
+ 0001:00013a6a       _rdBufS@8                  00024a6a f   mdocplus.obj
+ 0001:00013b16       _readCommand@12            00024b16 f   mdocplus.obj
+ 0001:00013b8c       _readStatus@4              00024b8c f   mdocplus.obj
+ 0001:00013bb2       _writeCommand@12           00024bb2 f   mdocplus.obj
+ 0001:00013c1e       _writeExecute@4            00024c1e f   mdocplus.obj
+ 0001:00013c78       _writeDataPlusEDC@8        00024c78 f   mdocplus.obj
+ 0001:00013d38       _readDataPlusEDC@28        00024d38 f   mdocplus.obj
+ 0001:00013fce       _setExtraPtr@16            00024fce f   mdocplus.obj
+ 0001:0001402e       _setSectorDataPtr@16       0002502e f   mdocplus.obj
+ 0001:00014086       _readExtraArea@16          00025086 f   mdocplus.obj
+ 0001:00014236       _readSectorData@20         00025236 f   mdocplus.obj
+ 0001:0001456c       _doc2Read@20               0002556c f   mdocplus.obj
+ 0001:0001460c       _writeExtraArea@16         0002560c f   mdocplus.obj
+ 0001:000147fa       _writeSectorData@20        000257fa f   mdocplus.obj
+ 0001:000149d2       _doc2Write@20              000259d2 f   mdocplus.obj
+ 0001:00014bb8       _doc2Erase@12              00025bb8 f   mdocplus.obj
+ 0001:00014dc0       _doc2Map@12                00025dc0 f   mdocplus.obj
+ 0001:00014df0       _readBBT@24                00025df0 f   mdocplus.obj
+ 0001:0001522c       _readIPL@12                0002622c f   mdocplus.obj
+ 0001:00015302       _writeIPL@20               00026302 f   mdocplus.obj
+ 0001:00015836       _writeOTP@12               00026836 f   mdocplus.obj
+ 0001:0001595a       _otpSize@16                0002695a f   mdocplus.obj
+ 0001:000159e2       _readOTP@16                000269e2 f   mdocplus.obj
+ 0001:00015b4e       _getUniqueId@8             00026b4e f   mdocplus.obj
+ 0001:00016316       _makeDPS@20                00027316 f   protectp.obj
+ 0001:00017158       _cardDetected@4            00028158 f   docsoc.obj
+ 0001:0001715e       _setWindow@4               0002815e f   docsoc.obj
+ 0001:0001717c       _setMappingContext@8       0002817c f   docsoc.obj
+ 0001:00017180       _initSocket@4              00028180 f   docsoc.obj
+ 0001:00017180       _VppOn@4                   00028180 f   docsoc.obj
+ 0001:00017180       _getAndClearCardChangeIndicator@4 00028180 f   docsoc.obj
+ 0001:00017180       _writeProtected@4          00028180 f   docsoc.obj
+ 0001:0001726a       _alog@4                    0002826a f   reedsol.obj
+ 0001:00017298       _flog@4                    00028298 f   reedsol.obj
+ 0001:000172da       _convert_to_byte_patterns@20 000282da f   reedsol.obj
+ 0001:00017464       _deg512@4                  00028464 f   reedsol.obj
+ 0001:0001748e       _gfi@4                     0002848e f   reedsol.obj
+ 0001:000174a8       _gfmul@8                   000284a8 f   reedsol.obj
+ 0001:000174ea       _gfdiv@8                   000284ea f   reedsol.obj
+ 0001:00017500       _residue_to_syndrom@8      00028500 f   reedsol.obj
+ 0001:000175ac       _decoder_for_2_errors@12   000285ac f   reedsol.obj
+ 0001:00017a84       _makeCommand@16            00028a84 f   diskonc.obj
+ 0001:00017ace       _busy@4                    00028ace f   diskonc.obj
+ 0001:00017b34       _waitForReady@4            00028b34 f   diskonc.obj
+ 0001:00017b5a       _writeSignals@8            00028b5a f   diskonc.obj
+ 0001:00017b98       _chkASICmode@4             00028b98 f   diskonc.obj
+ 0001:00017bd6       _setASICmode@8             00028bd6 f   diskonc.obj
+ 0001:00017c0a       _forceDownLoad@4           00028c0a f   diskonc.obj
+ 0001:00017c3e       _writeIPL@20               00028c3e f   diskonc.obj
+ 0001:00017d1a       _setAddress@8              00028d1a f   diskonc.obj
+ 0001:00017dc6       _command@8                 00028dc6 f   diskonc.obj
+ 0001:00017e04       _mapWin@8                  00028e04 f   diskonc.obj
+ 0001:00017e6e       _rdBuf@12                  00028e6e f   diskonc.obj
+ 0001:00017f0e       _wrBuf@12                  00028f0e f   diskonc.obj
+ 0001:00017f44       _wrSet@12                  00028f44 f   diskonc.obj
+ 0001:00017f7a       _readStatus@4              00028f7a f   diskonc.obj
+ 0001:00018016       _readCommand@12            00029016 f   diskonc.obj
+ 0001:0001803c       _writeCommand@12           0002903c f   diskonc.obj
+ 0001:000180d0       _writeOneSector@20         000290d0 f   diskonc.obj
+ 0001:000182e6       _doc2Write@20              000292e6 f   diskonc.obj
+ 0001:00018378       _readOneSector@20          00029378 f   diskonc.obj
+ 0001:00018558       _doc2Read@20               00029558 f   diskonc.obj
+ 0001:000185ec       _checkErase@8              000295ec f   diskonc.obj
+ 0001:000186a6       _doc2Erase@12              000296a6 f   diskonc.obj
+ 0001:00018872       _doc2Map@12                00029872 f   diskonc.obj
+ 0001:000188b8       _readBBT@24                000298b8 f   diskonc.obj
+ 0001:00018bfe       _isKnownMedia@16           00029bfe f   diskonc.obj
+ 0001:00018d90       _readFlashID@8             00029d90 f   diskonc.obj
+ 0001:00018f4e       _doc2000Identify@4         00029f4e f   diskonc.obj

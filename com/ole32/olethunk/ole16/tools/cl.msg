@@ -9,8 +9,10 @@ C COMPILER OPTIONS
 /A<string> (custom memory model)
 -OPTIMIZATION-
 /O enable optimization (same as /Ot)
+/O1 minimize space
+/O2 maximize speed
 /Oa assume no aliasing
-/Ob<n> inline expansion
+/Ob<n> inline expansion (default n=0)
 /Oc local common subexpression opt.
 /Od disable optimization (default)
 /Oe enable registers allocation
@@ -23,9 +25,10 @@ C COMPILER OPTIONS
 /Op[-] improve floating-pt consistency
 /Oq enable maximum p-code optimization
 /Or gen. common exit code (CodeView)
-/Os optimize for space
-/Ot optimize for speed
+/Os favor code size
+/Ot favor code speed
 /Ov[-] toggle p-code frame sorting
+/OV<n> control inlining by func. size
 /Ow assume cross-function aliasing
 /Ox maximum opts. (/Ob1cegilnot /Gs)
 /Oz enable "unsafe" optimizations
@@ -33,6 +36,7 @@ C COMPILER OPTIONS
 /G0 8086 instructions (default)
 /G1  186 instructions
 /G2  286 instructions
+/G3  386 instructions
 /GA protected-mode Win entry/exit code
 /GD protected-mode Win entry/exit code
 /GE<x> customize Windows entry/exit
@@ -40,6 +44,7 @@ C COMPILER OPTIONS
 /Gc Pascal style calling conventions
 /Gd C style calling conventions
 /Ge use stack-check calls
+/Gf enable string pooling
 /Gs remove stack-check calls
 /Gn remove p-code native entry points
 /Gp<num> specify p-code entry tables
@@ -48,11 +53,13 @@ C COMPILER OPTIONS
 /GW real-mode Windows entry/exit code
 /Gw real-mode Windows entry/exit code
 /Gx assume that data is near
+/Gx- assume that data is far
 /Gy separate functions for linker
 /Zr check null pointers (/f only)
 -OUTPUT FILES-
 /Fa[file] name assembly listing file
 /Fc[file] name source/object listing
+/Fd[file] name .PDB filename
 /Fe<file> name executable filename
 /Fl[file] name object listing filename
 /Fm[file] name map filename
@@ -72,6 +79,9 @@ C COMPILER OPTIONS
 /u remove all defined macros
 /X ignore "standard places"
 -LANGUAGE-
+/vd{0|1} disable/enable vtordisp
+/vm<x> type of pointers to members
+/Z7 C 7 style CodeView information
 /Za disable extensions (implies /Op)
 /Zd line number information
 /Ze enable extensions (default)
@@ -97,11 +107,12 @@ C COMPILER OPTIONS
 /c compile only, no link
 /H<num> external name length
 /J default char type is unsigned
-/f select fast compiler
+/f select fast compiler (default)
 /f- select optimizing compiler
 /Yc create .PCH file
 /Yd put debug info in .PCH file
 /Yu use .PCH file
+/YX automatic precompiled header
 /nologo suppress copyright message
 /Mq compile for QuickWin
 /ND<name> name data segment
@@ -112,7 +123,9 @@ C COMPILER OPTIONS
 /Tc<file> compile file without .c
 /Tp<file> compile file without .cpp
 /V<string> set version string
-/W<num> warning level (0..4,X)
+/W<n> warning level (default n=1)
+/w disable all warnings
+/WX treat all warnings as errors
 /Zn turn off SBRPACK for .SBR files
 -MASM SUPPORT-
 /MA<MASM switch>

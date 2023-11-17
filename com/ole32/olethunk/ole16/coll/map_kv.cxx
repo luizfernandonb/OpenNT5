@@ -20,6 +20,17 @@ ASSERTDATA
 
 /////////////////////////////////////////////////////////////////////////////
 
+//
+// 4chan: newer C++ compiler causes these to get inlined if they're defined in header, which breaks compobj.def trying to export them
+//        copying the code for them here seems to fix it though
+//
+int CMapKeyToValue::GetCount() const { return m_nCount; }
+
+POSITION CMapKeyToValue::GetStartPosition() const
+		{ return (m_nCount == 0) ? (POSITION)NULL : BEFORE_START_POSITION; }
+			
+UINT CMapKeyToValue::SizeAssoc() const
+	{ return sizeof(CAssoc)-sizeof(CKeyWrap) + m_cbKeyInAssoc + m_cbValue; }
 
 CMapKeyToValue::CMapKeyToValue(DWORD memctx, UINT cbValue, UINT cbKey,
 	int nBlockSize, LPFNHASHKEY lpfnHashKey, UINT nHashSize)

@@ -1,0 +1,439 @@
+Stack Allocation = 4096 bytes
+
+ Start  Stop   Length Name                   Class
+ 00000H 04D6EH 04D6FH _TEXT                  CODE
+ 04D70H 04D70H 00000H C_ETEXT                ENDCODE
+ 04D70H 04DB1H 00042H NULL                   BEGDATA
+ 04DB2H 0607BH 012CAH _DATA                  DATA
+ 0607CH 06089H 0000EH CDATA                  DATA
+ 0608AH 0608AH 00000H XIFB                   DATA
+ 0608AH 0608AH 00000H XIF                    DATA
+ 0608AH 0608AH 00000H XIFE                   DATA
+ 0608AH 0608AH 00000H XIB                    DATA
+ 0608AH 0608AH 00000H XI                     DATA
+ 0608AH 0608AH 00000H XIE                    DATA
+ 0608AH 0608AH 00000H XPB                    DATA
+ 0608AH 0608BH 00002H XP                     DATA
+ 0608CH 0608CH 00000H XPE                    DATA
+ 0608CH 0608CH 00000H XCB                    DATA
+ 0608CH 0608CH 00000H XC                     DATA
+ 0608CH 0608CH 00000H XCE                    DATA
+ 0608CH 0608CH 00000H XCFB                   DATA
+ 0608CH 0608CH 00000H XCF                    DATA
+ 0608CH 0608CH 00000H XCFE                   DATA
+ 0608CH 0608CH 00000H CONST                  CONST
+ 0608CH 06093H 00008H HDR                    MSG
+ 06094H 06161H 000CEH MSG                    MSG
+ 06162H 06163H 00002H PAD                    MSG
+ 06164H 06164H 00001H EPAD                   MSG
+ 06166H 061ABH 00046H _BSS                   BSS
+ 061ACH 061ACH 00000H XOB                    BSS
+ 061ACH 061ACH 00000H XO                     BSS
+ 061ACH 061ACH 00000H XOE                    BSS
+ 061B0H 0711DH 00F6EH c_common               BSS
+ 07120H 0811FH 01000H STACK                  STACK
+
+ Origin   Group
+ 04D7:0   DGROUP
+
+  Address         Publics by Name
+
+ 04D7:109A       STKHQQ
+ 04D7:212C       _add_crlf
+ 0000:08FE       _BlankLine
+ 0000:48B4       _brkctl
+ 04D7:1DC8       _ClassCount
+ 04D7:14EA       _ClassCounts
+ 04D7:20A7       _ClassFlag1
+ 04D7:20A6       _ClassFlag2
+ 04D7:00BE       _ClassHandle
+ 04D7:16EA       _ClassPending
+ 0000:0676       _ClassRecord
+ 0000:1448       _ClassTerminate
+ 0000:08D0       _CommentLine
+ 04D7:00B0       _CommentLinePtr
+ 04D7:1DDC       _CommonErrorTexts
+ 04D7:14D4       _CommonMessageLines
+ 04D7:212A       _ContinueLine
+ 04D7:20AA       _CountryIdx
+ 04D7:212E       _CountryMsg
+ 04D7:1442       _CountryName
+ 04D7:14D8       _CurrentClass
+ 04D7:1A3C       _CurrentClassFileName
+ 04D7:1AC4       _CurrentClassIndex
+ 04D7:1DC6       _CurrentMessageNumber
+ 04D7:00C4       _Debugging
+ 0000:1314       _DefContinue
+ 0000:0926       _DefRecord
+ 04D7:1ABC       _Done
+ 0000:1BB0       _DosClose
+ 0000:1B4E       _DosCreate
+ 0000:4CF4       _dosexterr
+ 0000:1AD2       _DosLSeek
+ 0000:1A72       _DosOpen
+ 0000:1BFA       _DosRead
+ 0000:1C5A       _DosWrite
+ 04D7:13F6       _edata
+ 04D7:23B0       _end
+ 0000:1366       _EndRecord
+ 04D7:1088       _environ
+ 04D7:1AC6       _EofFlags
+ 04D7:1061       _errno
+ 0000:1D8A       _error
+ 0000:2AB0       _exit
+ 04D7:0056       _ExtendedErrorText999
+ 04D7:1948       _ExtendedErrorTexts
+ 04D7:14D6       _ExtendedMessageLines
+ 0000:32AA       _fflush
+ 0000:2EA0       _flushall
+ 0000:46FA       _free
+ 0000:1A12       _HighOf
+ 04D7:1DDA       _IdxHandle
+ 0000:4B1C       _intdos
+ 0000:4B64       _intdosx
+ 0000:4A64       _isatty
+ 04D7:00B2       _Is_Command_set
+ 04D7:1DCA       _Is_Utility_Command
+ 0000:1CD6       _LineInput
+ 04D7:1AC2       _LineNumber
+ 0000:1A36       _LongOf
+ 0000:19F4       _LowOf
+ 0000:4468       _lseek
+ 0000:0010       _main
+ 0000:470C       _malloc
+ 0000:4C66       _memset
+ 04D7:1AC0       _MessagePending
+ 04D7:14D2       _MessageSkeletonFilePtr
+ 0000:13B0       _MessageTerminate
+ 04D7:1440       _MsgHandle
+ 0000:1EEE       _MyMalloc
+ 04D7:006A       _ParserErrorText999
+ 04D7:1A12       _ParserErrorTexts
+ 04D7:1ABE       _ParserMessageLines
+ 04D7:20A8       _Pass
+ 0000:2ED2       _printf
+ 0000:0254       _ProcessSkeletonFile
+ 0000:060C       _PublicLine
+ 0000:44E2       _read
+ 0000:1F32       _ReadCommon
+ 04D7:00C0       _ReadCommonFlag
+ 04D7:00C1       _ReadExtendFlag
+ 04D7:00C2       _ReadParserFlag
+ 04D7:00C3       _ReadUtilFlag
+ 04D7:00BC       _SkeletonHandle
+ 0000:4A88       _sprintf
+ 0000:4ADE       _sscanf
+ 0000:46E8       _stackavail
+ 0000:4978       _strcat
+ 0000:4BC2       _strchr
+ 0000:49EA       _strcmp
+ 0000:49B8       _strcpy
+ 0000:4A16       _strlen
+ 0000:4A32       _strncpy
+ 0000:4BEC       _strnicmp
+ 0000:4C44       _strupr
+ 0000:4A5A       _ultoa
+ 0000:43FC       _ungetc
+ 0000:133E       _UseContinue
+ 0000:0BFA       _UseRecord
+ 04D7:14C2       _USEstring
+ 04D7:16EC       _UtilErrorTexts
+ 04D7:14DA       _UtilityName
+ 04D7:1946       _UtilMessageLines
+ 0000:05C4       _UtilRecord
+ 0000:45C0       _write
+ 04D7:1046       __abrkp
+ 04D7:0FF6       __abrktb
+ 04D7:1046       __abrktbe
+ 04D7:1048       __acfinfo
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+ 04D7:1098       __adbgmsg
+ 04D7:0FF4       __aexit_rtn
+ 04D7:1055       __aintdiv
+ 0000:4755       __amalloc
+ 0000:4894       __amallocbrk
+ 04D7:11F4       __amblksiz
+ 0000:4838       __amexpand
+ 0000:4872       __amlink
+ 0000:29DD       __amsg_exit
+ 0000:4D38       __aNlshl
+ 0000:4D44       __aNNalshl
+ 0000:4D64       __aNulshr
+ 04D7:11EE       __aseg1
+ 04D7:11E4       __asegds
+ 04D7:11F6       __asegh
+ 04D7:11F0       __asegn
+ 04D7:11F2       __asegr
+ 04D7:0FF0       __asizds
+ 04D7:1208       __asizeC
+ 04D7:1209       __asizeD
+ 0000:293A       __astart
+ 04D7:0FF2       __atopsp
+ 04D7:21AE       __buferr
+ 04D7:1BC6       __bufin
+ 04D7:1EA6       __bufout
+ 04D7:11FA       __cfltcvt_tab
+ 04D7:10B2       __cflush
+ 04D7:1090       __child
+ 0000:2B82       __chkstk
+ 0000:29EC       __cinit
+ 0000:29CE       __cintDIV
+ 0000:4C94       __cltoasub
+ 0000:2B0C       __ctermsub
+ 04D7:120A       __ctype
+ 04D7:120A       __ctype_
+ 0000:4CA0       __cxtoa
+ 04D7:106C       __doserrno
+ 0000:2E4C       __dosret0
+ 0000:2E5F       __dosretax
+ 0000:2E54       __dosreturn
+ 04D7:1069       __dosvermajor
+ 04D7:106A       __dosverminor
+ 04D7:13F6       __edata
+ 04D7:23B0       __end
+ 0000:2AC7       __exit
+ 04D7:1059       __fac
+ 0000:2B5C       __FF_MSGBANNER
+ 0000:2F0E       __filbuf
+ 0000:2FCE       __flsbuf
+ 04D7:130E       __fpinit
+ 0000:2B7C       __fptrap
+ 0000:3214       __ftbuf
+ 0000:3124       __getbuf
+ 0000:3318       __input
+ 04D7:1093       __intno
+ 04D7:10B4       __iob
+ 04D7:1154       __iob2
+ 04D7:11CC       __lastiob
+ 0000:2E6C       __maperror
+ 0000:2E0A       __myalloc
+ 04D7:106E       __nfile
+ 0000:46FA       __nfree
+ 0000:470C       __nmalloc
+ 0000:2DB6       __NMSG_TEXT
+ 0000:2DE1       __NMSG_WRITE
+ 0000:2B98       __nullcheck
+ 04D7:106C       __oserr
+ 04D7:1070       __osfile
+ 04D7:1069       __osmajor
+ 04D7:106A       __osminor
+ 04D7:106B       __osmode
+ 04D7:1069       __osversion
+ 0000:3B34       __output
+ 04D7:1092       __ovlflag
+ 04D7:1094       __ovlvec
+ 04D7:108A       __pgmptr
+ 04D7:1067       __psp
+ 04D7:1065       __pspadr
+ 04D7:11F6       __QChdata
+ 0000:2BBA       __setargv
+ 0000:2D48       __setenvp
+ 04D7:1206       __sigintoff
+ 04D7:1204       __sigintseg
+ 0000:3190       __stbuf
+ 04D7:1063       __umaskval
+ 04D7:1084       ___argc
+ 04D7:1086       ___argv
+
+  Address         Publics by Value
+
+ 0000:0010       _main
+ 0000:0254       _ProcessSkeletonFile
+ 0000:05C4       _UtilRecord
+ 0000:060C       _PublicLine
+ 0000:0676       _ClassRecord
+ 0000:08D0       _CommentLine
+ 0000:08FE       _BlankLine
+ 0000:0926       _DefRecord
+ 0000:0BFA       _UseRecord
+ 0000:1314       _DefContinue
+ 0000:133E       _UseContinue
+ 0000:1366       _EndRecord
+ 0000:13B0       _MessageTerminate
+ 0000:1448       _ClassTerminate
+ 0000:19F4       _LowOf
+ 0000:1A12       _HighOf
+ 0000:1A36       _LongOf
+ 0000:1A72       _DosOpen
+ 0000:1AD2       _DosLSeek
+ 0000:1B4E       _DosCreate
+ 0000:1BB0       _DosClose
+ 0000:1BFA       _DosRead
+ 0000:1C5A       _DosWrite
+ 0000:1CD6       _LineInput
+ 0000:1D8A       _error
+ 0000:1EEE       _MyMalloc
+ 0000:1F32       _ReadCommon
+ 0000:293A       __astart
+ 0000:29CE       __cintDIV
+ 0000:29DD       __amsg_exit
+ 0000:29EC       __cinit
+ 0000:2AB0       _exit
+ 0000:2AC7       __exit
+ 0000:2B0C       __ctermsub
+ 0000:2B5C       __FF_MSGBANNER
+ 0000:2B7C       __fptrap
+ 0000:2B82       __chkstk
+ 0000:2B98       __nullcheck
+ 0000:2BBA       __setargv
+ 0000:2D48       __setenvp
+ 0000:2DB6       __NMSG_TEXT
+ 0000:2DE1       __NMSG_WRITE
+ 0000:2E0A       __myalloc
+ 0000:2E4C       __dosret0
+ 0000:2E54       __dosreturn
+ 0000:2E5F       __dosretax
+ 0000:2E6C       __maperror
+ 0000:2EA0       _flushall
+ 0000:2ED2       _printf
+ 0000:2F0E       __filbuf
+ 0000:2FCE       __flsbuf
+ 0000:3124       __getbuf
+ 0000:3190       __stbuf
+ 0000:3214       __ftbuf
+ 0000:32AA       _fflush
+ 0000:3318       __input
+ 0000:3B34       __output
+ 0000:43FC       _ungetc
+ 0000:4468       _lseek
+ 0000:44E2       _read
+ 0000:45C0       _write
+ 0000:46E8       _stackavail
+ 0000:46FA       _free
+ 0000:46FA       __nfree
+ 0000:470C       __nmalloc
+ 0000:470C       _malloc
+ 0000:4755       __amalloc
+ 0000:4838       __amexpand
+ 0000:4872       __amlink
+ 0000:4894       __amallocbrk
+ 0000:48B4       _brkctl
+ 0000:4978       _strcat
+ 0000:49B8       _strcpy
+ 0000:49EA       _strcmp
+ 0000:4A16       _strlen
+ 0000:4A32       _strncpy
+ 0000:4A5A       _ultoa
+ 0000:4A64       _isatty
+ 0000:4A88       _sprintf
+ 0000:4ADE       _sscanf
+ 0000:4B1C       _intdos
+ 0000:4B64       _intdosx
+ 0000:4BC2       _strchr
+ 0000:4BEC       _strnicmp
+ 0000:4C44       _strupr
+ 0000:4C66       _memset
+ 0000:4C94       __cltoasub
+ 0000:4CA0       __cxtoa
+ 0000:4CF4       _dosexterr
+ 0000:4D38       __aNlshl
+ 0000:4D44       __aNNalshl
+ 0000:4D64       __aNulshr
+ 04D7:0056       _ExtendedErrorText999
+ 04D7:006A       _ParserErrorText999
+ 04D7:00B0       _CommentLinePtr
+ 04D7:00B2       _Is_Command_set
+ 04D7:00BC       _SkeletonHandle
+ 04D7:00BE       _ClassHandle
+ 04D7:00C0       _ReadCommonFlag
+ 04D7:00C1       _ReadExtendFlag
+ 04D7:00C2       _ReadParserFlag
+ 04D7:00C3       _ReadUtilFlag
+ 04D7:00C4       _Debugging
+ 04D7:0FF0       __asizds
+ 04D7:0FF2       __atopsp
+ 04D7:0FF4       __aexit_rtn
+ 04D7:0FF6       __abrktb
+ 04D7:1046       __abrktbe
+ 04D7:1046       __abrkp
+ 04D7:1048       __acfinfo
+ 04D7:1055       __aintdiv
+ 04D7:1059       __fac
+ 04D7:1061       _errno
+ 04D7:1063       __umaskval
+ 04D7:1065       __pspadr
+ 04D7:1067       __psp
+ 04D7:1069       __dosvermajor
+ 04D7:1069       __osmajor
+ 04D7:1069       __osversion
+ 04D7:106A       __osminor
+ 04D7:106A       __dosverminor
+ 04D7:106B       __osmode
+ 04D7:106C       __doserrno
+ 04D7:106C       __oserr
+ 04D7:106E       __nfile
+ 04D7:1070       __osfile
+ 04D7:1084       ___argc
+ 04D7:1086       ___argv
+ 04D7:1088       _environ
+ 04D7:108A       __pgmptr
+ 04D7:1090       __child
+ 04D7:1092       __ovlflag
+ 04D7:1093       __intno
+ 04D7:1094       __ovlvec
+ 04D7:1098       __adbgmsg
+ 04D7:109A       STKHQQ
+ 04D7:10B2       __cflush
+ 04D7:10B4       __iob
+ 04D7:1154       __iob2
+ 04D7:11CC       __lastiob
+ 04D7:11E4       __asegds
+ 04D7:11EE       __aseg1
+ 04D7:11F0       __asegn
+ 04D7:11F2       __asegr
+ 04D7:11F4       __amblksiz
+ 04D7:11F6       __QChdata
+ 04D7:11F6       __asegh
+ 04D7:11FA       __cfltcvt_tab
+ 04D7:1204       __sigintseg
+ 04D7:1206       __sigintoff
+ 04D7:1208       __asizeC
+ 04D7:1209       __asizeD
+ 04D7:120A       __ctype
+ 04D7:120A       __ctype_
+ 04D7:130E       __fpinit
+ 04D7:13F6       __edata
+ 04D7:13F6       _edata
+ 04D7:1440       _MsgHandle
+ 04D7:1442       _CountryName
+ 04D7:14C2       _USEstring
+ 04D7:14D2       _MessageSkeletonFilePtr
+ 04D7:14D4       _CommonMessageLines
+ 04D7:14D6       _ExtendedMessageLines
+ 04D7:14D8       _CurrentClass
+ 04D7:14DA       _UtilityName
+ 04D7:14EA       _ClassCounts
+ 04D7:16EA       _ClassPending
+ 04D7:16EC       _UtilErrorTexts
+ 04D7:1946       _UtilMessageLines
+ 04D7:1948       _ExtendedErrorTexts
+ 04D7:1A12       _ParserErrorTexts
+ 04D7:1A3C       _CurrentClassFileName
+ 04D7:1ABC       _Done
+ 04D7:1ABE       _ParserMessageLines
+ 04D7:1AC0       _MessagePending
+ 04D7:1AC2       _LineNumber
+ 04D7:1AC4       _CurrentClassIndex
+ 04D7:1AC6       _EofFlags
+ 04D7:1BC6       __bufin
+ 04D7:1DC6       _CurrentMessageNumber
+ 04D7:1DC8       _ClassCount
+ 04D7:1DCA       _Is_Utility_Command
+ 04D7:1DDA       _IdxHandle
+ 04D7:1DDC       _CommonErrorTexts
+ 04D7:1EA6       __bufout
+ 04D7:20A6       _ClassFlag2
+ 04D7:20A7       _ClassFlag1
+ 04D7:20A8       _Pass
+ 04D7:20AA       _CountryIdx
+ 04D7:212A       _ContinueLine
+ 04D7:212C       _add_crlf
+ 04D7:212E       _CountryMsg
+ 04D7:21AE       __buferr
+ 04D7:23B0       __end
+ 04D7:23B0       _end
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+
+Program entry point at 0000:293A

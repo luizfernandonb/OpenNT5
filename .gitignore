@@ -10,3 +10,8 @@ BuildName.txt
 __blddate__
 __bldnum__
 publish.log
+*.lib
+*.obj
+*.bin
+*.pdb
+*.tlb

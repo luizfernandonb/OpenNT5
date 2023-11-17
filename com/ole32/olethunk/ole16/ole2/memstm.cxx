@@ -19,6 +19,11 @@
 #include "memstm.h"
 #include <reterr.h>
 
+//
+// 4chan: fix for missing __fpurecall? (still not sure what requires this)
+//
+extern "C" int __cdecl _fpurecall() {return 0;};
+
 static const UINT grfMem = GMEM_SHARE | GMEM_MOVEABLE;
 
 // REVIEW: there is a lot of duplicate code.  There used to be two separate

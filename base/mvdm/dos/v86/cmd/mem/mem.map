@@ -1,0 +1,583 @@
+
+ Start  Stop   Length Name                   Class
+ 00000H 04D3DH 04D3EH _TEXT                  CODE
+ 04D40H 0726FH 02530H EMULATOR_TEXT          CODE
+ 07270H 07270H 00000H C_ETEXT                ENDCODE
+ 07270H 073DFH 00170H EMULATOR_DATA          FAR_DATA
+ 073E0H 07421H 00042H NULL                   BEGDATA
+ 07422H 0A315H 02EF4H _DATA                  DATA
+ 0A316H 0A323H 0000EH CDATA                  DATA
+ 0A324H 0A324H 00000H XIFB                   DATA
+ 0A324H 0A324H 00000H XIF                    DATA
+ 0A324H 0A324H 00000H XIFE                   DATA
+ 0A324H 0A324H 00000H XIB                    DATA
+ 0A324H 0A325H 00002H XI                     DATA
+ 0A326H 0A326H 00000H XIE                    DATA
+ 0A326H 0A326H 00000H XPB                    DATA
+ 0A326H 0A327H 00002H XP                     DATA
+ 0A328H 0A328H 00000H XPE                    DATA
+ 0A328H 0A328H 00000H XCB                    DATA
+ 0A328H 0A328H 00000H XC                     DATA
+ 0A328H 0A328H 00000H XCE                    DATA
+ 0A328H 0A328H 00000H XCFB                   DATA
+ 0A328H 0A328H 00000H XCF                    DATA
+ 0A328H 0A328H 00000H XCFE                   DATA
+ 0A328H 0A333H 0000CH CONST                  CONST
+ 0A334H 0A33BH 00008H HDR                    MSG
+ 0A33CH 0A4E0H 001A5H MSG                    MSG
+ 0A4E1H 0A4E2H 00002H PAD                    MSG
+ 0A4E3H 0A4E3H 00001H EPAD                   MSG
+ 0A4E4H 0A513H 00030H _BSS                   BSS
+ 0A514H 0A514H 00000H XOB                    BSS
+ 0A514H 0A514H 00000H XO                     BSS
+ 0A514H 0A514H 00000H XOE                    BSS
+ 0A520H 0B063H 00B44H c_common               BSS
+ 0B070H 0B86FH 00800H STACK                  STACK
+
+ Origin   Group
+ 073E:0   DGROUP
+ 0000:0   IGROUP
+
+  Address         Publics by Name
+
+ 073E:2E34       $i8_implicit_exp
+ 073E:2E32       $i8_inpbas
+ 0000:3FCB       $i8_input
+ 073E:2E33       $i8_input_ws
+ 0000:441F       $i8_output
+ 0000:46E0       $i8_tpwr10
+ 073E:1812       $M_CLS_1
+ 073E:1BD4       $M_CLS_2
+ 073E:02EE       $M_GET_MSG_ADDRESS
+ 073E:1BFA       $M_MSGSERV_1
+ 073E:1C1C       $M_MSGSERV_2
+ 073E:00A4       $M_RT
+ 073E:2ADB       CallParser
+ 073E:1C6A       data_sysdispmsg
+ 073E:1CAE       data_sysgetmsg
+ 073E:1C26       data_sysloadmsg
+ 0000:FE32  Abs  FIARQQ
+ 0000:0E32  Abs  FICRQQ
+ 0000:5C32  Abs  FIDRQQ
+ 0000:1632  Abs  FIERQQ
+ 0000:0632  Abs  FISRQQ
+ 0000:A23D  Abs  FIWRQQ
+ 0000:4000  Abs  FJARQQ
+ 0000:C000  Abs  FJCRQQ
+ 0000:8000  Abs  FJSRQQ
+ 073E:2B90       STKHQQ
+ 073E:1DDC       SysParse
+ 0000:1C70       _AddMem_to_PSP
+ 0000:02AE       _AddressOf
+ 073E:32B0       _ArenaHeadPtr
+ 0000:3A9C       _atof
+ 073E:32D4       _BlockDeviceNumber
+ 0000:3950       _brkctl
+ 0000:2326       _CheckVDisk
+ 073E:322C       _Classify
+ 073E:3824       _cmdline
+ 073E:32DE       _cmd_line
+ 0000:048E       _CSwitch_init
+ 073E:335E       _DataLevel
+ 0000:213A       _DispBigFree
+ 0000:100A       _DisplayBaseDetail
+ 0000:188A       _DisplayBaseSummary
+ 0000:1D8A       _DisplayClassification
+ 0000:17C8       _DisplayDeviceDriver
+ 0000:0512       _DisplayEMSDetail
+ 0000:07B0       _DisplayEMSSummary
+ 0000:0620       _DisplayExtendedSummary
+ 0000:1EF6       _DispMemClass
+ 073E:2EDC       _DOS_TopOfMemory
+ 073E:3104       _edata
+ 0000:082E       _EMSInstalled
+ 073E:007B       _EMSInstalledFlag
+ 0000:0DDC       _EMSPrint
+ 073E:3C90       _end
+ 073E:2B7E       _environ
+ 073E:2B57       _errno
+ 0000:26C8       _exit
+ 0000:2CAC       _fflush
+ 0000:2AB8       _flushall
+ 0000:3796       _free
+ 0000:1ACE       _GetFromArgvZero
+ 073E:3172       _i
+ 073E:006A       _Ibmbio
+ 073E:0074       _Ibmdos
+ 073E:3616       _InRegs
+ 0000:3BEE       _int86
+ 0000:3CC2       _int86x
+ 0000:3D56       _intdos
+ 0000:3D9E       _intdosx
+ 0000:3B5C       _isatty
+ 073E:0078       _LastPSP
+ 073E:0076       _LinkedIn
+ 0000:35E2       _lseek
+ 0000:0010       _main
+ 0000:37A8       _malloc
+ 0000:2360       _MemCtrlc
+ 0000:3E30       _memmove
+ 0000:3E78       _memset
+ 073E:382C       _mem_table
+ 0000:3DFC       _movedata
+ 073E:0052       _MultipleDrives
+ 073E:007C       _noof_progs
+ 073E:3162       _OldCtrlc
+ 073E:3406       _OutRegs
+ 073E:31AC       _OwnerName
+ 0000:19D4       _OwnerOf
+ 0000:04CE       _parse
+ 0000:02CC       _parse_init
+ 0000:041A       _Parse_Message
+ 073E:3404       _Parse_Ptr
+ 073E:33DB       _p_con1
+ 073E:33B2       _p_con2
+ 073E:3389       _p_con3
+ 073E:3360       _p_con4
+ 073E:3614       _p_noval
+ 073E:3140       _p_p
+ 073E:3166       _p_px
+ 073E:32BC       _p_result1
+ 073E:32CC       _p_result2
+ 073E:32C4       _p_result3
+ 073E:32B4       _p_result4
+ 0000:3E1A       _segread
+ 073E:32D6       _SegRegs
+ 073E:0046       _SingleDrive
+ 0000:3C6C       _sprintf
+ 0000:3784       _stackavail
+ 0000:3A14       _strcpy
+ 0000:3A46       _strlen
+ 0000:3A62       _strncmp
+ 0000:0900       _Sub0_Message
+ 0000:0930       _Sub1_Message
+ 0000:098E       _Sub2_Message
+ 0000:0A44       _Sub3_Message
+ 0000:0D00       _Sub4a_Message
+ 0000:0BC8       _Sub4_Message
+ 0000:0F88       _SubC2_Message
+ 0000:0E84       _SubC4_Message
+ 073E:3174       _sublist
+ 0000:04BC       _sysdispmsg
+ 0000:04C8       _sysgetmsg
+ 0000:04C2       _sysloadmsg
+ 073E:3828       _SysVarsPtr
+ 0000:1B9C       _TypeOf
+ 073E:3230       _TypeText
+ 0000:3B52       _ultoa
+ 073E:322E       _UMB_Head
+ 073E:0060       _UnOwned
+ 073E:007A       _UseArgvZero
+ 0000:365C       _write
+ 0000:24E6       _XMM_AllocateExtended
+ 0000:2480       _XMM_DisableA20
+ 0000:2468       _XMM_EnableA20
+ 0000:2505       _XMM_FreeExtended
+ 0000:258F       _XMM_GetHandleInfo
+ 0000:2570       _XMM_GetHandleLength
+ 0000:2450       _XMM_GlobalDisableA20
+ 0000:2438       _XMM_GlobalEnableA20
+ 0000:23C3       _XMM_Installed
+ 0000:253B       _XMM_LockExtended
+ 0000:2520       _XMM_MoveExtended
+ 0000:2498       _XMM_QueryA20
+ 0000:24B1       _XMM_QueryLargestFree
+ 0000:24CA       _XMM_QueryTotalFree
+ 0000:25B0       _XMM_ReallocateExtended
+ 0000:2420       _XMM_ReleaseHMA
+ 0000:25E9       _XMM_ReleaseUMB
+ 0000:2405       _XMM_RequestHMA
+ 0000:25CE       _XMM_RequestUMB
+ 0000:2555       _XMM_UnLockExtended
+ 0000:23F2       _XMM_Version
+ 073E:2F34       __abrkp
+ 073E:2EE4       __abrktb
+ 073E:2F34       __abrktbe
+ 073E:2B3E       __acfinfo
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+ 073E:2B8E       __adbgmsg
+ 073E:2EE2       __aexit_rtn
+ 073E:2B4B       __aintdiv
+ 0000:37F1       __amalloc
+ 0000:3930       __amallocbrk
+ 073E:2CE8       __amblksiz
+ 0000:38D4       __amexpand
+ 0000:390E       __amlink
+ 0000:4D2F       __amsg_exit
+ 0000:3F3E       __aNlshl
+ 0000:3F4A       __aNNalshl
+ 0000:3F6A       __aNulshr
+ 073E:2CE2       __aseg1
+ 073E:2CD8       __asegds
+ 073E:2CEA       __asegh
+ 073E:2CE4       __asegn
+ 073E:2CE6       __asegr
+ 073E:2EDE       __asizds
+ 073E:2CFC       __asizeC
+ 073E:2CFD       __asizeD
+ 0000:4C8A       __astart
+ 073E:2EE0       __atopsp
+ 073E:3A84       __buferr
+ 073E:3414       __bufin
+ 073E:3624       __bufout
+ 0000:4C18       __cfltcvt
+ 073E:2CEE       __cfltcvt_tab
+ 073E:2BA8       __cflush
+ 0000:48FC       __cftoe
+ 0000:4A4A       __cftof
+ 0000:4B66       __cftog
+ 073E:2B86       __child
+ 0000:279A       __chkstk
+ 0000:2604       __cinit
+ 0000:4D26       __cintDIV
+ 0000:3EA6       __cltoasub
+ 0000:4824       __cropzeros
+ 0000:2724       __ctermsub
+ 073E:2CFE       __ctype
+ 073E:2CFE       __ctype_
+ 0000:3EB2       __cxtoa
+ 0000:3BB5       __DOSCREATECSALIAS
+ 0000:3B80       __DOSDEVCONFIG
+ 073E:2B62       __doserrno
+ 0000:3BCB       __DOSFREESEG
+ 0000:3B97       __DOSGETMACHINEMODE
+ 0000:2A64       __dosret0
+ 0000:2A77       __dosretax
+ 0000:2A6C       __dosreturn
+ 0000:3BAC       __DOSSETVEC
+ 073E:2B5F       __dosvermajor
+ 073E:2B60       __dosverminor
+ 0000:3BD4       __DOSWRITE
+ 0000:3F16       __dos_getvect
+ 0000:3F28       __dos_setvect
+ 073E:3104       __edata
+ 073E:3C90       __end
+ 0000:26DF       __exit
+ 073E:2B4F       __fac
+ 0000:48A8       __fassign
+ 0000:2774       __FF_MSGBANNER
+ 0000:2AEA       __flsbuf
+ 0000:4745       __fltin
+ 0000:471E       __fltinf
+ 0000:4788       __fltout
+ 0000:9876  Abs  __fltused
+ 0000:47CE       __forcdecpt
+ 04D4:07D6       __fpemulator
+ 04D4:0264       __FPEXCEPTION87
+ 073E:2F38       __fpinit
+ 04D4:24BA       __FPINSTALL87
+ 04D4:0024       __fpmath
+ 0000:3F91       __fpsignal
+ 0727:0164       __fptaskdata
+ 04D4:24E9       __FPTERMINATE87
+ 0000:3ADC       __fptostr
+ 0000:2794       __fptrap
+ 0000:2C40       __getbuf
+ 073E:2B89       __intno
+ 073E:2BAA       __iob
+ 073E:2C4A       __iob2
+ 073E:2CC2       __lastiob
+ 0000:2A84       __maperror
+ 0000:2A22       __myalloc
+ 073E:2B64       __nfile
+ 0000:3796       __nfree
+ 0000:37A8       __nmalloc
+ 0000:29CE       __NMSG_TEXT
+ 0000:29F9       __NMSG_WRITE
+ 0000:27B0       __nullcheck
+ 073E:2B62       __oserr
+ 073E:2B66       __osfile
+ 073E:2B5F       __osmajor
+ 073E:2B60       __osminor
+ 073E:2B61       __osmode
+ 073E:2B5F       __osversion
+ 0000:2D1A       __output
+ 073E:2B88       __ovlflag
+ 073E:2B8A       __ovlvec
+ 073E:2B80       __pgmptr
+ 0000:487A       __positive
+ 073E:2B5D       __psp
+ 073E:2B5B       __pspadr
+ 073E:2CEA       __QChdata
+ 0000:27D2       __setargv
+ 0000:2960       __setenvp
+ 073E:2CFA       __sigintoff
+ 073E:2CF8       __sigintseg
+ 073E:2B59       __umaskval
+ 0000:3F06       __wrt2err
+ 073E:2B7A       ___argc
+ 073E:2B7C       ___argv
+
+  Address         Publics by Value
+
+ 0000:0010       _main
+ 0000:02AE       _AddressOf
+ 0000:02CC       _parse_init
+ 0000:041A       _Parse_Message
+ 0000:048E       _CSwitch_init
+ 0000:04BC       _sysdispmsg
+ 0000:04C2       _sysloadmsg
+ 0000:04C8       _sysgetmsg
+ 0000:04CE       _parse
+ 0000:0512       _DisplayEMSDetail
+ 0000:0620       _DisplayExtendedSummary
+ 0000:0632  Abs  FISRQQ
+ 0000:07B0       _DisplayEMSSummary
+ 0000:082E       _EMSInstalled
+ 0000:0900       _Sub0_Message
+ 0000:0930       _Sub1_Message
+ 0000:098E       _Sub2_Message
+ 0000:0A44       _Sub3_Message
+ 0000:0BC8       _Sub4_Message
+ 0000:0D00       _Sub4a_Message
+ 0000:0DDC       _EMSPrint
+ 0000:0E32  Abs  FICRQQ
+ 0000:0E84       _SubC4_Message
+ 0000:0F88       _SubC2_Message
+ 0000:100A       _DisplayBaseDetail
+ 0000:1632  Abs  FIERQQ
+ 0000:17C8       _DisplayDeviceDriver
+ 0000:188A       _DisplayBaseSummary
+ 0000:19D4       _OwnerOf
+ 0000:1ACE       _GetFromArgvZero
+ 0000:1B9C       _TypeOf
+ 0000:1C70       _AddMem_to_PSP
+ 0000:1D8A       _DisplayClassification
+ 0000:1EF6       _DispMemClass
+ 0000:213A       _DispBigFree
+ 0000:2326       _CheckVDisk
+ 0000:2360       _MemCtrlc
+ 0000:23C3       _XMM_Installed
+ 0000:23F2       _XMM_Version
+ 0000:2405       _XMM_RequestHMA
+ 0000:2420       _XMM_ReleaseHMA
+ 0000:2438       _XMM_GlobalEnableA20
+ 0000:2450       _XMM_GlobalDisableA20
+ 0000:2468       _XMM_EnableA20
+ 0000:2480       _XMM_DisableA20
+ 0000:2498       _XMM_QueryA20
+ 0000:24B1       _XMM_QueryLargestFree
+ 0000:24CA       _XMM_QueryTotalFree
+ 0000:24E6       _XMM_AllocateExtended
+ 0000:2505       _XMM_FreeExtended
+ 0000:2520       _XMM_MoveExtended
+ 0000:253B       _XMM_LockExtended
+ 0000:2555       _XMM_UnLockExtended
+ 0000:2570       _XMM_GetHandleLength
+ 0000:258F       _XMM_GetHandleInfo
+ 0000:25B0       _XMM_ReallocateExtended
+ 0000:25CE       _XMM_RequestUMB
+ 0000:25E9       _XMM_ReleaseUMB
+ 0000:2604       __cinit
+ 0000:26C8       _exit
+ 0000:26DF       __exit
+ 0000:2724       __ctermsub
+ 0000:2774       __FF_MSGBANNER
+ 0000:2794       __fptrap
+ 0000:279A       __chkstk
+ 0000:27B0       __nullcheck
+ 0000:27D2       __setargv
+ 0000:2960       __setenvp
+ 0000:29CE       __NMSG_TEXT
+ 0000:29F9       __NMSG_WRITE
+ 0000:2A22       __myalloc
+ 0000:2A64       __dosret0
+ 0000:2A6C       __dosreturn
+ 0000:2A77       __dosretax
+ 0000:2A84       __maperror
+ 0000:2AB8       _flushall
+ 0000:2AEA       __flsbuf
+ 0000:2C40       __getbuf
+ 0000:2CAC       _fflush
+ 0000:2D1A       __output
+ 0000:35E2       _lseek
+ 0000:365C       _write
+ 0000:3784       _stackavail
+ 0000:3796       __nfree
+ 0000:3796       _free
+ 0000:37A8       __nmalloc
+ 0000:37A8       _malloc
+ 0000:37F1       __amalloc
+ 0000:38D4       __amexpand
+ 0000:390E       __amlink
+ 0000:3930       __amallocbrk
+ 0000:3950       _brkctl
+ 0000:3A14       _strcpy
+ 0000:3A46       _strlen
+ 0000:3A62       _strncmp
+ 0000:3A9C       _atof
+ 0000:3ADC       __fptostr
+ 0000:3B52       _ultoa
+ 0000:3B5C       _isatty
+ 0000:3B80       __DOSDEVCONFIG
+ 0000:3B97       __DOSGETMACHINEMODE
+ 0000:3BAC       __DOSSETVEC
+ 0000:3BB5       __DOSCREATECSALIAS
+ 0000:3BCB       __DOSFREESEG
+ 0000:3BD4       __DOSWRITE
+ 0000:3BEE       _int86
+ 0000:3C6C       _sprintf
+ 0000:3CC2       _int86x
+ 0000:3D56       _intdos
+ 0000:3D9E       _intdosx
+ 0000:3DFC       _movedata
+ 0000:3E1A       _segread
+ 0000:3E30       _memmove
+ 0000:3E78       _memset
+ 0000:3EA6       __cltoasub
+ 0000:3EB2       __cxtoa
+ 0000:3F06       __wrt2err
+ 0000:3F16       __dos_getvect
+ 0000:3F28       __dos_setvect
+ 0000:3F3E       __aNlshl
+ 0000:3F4A       __aNNalshl
+ 0000:3F6A       __aNulshr
+ 0000:3F91       __fpsignal
+ 0000:3FCB       $i8_input
+ 0000:4000  Abs  FJARQQ
+ 0000:441F       $i8_output
+ 0000:46E0       $i8_tpwr10
+ 0000:471E       __fltinf
+ 0000:4745       __fltin
+ 0000:4788       __fltout
+ 0000:47CE       __forcdecpt
+ 0000:4824       __cropzeros
+ 0000:487A       __positive
+ 0000:48A8       __fassign
+ 0000:48FC       __cftoe
+ 0000:4A4A       __cftof
+ 0000:4B66       __cftog
+ 0000:4C18       __cfltcvt
+ 0000:4C8A       __astart
+ 0000:4D26       __cintDIV
+ 0000:4D2F       __amsg_exit
+ 04D4:0024       __fpmath
+ 04D4:0264       __FPEXCEPTION87
+ 04D4:07D6       __fpemulator
+ 0000:5C32  Abs  FIDRQQ
+ 04D4:24BA       __FPINSTALL87
+ 04D4:24E9       __FPTERMINATE87
+ 0727:0164       __fptaskdata
+ 073E:0046       _SingleDrive
+ 073E:0052       _MultipleDrives
+ 073E:0060       _UnOwned
+ 073E:006A       _Ibmbio
+ 073E:0074       _Ibmdos
+ 073E:0076       _LinkedIn
+ 073E:0078       _LastPSP
+ 073E:007A       _UseArgvZero
+ 073E:007B       _EMSInstalledFlag
+ 073E:007C       _noof_progs
+ 073E:00A4       $M_RT
+ 073E:02EE       $M_GET_MSG_ADDRESS
+ 0000:8000  Abs  FJSRQQ
+ 073E:1812       $M_CLS_1
+ 073E:1BD4       $M_CLS_2
+ 073E:1BFA       $M_MSGSERV_1
+ 073E:1C1C       $M_MSGSERV_2
+ 073E:1C26       data_sysloadmsg
+ 073E:1C6A       data_sysdispmsg
+ 073E:1CAE       data_sysgetmsg
+ 073E:1DDC       SysParse
+ 0000:9876  Abs  __fltused
+ 0000:9876  Abs  __acrtused
+ 0000:9876  Abs  __acrtmsg
+ 073E:2ADB       CallParser
+ 073E:2B3E       __acfinfo
+ 073E:2B4B       __aintdiv
+ 073E:2B4F       __fac
+ 073E:2B57       _errno
+ 073E:2B59       __umaskval
+ 073E:2B5B       __pspadr
+ 073E:2B5D       __psp
+ 073E:2B5F       __osmajor
+ 073E:2B5F       __dosvermajor
+ 073E:2B5F       __osversion
+ 073E:2B60       __dosverminor
+ 073E:2B60       __osminor
+ 073E:2B61       __osmode
+ 073E:2B62       __doserrno
+ 073E:2B62       __oserr
+ 073E:2B64       __nfile
+ 073E:2B66       __osfile
+ 073E:2B7A       ___argc
+ 073E:2B7C       ___argv
+ 073E:2B7E       _environ
+ 073E:2B80       __pgmptr
+ 073E:2B86       __child
+ 073E:2B88       __ovlflag
+ 073E:2B89       __intno
+ 073E:2B8A       __ovlvec
+ 073E:2B8E       __adbgmsg
+ 073E:2B90       STKHQQ
+ 073E:2BA8       __cflush
+ 073E:2BAA       __iob
+ 073E:2C4A       __iob2
+ 073E:2CC2       __lastiob
+ 073E:2CD8       __asegds
+ 073E:2CE2       __aseg1
+ 073E:2CE4       __asegn
+ 073E:2CE6       __asegr
+ 073E:2CE8       __amblksiz
+ 073E:2CEA       __QChdata
+ 073E:2CEA       __asegh
+ 073E:2CEE       __cfltcvt_tab
+ 073E:2CF8       __sigintseg
+ 073E:2CFA       __sigintoff
+ 073E:2CFC       __asizeC
+ 073E:2CFD       __asizeD
+ 073E:2CFE       __ctype
+ 073E:2CFE       __ctype_
+ 073E:2E32       $i8_inpbas
+ 073E:2E33       $i8_input_ws
+ 073E:2E34       $i8_implicit_exp
+ 0000:A23D  Abs  FIWRQQ
+ 073E:2EDC       _DOS_TopOfMemory
+ 073E:2EDE       __asizds
+ 073E:2EE0       __atopsp
+ 073E:2EE2       __aexit_rtn
+ 073E:2EE4       __abrktb
+ 073E:2F34       __abrkp
+ 073E:2F34       __abrktbe
+ 073E:2F38       __fpinit
+ 073E:3104       _edata
+ 073E:3104       __edata
+ 073E:3140       _p_p
+ 073E:3162       _OldCtrlc
+ 073E:3166       _p_px
+ 073E:3172       _i
+ 073E:3174       _sublist
+ 073E:31AC       _OwnerName
+ 073E:322C       _Classify
+ 073E:322E       _UMB_Head
+ 073E:3230       _TypeText
+ 073E:32B0       _ArenaHeadPtr
+ 073E:32B4       _p_result4
+ 073E:32BC       _p_result1
+ 073E:32C4       _p_result3
+ 073E:32CC       _p_result2
+ 073E:32D4       _BlockDeviceNumber
+ 073E:32D6       _SegRegs
+ 073E:32DE       _cmd_line
+ 073E:335E       _DataLevel
+ 073E:3360       _p_con4
+ 073E:3389       _p_con3
+ 073E:33B2       _p_con2
+ 073E:33DB       _p_con1
+ 073E:3404       _Parse_Ptr
+ 073E:3406       _OutRegs
+ 073E:3414       __bufin
+ 073E:3614       _p_noval
+ 073E:3616       _InRegs
+ 073E:3624       __bufout
+ 073E:3824       _cmdline
+ 073E:3828       _SysVarsPtr
+ 073E:382C       _mem_table
+ 073E:3A84       __buferr
+ 073E:3C90       __end
+ 073E:3C90       _end
+ 0000:C000  Abs  FJCRQQ
+ 0000:FE32  Abs  FIARQQ
+
+Program entry point at 0000:4C8A

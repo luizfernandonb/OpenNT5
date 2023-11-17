@@ -39,6 +39,11 @@ typedef __segment SAB;
 // overhead and most anything else we missed).
 #define cbMaxSAB (0xfffe - cbTotalOH)
 
+//
+// 4chan: fix for missing __fpurecall? (still not sure what requires this)
+//
+extern "C" int __cdecl _fpurecall() {return 0;};
+
 //+---------------------------------------------------------------------------
 //
 //  Class:      CStdMalloc ()

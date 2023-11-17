@@ -22,7 +22,7 @@ public:
 	~CMapKeyToValue();
 
 	// number of elements
-	int     GetCount() const { return m_nCount; }
+	int     GetCount() const;
 	BOOL    IsEmpty() const { return m_nCount == 0; }
 
 	// Lookup; return FALSE if not found
@@ -40,8 +40,7 @@ public:
 	void    RemoveAll();
 
 	// iterating all (key, value) pairs
-	POSITION GetStartPosition() const
-			{ return (m_nCount == 0) ? (POSITION)NULL : BEFORE_START_POSITION; }
+	POSITION GetStartPosition() const;
 	void    GetNextAssoc(POSITION FAR* pNextPosition, LPVOID pKey, 
 				UINT FAR* pcbKey, LPVOID pValue) const;
 
@@ -74,8 +73,7 @@ private:
 		// BYTE rgbValue[m_cbValue];
 	};
 
-	UINT	SizeAssoc() const
-		{ return sizeof(CAssoc)-sizeof(CKeyWrap) + m_cbKeyInAssoc + m_cbValue; }
+	UINT	SizeAssoc() const;
 	CAssoc  FAR* NewAssoc(UINT hash, LPVOID pKey, UINT cbKey, LPVOID pValue);
 	void    FreeAssoc(CAssoc FAR* pAssoc);
 	BOOL    CompareAssocKey(CAssoc FAR* pAssoc, LPVOID pKey, UINT cbKey) const;

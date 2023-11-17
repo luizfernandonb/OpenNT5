@@ -6345,6 +6345,7 @@ typedef enum _PROCESSINFOCLASS {
     ProcessDebugObjectHandle,
     ProcessDebugFlags,
     ProcessHandleTracing,
+    ProcessCookie,
     MaxProcessInfoClass             // MaxProcessInfoClass should always be the last enum
     } PROCESSINFOCLASS;
 
@@ -10547,6 +10548,12 @@ typedef struct _KUSER_SHARED_DATA {
         volatile KSYSTEM_TIME TickCount;
         volatile ULONG64 TickCountQuad;
     };
+
+    //
+    // Cookie for encoding pointers system wide.
+    //
+
+    ULONG Cookie;
 
 } KUSER_SHARED_DATA, *PKUSER_SHARED_DATA;
 
