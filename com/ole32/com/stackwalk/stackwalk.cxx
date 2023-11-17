@@ -154,9 +154,7 @@ BOOL CoStackWalk64(
   PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine, 
   PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress)
 {
-    BOOL fRet = FALSE;
-    SYMWRAP (fRet = StackWalk64 (MachineType, hProcess, hThread, StackFrame, ContextRecord, ReadMemoryRoutine, FunctionTableAccessRoutine, GetModuleBaseRoutine, TranslateAddress));
-    return fRet;
+    return FALSE;
 }
 
 //

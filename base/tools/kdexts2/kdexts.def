@@ -26,8 +26,6 @@ EXPORTS
     bcb            ; refers to dt
     blockeddrv
     bpid
-    btb          ; IA64 specific - will be fixed later... See andreva.
-    bth          ; IA64 specific - will be fixed later... See andreva.
     bugdump
     bushnd
     ca
@@ -41,7 +39,6 @@ EXPORTS
     dblink
     deadlock
     dflink
-    dcr          ; IA64 specific - will be fixed later... See andreva.
     defwrites
     devext   ; Incomplete
     devobj
@@ -78,8 +75,6 @@ EXPORTS
     ib
     id
     idt      ; x86 specific ONLY
-    ih           ; IA64 specific - will be fixed later... See andreva.
-    ihs          ; IA64 specific - will be fixed later... See andreva.
     ioapic     ; X86 only API
     ioresdes
     ioreslist
@@ -89,7 +84,6 @@ EXPORTS
     irpzone
     irql
     isainfo
-    isr          ; IA64 specific - will be fixed later... See andreva.
     ivt
     iw
     job
@@ -118,19 +112,15 @@ EXPORTS
     od
     openmaps
     ow
-    pars         ; IA64 specific - will be fixed later... See andreva.
     pat          ; X86 specific ONLY
     pciir          ; X86 specific ONLY
     pcitree
     pcm            ; refers to dt
     pcmcia
     pcr
-    pcrs         ; IA64 specific - will be fixed later... See andreva.
     pfn
     pfnperf
     pic           ; X86 specific only
-    pmc          ; IA64 specific - will be fixed later... See andreva.
-    pmssa        ; IA64 specific - will be fixed later... See andreva.
     pnpaction
     pnpevent
     pnptriage
@@ -153,7 +143,6 @@ EXPORTS
     prcb             ; For IA64 and ALPHA
     process
     processfields        ; use dt
-    psp          ; IA64 specific - will be fixed later... See andreva.
     pte
     pte2va
     ptov

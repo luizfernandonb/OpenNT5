@@ -687,13 +687,13 @@ _TEXT	SEGMENT
 _ListHead$ = 8						; size = 4
 _InitializeListHead@4 PROC NEAR				; COMDAT
 
-; 1519 :     ListHead->Flink = ListHead->Blink = ListHead;
+; 1515 :     ListHead->Flink = ListHead->Blink = ListHead;
 
   00000	8b 44 24 04	 mov	 eax, DWORD PTR _ListHead$[esp-4]
   00004	89 40 04	 mov	 DWORD PTR [eax+4], eax
   00007	89 00		 mov	 DWORD PTR [eax], eax
 
-; 1520 : }
+; 1516 : }
 
   00009	c2 04 00	 ret	 4
 _InitializeListHead@4 ENDP
@@ -705,30 +705,30 @@ _TEXT	SEGMENT
 _Entry$ = 8						; size = 4
 _RemoveEntryList@4 PROC NEAR				; COMDAT
 
-; 1540 :     PLIST_ENTRY Blink;
-; 1541 :     PLIST_ENTRY Flink;
-; 1542 : 
-; 1543 :     Flink = Entry->Flink;
+; 1536 :     PLIST_ENTRY Blink;
+; 1537 :     PLIST_ENTRY Flink;
+; 1538 : 
+; 1539 :     Flink = Entry->Flink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _Entry$[esp-4]
   00004	8b 01		 mov	 eax, DWORD PTR [ecx]
 
-; 1544 :     Blink = Entry->Blink;
+; 1540 :     Blink = Entry->Blink;
 
   00006	8b 49 04	 mov	 ecx, DWORD PTR [ecx+4]
 
-; 1545 :     Blink->Flink = Flink;
+; 1541 :     Blink->Flink = Flink;
 
   00009	89 01		 mov	 DWORD PTR [ecx], eax
 
-; 1546 :     Flink->Blink = Blink;
-; 1547 :     return (BOOLEAN)(Flink == Blink);
+; 1542 :     Flink->Blink = Blink;
+; 1543 :     return (BOOLEAN)(Flink == Blink);
 
   0000b	3b c1		 cmp	 eax, ecx
   0000d	89 48 04	 mov	 DWORD PTR [eax+4], ecx
   00010	0f 94 c0	 sete	 al
 
-; 1548 : }
+; 1544 : }
 
   00013	c2 04 00	 ret	 4
 _RemoveEntryList@4 ENDP
@@ -740,28 +740,28 @@ _TEXT	SEGMENT
 _ListHead$ = 8						; size = 4
 _RemoveHeadList@4 PROC NEAR				; COMDAT
 
-; 1556 :     PLIST_ENTRY Flink;
-; 1557 :     PLIST_ENTRY Entry;
-; 1558 : 
-; 1559 :     Entry = ListHead->Flink;
+; 1552 :     PLIST_ENTRY Flink;
+; 1553 :     PLIST_ENTRY Entry;
+; 1554 : 
+; 1555 :     Entry = ListHead->Flink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _ListHead$[esp-4]
   00004	8b 01		 mov	 eax, DWORD PTR [ecx]
 
-; 1560 :     Flink = Entry->Flink;
+; 1556 :     Flink = Entry->Flink;
 
   00006	8b 10		 mov	 edx, DWORD PTR [eax]
 
-; 1561 :     ListHead->Flink = Flink;
+; 1557 :     ListHead->Flink = Flink;
 
   00008	89 11		 mov	 DWORD PTR [ecx], edx
 
-; 1562 :     Flink->Blink = ListHead;
+; 1558 :     Flink->Blink = ListHead;
 
   0000a	89 4a 04	 mov	 DWORD PTR [edx+4], ecx
 
-; 1563 :     return Entry;
-; 1564 : }
+; 1559 :     return Entry;
+; 1560 : }
 
   0000d	c2 04 00	 ret	 4
 _RemoveHeadList@4 ENDP
@@ -774,31 +774,31 @@ _ListHead$ = 8						; size = 4
 _Entry$ = 12						; size = 4
 _InsertTailList@8 PROC NEAR				; COMDAT
 
-; 1592 :     PLIST_ENTRY Blink;
-; 1593 : 
-; 1594 :     Blink = ListHead->Blink;
+; 1588 :     PLIST_ENTRY Blink;
+; 1589 : 
+; 1590 :     Blink = ListHead->Blink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _ListHead$[esp-4]
   00004	8b 51 04	 mov	 edx, DWORD PTR [ecx+4]
 
-; 1595 :     Entry->Flink = ListHead;
+; 1591 :     Entry->Flink = ListHead;
 
   00007	8b 44 24 08	 mov	 eax, DWORD PTR _Entry$[esp-4]
   0000b	89 08		 mov	 DWORD PTR [eax], ecx
 
-; 1596 :     Entry->Blink = Blink;
+; 1592 :     Entry->Blink = Blink;
 
   0000d	89 50 04	 mov	 DWORD PTR [eax+4], edx
 
-; 1597 :     Blink->Flink = Entry;
+; 1593 :     Blink->Flink = Entry;
 
   00010	89 02		 mov	 DWORD PTR [edx], eax
 
-; 1598 :     ListHead->Blink = Entry;
+; 1594 :     ListHead->Blink = Entry;
 
   00012	89 41 04	 mov	 DWORD PTR [ecx+4], eax
 
-; 1599 : }
+; 1595 : }
 
   00015	c2 08 00	 ret	 8
 _InsertTailList@8 ENDP

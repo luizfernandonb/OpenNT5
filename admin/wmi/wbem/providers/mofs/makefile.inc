@@ -14,9 +14,7 @@ $(O)\ntevt.mof $(O)\ntevt.mfl: ntevt.mof
     copy copyright.mof+$(O)\ntevtTmp.mof+$(O)\ntevtTmp.mfl $(O)\ntevt.mof
     copy copyright.mof+$(O)\ntevtTmp.mfl $(O)\ntevt.mfl
 
-$(O)\wmi.mof $(O)\wmi.mfl: wmi.mof $(BASE_INC_PATH)\mcaia64.mof
-    copy wmi.mof+$(BASE_INC_PATH)\mcaia64.mof $(O)\wmiia64.mof
-    mofcomp -amendment:ms_409 -MOF:$(O)\wmiTmp.mof -MFL:$(O)\wmiTmp.mfl $(O)\wmiia64.mof
+$(O)\wmi.mof $(O)\wmi.mfl: wmi.mof
     copy copyright.mof+wminamespace.mof+$(O)\wmiTmp.mfl+$(O)\wmiTmp.mof $(O)\wmi.mof
     copy copyright.mof+$(O)\wmiTmp.mfl $(O)\wmi.mfl
 

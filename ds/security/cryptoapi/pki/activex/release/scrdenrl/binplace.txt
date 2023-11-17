@@ -1,5 +1,4 @@
 scrdx86.dll   retail
-scrdia64.dll  retail
 scrdsign.dll  retail
 scrdw2k.dll   retail
 scrdenrl.dll  retail

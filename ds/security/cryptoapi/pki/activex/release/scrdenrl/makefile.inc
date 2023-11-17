@@ -5,9 +5,6 @@ w2k\$(O)\scrdw2k.dll  : w2k\scrdenrl.dll
     -mkdir w2k\$(O)
     copy $** $@
 
-$(O)\scrdia64.dll : ia64\scrdenrl.dll
-    copy $** $@
-
 $(O)\scrdsign.dll : $(TARGET_DIRECTORY)\scrdenrl.dll
     copy $** $@
 

@@ -677,75 +677,7 @@ TargetInfo::QueryKernelInfo(ThreadInfo* Thread, BOOL LoadImage)
     {
         ErrOut("Debugger can not determine kernel base address\n");
     }
-    
-    if (m_MachineType == IMAGE_FILE_MACHINE_IA64)
-    {
-        //
-        // Try to determine the kernel base virtual mapping address
-        // for IA64.  This should be done as early as possible
-        // to enable later virtual translations to work.
-        //
-
-        if (!IS_KERNEL_TRIAGE_DUMP(this))
-        {
-            if (!m_KdDebuggerData.MmSystemParentTablePage)
-            {
-                GetOffsetFromSym(Process, "nt!MmSystemParentTablePage",
-                                 &m_KdDebuggerData.MmSystemParentTablePage,
-                                 NULL);
-            }
-
-            if (m_KdDebuggerData.MmSystemParentTablePage)
-            {
-                ULONG64 SysPtp;
-
-                if (ReadAllVirtual(Process,
-                                   m_KdDebuggerData.MmSystemParentTablePage,
-                                   &SysPtp, sizeof(SysPtp)) == S_OK)
-                {
-                    ((Ia64MachineInfo*)m_Machines[MACHIDX_IA64])->
-                        SetKernelPageDirectory(SysPtp << IA64_VALID_PFN_SHIFT);
-                }
-            }
-        }
-
-        //
-        // Get the system call address from the debugger data block
-        // Added around build 2204.
-        // Default to symbols otherwise.
-        //
-
-        m_SystemCallVirtualAddress = 0;
-
-        if (m_KdDebuggerData.KiNormalSystemCall)
-        {
-            if (ReadPointer(Process, m_Machine,
-                            m_KdDebuggerData.KiNormalSystemCall,
-                            &m_SystemCallVirtualAddress) != S_OK)
-            {
-                m_SystemCallVirtualAddress = 0;
-            }
-        }
-
-        if (!m_SystemCallVirtualAddress)
-        {
-            GetOffsetFromSym(Process, "nt!KiNormalSystemCall",
-                             &m_SystemCallVirtualAddress,
-                             NULL);
-        }
-
-        if (!m_SystemCallVirtualAddress)
-        {
-            GetOffsetFromSym(Process, "nt!.KiNormalSystemCall",
-                             &m_SystemCallVirtualAddress,
-                             NULL);
-        }
-
-        if (!m_SystemCallVirtualAddress)
-        {
-            WarnOut("Could not get KiNormalSystemCall address\n");
-        }
-    }
+ 
 
     //
     // Now that we have symbols and a data block look

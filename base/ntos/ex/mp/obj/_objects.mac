@@ -45,8 +45,6 @@
 PASS0_386_OBJECTS=
 
 IA64_OBJECTS= \
-    $(_OBJ_DIR)\ia64\splocks.obj \
-    $(_OBJ_DIR)\ia64\wowinfo.obj \
     $(_OBJ_DIR)\ia64\callback.obj \
     $(_OBJ_DIR)\ia64\callperf.obj \
     $(_OBJ_DIR)\ia64\dbgctrl.obj \
@@ -83,9 +81,7 @@ IA64_OBJECTS= \
     $(_OBJ_DIR)\ia64\rundown.obj \
     $(_OBJ_DIR)\ia64\pushlock.obj \
     $(_OBJ_DIR)\ia64\xipdisp.obj \
-    $(_OBJ_DIR)\ia64\keyedevent.obj \
-    $(_OBJ_DIR)\ia64\hifreqlk.obj \
-    $(_OBJ_DIR)\ia64\intrlock.obj
+    $(_OBJ_DIR)\ia64\keyedevent.obj
 
 PASS0_IA64_OBJECTS=
 

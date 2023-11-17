@@ -38,7 +38,7 @@ REM wait 1 minutes
 set xe_wait=60
 set xe_test_flag=n
 set xe_projects_nt=xe_projects_nt
-set xe_platform_all=i386 ia64
+set xe_platform_all=i386
 
 if /i "%1"=="-dt" (
     REM display new tokens only
@@ -94,10 +94,6 @@ if "%xe_platform%"=="" (
     goto init_sd
   )
 
-  if "%BUILD_DEFAULT_TARGETS%"=="-ia64" (
-    set xe_platform=ia64
-    goto init_sd
-  )
   REM can't determine
   set xe_err=can't determine the platform. please make sure you run %0 from a razzle window with a proper platform.
   goto error
@@ -105,7 +101,6 @@ if "%xe_platform%"=="" (
 
 if not "%xe_platform%"=="" (
   if /i "i386"=="%xe_platform%" goto init_sd
-  if /i "ia64"=="%xe_platform%" goto init_sd
   REM not supported
   set xe_err=%xe_platform% platform is not supported.
   goto error
@@ -154,7 +149,6 @@ if /i not "%xe_goon%"=="y" (
 )
 
 REM display signing instruction
-if /i "%xe_platform%"=="ia64" set xe_os_str=Whistler 64-bit Windows
 echo.
 echo You have to sign %xe_target%.dll by going to %xe_prs_web%
 echo Here is the steps:
@@ -420,7 +414,7 @@ echo.
 echo %0 DLLPath PDBPath [Options]
 echo.
 echo   Options:
-echo     -p Platform    either i386 or ia64,
+echo     -p Platform    either i386,
 echo                    the default is the same as the current machine
 echo.
 echo     -l             if -l is defined, all languages will be localized

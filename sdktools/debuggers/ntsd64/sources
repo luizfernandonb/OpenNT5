@@ -35,9 +35,6 @@ SOURCES =               \
     i386_asmtpl.cpp     \
     i386_dis.cpp        \
     i386_reg.cpp        \
-    ia64_asm.cpp        \
-    ia64_dis.cpp        \
-    ia64_reg.cpp        \
     image.cpp           \
     instr.cpp           \
     machine.cpp         \
@@ -73,7 +70,6 @@ INCLUDES = \
     ..\vs;\
     ..\dbgrpc;\
     ..\dbgsvc;\
-    ..\ia64tools\include;\
     ..\exdi;\
     $O;\
     ..\dbgsvc\w32\$O;\

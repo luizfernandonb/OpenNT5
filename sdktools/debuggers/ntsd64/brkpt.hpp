@@ -404,59 +404,6 @@ private:
     friend class Amd64MachineInfo;
 };
 
-//----------------------------------------------------------------------------
-//
-// Ia64DataBreakpoint.
-//
-//----------------------------------------------------------------------------
-
-class Ia64DataBreakpoint :
-    public DataBreakpoint
-{
-public:
-    Ia64DataBreakpoint(DebugClient* Adder, ULONG Id)
-        : DataBreakpoint(Adder, Id, IMAGE_FILE_MACHINE_IA64)
-    {
-        m_Control = 0;
-    }
-
-    // Breakpoint.
-    virtual HRESULT Validate(void);
-    virtual ULONG IsHit(PADDR Addr);
-    virtual BOOL PcAtHit()
-    {
-        return TRUE;
-    }
-
-    static ULONG64 GetControl(ULONG AccessType, ULONG Size);
-
-private:
-    ULONG64 m_Control;
-
-    friend class Ia64MachineInfo;
-};
-
-//----------------------------------------------------------------------------
-//
-// X86OnIa64DataBreakpoint.
-//
-//----------------------------------------------------------------------------
-class X86OnIa64DataBreakpoint :
-    public X86DataBreakpoint
-{
-public:
-    X86OnIa64DataBreakpoint(DebugClient* Adder, ULONG Id);
-
-    // Breakpoint.
-    virtual HRESULT Validate(void);
-    virtual ULONG IsHit(PADDR Addr);
-
-private:
-    ULONG64 m_Control;
-
-    friend class Ia64MachineInfo;
-};
-
 extern BOOL g_BreakpointListChanged;
 extern BOOL g_UpdateDataBreakpoints;
 extern BOOL g_DataBreakpointsChanged;

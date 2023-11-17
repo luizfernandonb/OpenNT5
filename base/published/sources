@@ -70,7 +70,6 @@ PASS0_PUBLISH=\
     {guiddef.w=$(SDK_INC_PATH)\guiddef.h} \
     {hdlsblk.w=$(PROJECT_INC_PATH)\hdlsblk.h} \
     {hdlsterm.w=$(PROJECT_INC_PATH)\hdlsterm.h} \
-    {ia64reg.w=$(SDK_INC_PATH)\ia64reg.h;$(DDK_INC_PATH)\ia64reg.h}\
     {inbv.w=$(HALKIT_INC_PATH)\inbv.h;$(PROJECT_INC_PATH)\inbv.h} \
     {infstr.w=$(SDK_INC_PATH)\infstr.h} \
     {winbase_interlockedunsigned.w=$(SDK_INC_PATH)\winbase_interlockedunsigned.h} \
@@ -78,10 +77,8 @@ PASS0_PUBLISH=\
     {ksalpha.w=$(SDK_INC_PATH)\ksalpha.h} \
     {kxamd64.w=$(SDK_INC_PATH)\kxamd64.inc} \
     {kxalpha.w=$(SDK_INC_PATH)\kxalpha.h} \
-    {kxia64.w=$(SDK_INC_PATH)\kxia64.h} \
     {loadperf.h=$(SDK_INC_PATH)\loadperf.h} \
     {machinep.w=$(PROJECT_INC_PATH)\machinep.h} \
-    {$(O)\mcaia64.mof=$(PROJECT_INC_PATH)\mcaia64.mof} \
     {mce.h=$(PROJECT_INC_PATH)\mce.h;$(HALKIT_INC_PATH)\mce.h;$(SDK_INC_PATH)\mce.h;$(DDK_INC_PATH)\mce.h;$(WDM_INC_PATH)\mce.h}\
     {nt.w=$(SDK_INC_PATH)\nt.h}\
     {ntacpi.h=$(PROJECT_INC_PATH)\ntacpi.h;$(HALKIT_INC_PATH)\ntacpi.h;$(PROCESSOR_INC_PATH)\ntacpi.h}\
@@ -103,7 +100,6 @@ PASS0_PUBLISH=\
     {ntddbrow.w=$(SDK_INC_PATH)\ntddbrow.h}\
     {ntfsexp.w=$(PROJECT_INC_PATH)\ntfsexp.h} \
     {nti386.w=$(SDK_INC_PATH)\nti386.h} \
-    {ntia64.w=$(SDK_INC_PATH)\ntia64.h} \
     {ntimage.w=$(SDK_INC_PATH)\ntimage.h;$(DDK_INC_PATH)\ntimage.h} \
     {ntioapi.w=$(SDK_INC_PATH)\ntioapi.h} \
     {ntiolog.w=$(SDK_INC_PATH)\ntiolog.h} \
@@ -132,7 +128,6 @@ PASS0_PUBLISH=\
     {ntxcapi.w=$(SDK_INC_PATH)\ntxcapi.h}\
     {nxalpha.w=$(SDK_INC_PATH)\nxalpha.h}\
     {nxamd64.w=$(SDK_INC_PATH)\nxamd64.h}\
-    {nxia64.w=$(SDK_INC_PATH)\nxia64.h}\
     {nxi386.w=$(SDK_INC_PATH)\nxi386.h}\
     {ocmanage.w=$(SDK_INC_PATH)\ocmanage.h}\
     {oscpkt.w=$(PROJECT_INC_PATH)\oscpkt.h}\
@@ -200,7 +195,6 @@ PASS0_PUBLISH=\
     {xsum_x86=$(PROJECT_INC_PATH)\xsum.x86} \
     {xsum_amd64=$(PROJECT_INC_PATH)\xsum.amd64} \
     {xsum_axp=$(PROJECT_INC_PATH)\xsum.axp} \
-    {xsum_ia64=$(PROJECT_INC_PATH)\xsum.ia64} \
     {$(O)\zwapi.h=$(PROJECT_INC_PATH)\zwapi.h} \
     {$(O)\lzexpand.h=$(SDK_INC_PATH)\lzexpand.h} \
     {$(O)\ntstatus.dbg=$(BASE_INC_PATH)\ntstatus.dbg}\
@@ -262,7 +256,6 @@ SOURCES=\
 NTTARGETFILES=
 NTTARGETFILE0=$(O)\dpfilter.h \
     $(O)\lzexpand.h \
-    $(O)\mcaia64.mof \
     $(O)\ntrtl.h \
     $(O)\pooltag.txt \
     $(O)\pooltag.pri \

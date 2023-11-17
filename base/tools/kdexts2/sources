@@ -38,7 +38,6 @@ SOURCES=acpi.c       \
         cc.c         \
         cpuinfo.cpp  \
         dbgprint.c   \
-        dcr.c        \
         deadlock.c   \
         device.c     \
         devnode.c    \
@@ -75,12 +74,10 @@ SOURCES=acpi.c       \
         pci.c        \
         pic.c        \
         physical.c   \
-        pmc.c        \
         pnpexts.cpp  \
         pool.c       \
         power.c      \
         process.cpp  \
-        psr.c        \
         pte.c        \
         ptov.c       \
         qlocks.c     \

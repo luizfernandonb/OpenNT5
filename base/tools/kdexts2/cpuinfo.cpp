@@ -26,7 +26,6 @@ Revision History:
 #include "precomp.h"
 #include "i386.h"
 #include "amd64.h"
-#include "ia64.h"
 #pragma hdrstop
 
 #define MAXIMUM_IA64_VECTOR     256
@@ -43,73 +42,31 @@ Revision History:
 
 #endif // !ROUND_UP
 
-VOID
-DumpCpuInfoIA64(
-    ULONG processor,
-    BOOLEAN doHead
-)
-{
-    HRESULT Hr;
-    ULONG   number;
-    ULONG64 prcb;
-    UCHAR vendorString[16];
+typedef struct _IHISTORY_RECORD {
+    ULONGLONG InterruptionType;
+    ULONGLONG IIP;
+    ULONGLONG IPSR;
+    ULONGLONG Extra0;
+} IHISTORY_RECORD;
 
-    if (doHead)
-    {
-        dprintf("CP M/R/F/A Manufacturer     SerialNumber     Features         Speed\n");
-    }
+typedef enum {
+    CACHE_CHECK_TYPE,
+    TLB_CHECK_TYPE,
+    BUS_CHECK_TYPE,
+    REG_FILE_CHECK_TYPE,
+    MS_CHECK_TYPE
+} CHECK_TYPES;
 
-    Hr = g_ExtData->ReadProcessorSystemData(processor,
-                                            DEBUG_DATA_KPRCB_OFFSET,
-                                            &prcb,
-                                            sizeof(prcb),
-                                            NULL);
+#define MAX_NUMBER_OF_IHISTORY_RECORDS  128
 
-    if (Hr != S_OK)
-    {
-        return;
-    }
-
-    if ( GetFieldValue(prcb, "nt!_KPRCB", "ProcessorVendorString", vendorString) )   {
-        dprintf("Unable to read VendorString from Processor %u KPRCB, quitting\n", processor);
-        return;
-    }
-
-    if ( InitTypeRead( prcb, nt!_KPRCB ))    {
-        dprintf("Unable to read KPRCB for processor %u, quitting.\n", processor);
-        return;
-    }
-
-    number = (ULONG)ReadField(Number);
-    if ( number != processor ) {
-
-        //
-        // Processor number isn't what we expected.  Bail out.
-        // This will need revisiting at some stage in the future
-        // when we support a discontiguous set of processor numbers.
-        //
-
-        dprintf("Processor %d mismatch with processor number in KPRCB = %d, quitting\n",
-                processor,
-                number );
-        return;
-    }
-
-    dprintf("%2d %d,%d,%d,%d %-16s %016I64x %016I64x %ld Mhz\n",
-            number,
-            (ULONG) ReadField(ProcessorModel),
-            (ULONG) ReadField(ProcessorRevision),
-            (ULONG) ReadField(ProcessorFamily),
-            (ULONG) ReadField(ProcessorArchRev),
-            vendorString,
-            (ULONGLONG) ReadField(ProcessorSerialNumber),
-            (ULONGLONG) ReadField(ProcessorFeatureBits),
-            (ULONG) ReadField(MHz)
-            );
-
-    return;
-
-}
+#define ERROR_SECTION_PROCESSOR_FLAG                0x0000000000000001I64
+#define ERROR_SECTION_PLATFORM_SPECIFIC_FLAG        0x0000000000000002I64
+#define ERROR_SECTION_MEMORY_FLAG                   0x0000000000000004I64
+#define ERROR_SECTION_PCI_COMPONENT_FLAG            0x0000000000000008I64
+#define ERROR_SECTION_PCI_BUS_FLAG                  0x0000000000000010I64
+#define ERROR_SECTION_SYSTEM_EVENT_LOG_FLAG         0x0000000000000020I64
+#define ERROR_SECTION_PLATFORM_HOST_CONTROLLER_FLAG 0x0000000000000040I64
+#define ERROR_SECTION_PLATFORM_BUS_FLAG             0x0000000000000080I64
 
 VOID
 DumpCpuInfoX86(
@@ -300,10 +257,6 @@ Return Value:
         case IMAGE_FILE_MACHINE_I386:
         case IMAGE_FILE_MACHINE_AMD64:
             DumpCpuInfoX86((ULONG)processor, first);
-            break;
-
-        case IMAGE_FILE_MACHINE_IA64:
-            DumpCpuInfoIA64((ULONG)processor, first);
             break;
 
         default:
@@ -710,18 +663,6 @@ Return Value:
     case IMAGE_FILE_MACHINE_I386:
         DumpPcrX86(Pkpcr);
         break;
-    case IMAGE_FILE_MACHINE_IA64:
-        dprintf("\n");
-        dprintf("\t               Prcb:  %016I64X\n", ReadField(Prcb));
-        dprintf("\t      CurrentThread:  %016I64X\n", ReadField(CurrentThread));
-        dprintf("\t       InitialStack:  %016I64X\n", ReadField(InitialStack));
-        dprintf("\t         StackLimit:  %016I64X\n", ReadField(StackLimit));
-        dprintf("\t      InitialBStore:  %016I64X\n", ReadField(InitialBStore));
-        dprintf("\t        BStoreLimit:  %016I64X\n", ReadField(BStoreLimit));
-        dprintf("\t         PanicStack:  %016I64X\n", ReadField(PanicStack));
-        dprintf("\t        CurrentIrql:  0x%lx\n",    (ULONG)ReadField(CurrentIrql));
-        dprintf("\n");
-        break;
     default:
         dprintf("Panic Stack %08p\n", ReadField(PanicStack));
         dprintf("Dpc Stack %08p\n", ReadField(DpcStack));
@@ -1002,171 +943,6 @@ Return Value:
 
 } // !ih
 
-VOID
-DumpBTHistory(
-    ULONGLONG Bth[],        // Branch Trace record
-    ULONG64   BthAddress,   // BTH Virtual Address
-    ULONG     MaxBtrNumber // Maximum number of records
-    )
-{
-    ULONG rec;
-
-    dprintf( "BTH @ 0x%I64x:\n"
-             "   b mp slot address            symbol\n"
-             , BthAddress);
-
-    for ( rec = 0; rec < (MaxBtrNumber - 1) ; rec++ ) {
-        DisplayBtbPmdIA64( "   ", Bth[rec], DISPLAY_MIN );
-    }
-
-    DisplayBtbIndexPmdIA64( "BTB Index: ", Bth[rec], DISPLAY_MIN );
-
-    return;
-
-} // DumpBTHistory()
-
-DECLARE_API( bth )
-
-/*++
-
-Routine Description:
-
-    Dumps the IA-64 branch trace buffer saved in _KPCR.
-    The '!btb' extension dumps the processor branch trace buffer configuration and trace registers.
-
-Arguments:
-
-    args - the processor number ( default is the current processor )
-
-Return Value:
-
-    None
-
---*/
-
-{
-    ULONG   processor;
-    ULONG64 pcrAddress;
-    HRESULT Hr;
-
-    //
-    // This extension is IA64 specific...
-    //
-
-    if ( TargetMachine != IMAGE_FILE_MACHINE_IA64 )
-    {
-        dprintf("ih: IA64 specific extension...\n");
-        return E_INVALIDARG;
-    }
-
-    INIT_API();
-
-    GetCurrentProcessor(Client, &processor, NULL);
-    if ( *args )
-    {
-       processor = (ULONG)GetExpression( args );
-    }
-
-    Hr = g_ExtData->ReadProcessorSystemData(processor,
-                                            DEBUG_DATA_KPCR_OFFSET,
-                                            &pcrAddress,
-                                            sizeof(pcrAddress),
-                                            NULL);
-   if (Hr != S_OK)
-    {
-        dprintf("Cannot get PCR address\n");
-    }
-    else
-    {
-        ULONG pcrSize;
-
-        pcrSize = GetTypeSize("nt!_KPCR");
-        if ( pcrSize == 0 ) {
-            dprintf( "bth: failed to get _KPCR size\n" );
-            Hr = E_FAIL;
-        }
-        else  {
-            ULONG     result;
-            ULONG64   bthAddress;
-            ULONGLONG bth[MAX_NUMBER_OF_BTBHISTORY_RECORDS];
-
-            pcrSize = ROUND_UP( pcrSize, 16 );
-            bthAddress = pcrAddress + (ULONG64)pcrSize;
-            if ( !ReadMemory( bthAddress, bth, sizeof(bth), &result ) ) {
-                dprintf( "bth: unable to read branch trace history records at %p - result=%lu\n",
-                         bthAddress, result);
-                Hr = E_FAIL;
-            }
-            else {
-                DumpBTHistory( bth, bthAddress, (ULONG)(sizeof(bth)/sizeof(bth[0])) );
-            }
-        }
-    }
-
-    EXIT_API();
-
-    return Hr;
-
-} // !bth
-
-DECLARE_API( btb )
-
-/*++
-
-Routine Description:
-
-    Dumps the IA-64 branch trace buffer.
-
-Arguments:
-
-    args - the processor number ( default is the current processor )
-
-Return Value:
-
-    None
-
---*/
-
-{
-    ULONG   processor;
-    ULONG64 msr;
-    ULONG   reg;
-    HRESULT Hr = S_OK;
-    UNREFERENCED_PARAMETER (args);
-
-    //
-    // This extension is IA64 specific...
-    //
-
-    if ( TargetMachine != IMAGE_FILE_MACHINE_IA64 )
-    {
-        dprintf("ih: IA64 specific extension...\n");
-        return E_INVALIDARG;
-    }
-
-    INIT_API();
-
-    GetCurrentProcessor(Client, &processor, NULL);
-
-    dprintf("BTB for processor %ld:\n"
-            "   b mp slot address            symbol\n"
-            , processor);
-
-// Thierry 11/20/2000 - FIXFIX - This is Itanium specific. Should be using PMD[] but
-//                               not currently collected in _KSPECIAL_REGISTERS.
-    for ( reg = 0; reg < 8; reg++) {
-        msr = 0;
-        ReadMsr( 680 + reg, &msr );
-        DisplayBtbPmdIA64( "   ", msr, DISPLAY_MIN );
-    }
-
-    EXIT_API();
-
-    return Hr;
-
-} // !btb
-
-
 DECLARE_API( idt )
 {
     ULONG64 Pkpcr;
@@ -1196,9 +972,6 @@ DECLARE_API( idt )
     case IMAGE_FILE_MACHINE_AMD64:
         currentIdt = 0;
         break;
-    case IMAGE_FILE_MACHINE_IA64:
-        dprintf("Use !ivt on IA64\n");
-        return E_INVALIDARG;
     default:
         dprintf("Unsupported platform\n");
         return E_INVALIDARG;
@@ -2428,41 +2201,6 @@ SetTypedSymbol(
 
 #define SetErrorSeverityValues() SetErrorTypedSymbol( gErrorSeverity, hal!_ERROR_SEVERITY_VALUE )
 
-PCSTR
-ErrorSeverityValueString(
-    ULONG SeverityValue
-    )
-{
-    HRESULT hr;
-
-    hr = GetTypedSymbolName( &gErrorSeverity, SeverityValue );
-    if ( SUCCEEDED( hr ) )  {
-       return gErrorSeverity.Name;
-    } else {
-        dprintf("Couldn't find hal!_ERROR_SEVERITY_VALUE\n");
-    }
-
-    //
-    // Fall back to known values...
-    //
-
-    switch( SeverityValue ) {
-        case ErrorRecoverable_IA64:
-            return("ErrorRecoverable");
-
-        case ErrorFatal_IA64:
-            return("ErrorFatal");
-
-        case ErrorCorrected_IA64:
-            return("ErrorCorrected");
-
-        default:
-            return("ErrorOthers");
-
-    }   // switch( SeverityValue )
-
-} // ErrorSeverityValueString()
-
 BOOLEAN
 CompareTypedErrorDeviceGuid(
     GUID * RefGuid
@@ -3543,7 +3281,7 @@ DtMcaLog(
     dprintf("MCA Error Record Header @ 0x%I64x 0x%I64x\n", McaLog, (McaLog + (ULONG64)mcaLogLength));
     sprintf(cmd, "dt -o -r hal!_ERROR_RECORD_HEADER 0x%I64x", McaLog);
     ExecCommand(cmd);
-    dprintf("\n%s\n   Severity  : %s\n\n", procNumberString, ErrorSeverityValueString( errorSeverity ));
+    dprintf("\n%s\n   Severity  : %s\n\n", procNumberString, "NULL");
 
     //
     // Initialize Error Sections processing.
@@ -3959,15 +3697,6 @@ Return Value:
             status = McaX86( args );
             // Finally, Display stepping information for current processor.
             DumpCpuInfoX86( processor, TRUE );
-            break;
-
-        case IMAGE_FILE_MACHINE_IA64:
-            // Display architectural MCA information.
-            status = McaIa64( args );
-            // Finally, Display stepping information for current processor.
-            if (SUCCEEDED(status)) {
-                DumpCpuInfoIA64( processor, TRUE );
-            }
             break;
 
         default:

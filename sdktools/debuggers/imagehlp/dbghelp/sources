@@ -32,8 +32,6 @@ SOURCES=   \
         ..\walkx86.c        \
         ..\walkamd64.c      \
         ..\walkarm.c        \
-        ..\walki64.c        \
-        ..\vwndia64.c       \
         ..\vsym.c           \
         ..\$(TARGETNAME).rc
 

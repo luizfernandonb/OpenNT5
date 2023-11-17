@@ -1139,16 +1139,12 @@ NewMachineInfo(ULONG Index, ULONG BaseMachineType,
         // the emulations available on various systems and CPUs.
         switch(BaseMachineType)
         {
-        case IMAGE_FILE_MACHINE_IA64:
-            return new X86OnIa64MachineInfo(Target);
         case IMAGE_FILE_MACHINE_AMD64:
             return new X86OnAmd64MachineInfo(Target);
         default:
             return new X86MachineInfo(Target);
         }
         break;
-    case MACHIDX_IA64:
-        return new Ia64MachineInfo(Target);
     case MACHIDX_AMD64:
         return new Amd64MachineInfo(Target);
     case MACHIDX_ARM:

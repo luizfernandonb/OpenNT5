@@ -1,2 +1,0 @@
-# Generate the POGO package in $(_NTTREE)\POGO\$(TARGETNAME)
-NTPOGO=1

@@ -946,28 +946,12 @@ DWORD64
     LPADDRESS64 lpaddr
     );
 
-BOOL
-IMAGEAPI
-StackWalk64(
-    DWORD                             MachineType,
-    HANDLE                            hProcess,
-    HANDLE                            hThread,
-    LPSTACKFRAME64                    StackFrame,
-    PVOID                             ContextRecord,
-    PREAD_PROCESS_MEMORY_ROUTINE64    ReadMemoryRoutine,
-    PFUNCTION_TABLE_ACCESS_ROUTINE64  FunctionTableAccessRoutine,
-    PGET_MODULE_BASE_ROUTINE64        GetModuleBaseRoutine,
-    PTRANSLATE_ADDRESS_ROUTINE64      TranslateAddress
-    );
-
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 
 #define PREAD_PROCESS_MEMORY_ROUTINE PREAD_PROCESS_MEMORY_ROUTINE64
 #define PFUNCTION_TABLE_ACCESS_ROUTINE PFUNCTION_TABLE_ACCESS_ROUTINE64
 #define PGET_MODULE_BASE_ROUTINE PGET_MODULE_BASE_ROUTINE64
 #define PTRANSLATE_ADDRESS_ROUTINE PTRANSLATE_ADDRESS_ROUTINE64
-
-#define StackWalk StackWalk64
 
 #else
 

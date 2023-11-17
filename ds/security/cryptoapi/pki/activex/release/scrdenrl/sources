@@ -27,7 +27,6 @@ BINPLACE_PLACEFILE=binplace.txt
 
 MISCFILES= \
     $(O)\scrdx86.dll \
-    $(O)\scrdia64.dll \
     $(O)\scrdsign.dll \
     w2k\$(O)\scrdw2k.dll \
     $(TARGET_DIRECTORY)\scrdenrl.dll

@@ -113,19 +113,6 @@ BOOL IMAGEAPI FailStackWalk(
     )
 { return FALSE; }
 
-BOOL IMAGEAPI FailStackWalk64(
-    DWORD                             MachineType,
-    HANDLE                            hProcess,
-    HANDLE                            hThread,
-    LPSTACKFRAME64                    StackFrame,
-    PVOID                             ContextRecord,
-    PREAD_PROCESS_MEMORY_ROUTINE64    ReadMemoryRoutine,
-    PFUNCTION_TABLE_ACCESS_ROUTINE64  FunctionTableAccessRoutine,
-    PGET_MODULE_BASE_ROUTINE64        GetModuleBaseRoutine,
-    PTRANSLATE_ADDRESS_ROUTINE64      TranslateAddress
-    )
-{ return FALSE; }
-
 BOOL IMAGEAPI FailSymCleanup(
     IN HANDLE hProcess
     )
@@ -539,7 +526,6 @@ FUNCPTRS DbgHelpFailPtrs[] = {
 #endif
     {"SearchTreeForFile",            (FARPROC)FailSearchTreeForFile},
     {"StackWalk",                    (FARPROC)FailStackWalk},
-    {"StackWalk64",                  (FARPROC)FailStackWalk64},
     {"SymCleanup",                   (FARPROC)FailSymCleanup},
     {"SymEnumerateModules",          (FARPROC)FailSymEnumerateModules},
     {"SymEnumerateModules64",        (FARPROC)FailSymEnumerateModules64},

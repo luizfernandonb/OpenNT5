@@ -24,7 +24,6 @@ BINPLACE_PLACEFILE=binplace.txt
 
 MISCFILES= \
     $(O)\xenrx86.dll \
-    $(O)\xenria64.dll \
     $(TARGET_DIRECTORY)\xenroll.dll
 
 NTTARGETFILES=

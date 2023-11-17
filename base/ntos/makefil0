@@ -9,7 +9,6 @@ PUBLISHEDDIR = $(PROJECT_ROOT)\published
 NTDDK_DEPENDS = $(NTOSINC)\ntosdef.h \
                 $(SDK_INC_PATH)\nti386.h \
                 $(SDK_INC_PATH)\ntamd64.h \
-                $(SDK_INC_PATH)\ntia64.h \
                 $(SDK_INC_PATH)\ntseapi.h \
                 $(SDK_INC_PATH)\ntkeapi.h \
                 $(SDK_INC_PATH)\ntrtl.h \
@@ -26,7 +25,6 @@ NTDDK_DEPENDS = $(NTOSINC)\ntosdef.h \
 
 NTDDK_DEPENDS1= $(NTOSINC)\i386.h \
                 $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h \
                 $(SDK_INC_PATH)\ntexapi.h \
                 $(PUBLISHEDDIR)\ntconfig.w \
                 $(SDK_INC_PATH)\ntxcapi.h \
@@ -52,7 +50,6 @@ NTDDK_DEPENDS1= $(NTOSINC)\i386.h \
 NTWDM_DEPENDS = $(NTOSINC)\ntosdef.h \
                 $(SDK_INC_PATH)\nti386.h \
                 $(SDK_INC_PATH)\ntamd64.h \
-                $(SDK_INC_PATH)\ntia64.h \
                 $(SDK_INC_PATH)\ntseapi.h \
                 $(SDK_INC_PATH)\ntkeapi.h \
                 $(SDK_INC_PATH)\ntrtl.h \
@@ -69,7 +66,6 @@ NTWDM_DEPENDS = $(NTOSINC)\ntosdef.h \
 
 NTWDM_DEPENDS1= $(NTOSINC)\i386.h \
                 $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h \
                 $(SDK_INC_PATH)\ntexapi.h \
                 $(PUBLISHEDDIR)\ntconfig.w \
                 $(SDK_INC_PATH)\ntxcapi.h \
@@ -92,7 +88,6 @@ NTWDM_DEPENDS1= $(NTOSINC)\i386.h \
 
 NTHAL_DEPENDS1= $(SDK_INC_PATH)\nti386.h \
                 $(SDK_INC_PATH)\ntamd64.h \
-                $(SDK_INC_PATH)\ntia64.h \
                 $(SDK_INC_PATH)\ntpsapi.h \
                 $(SDK_INC_PATH)\devioctl.h \
                 $(SDK_INC_PATH)\ntseapi.h \
@@ -110,8 +105,7 @@ NTHAL_DEPENDS1= $(SDK_INC_PATH)\nti386.h \
                 $(SDK_INC_PATH)\ntxcapi.h \
                 $(NTOSINC)\ntosdef.h \
                 $(NTOSINC)\i386.h \
-                $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h
+                $(NTOSINC)\amd64.h
 
 NTHAL_DEPENDS2= $(NTOSINC)\ke.h \
                 $(NTOSINC)\kd.h \
@@ -129,7 +123,6 @@ NTHAL_DEPENDS2= $(NTOSINC)\ke.h \
 NTMINIPORT_DEPENDS = \
                 $(SDK_INC_PATH)\ntdef.h \
                 $(SDK_INC_PATH)\nti386.h \
-                $(SDK_INC_PATH)\ntia64.h \
                 $(SDK_INC_PATH)\ntioapi.h \
                 $(SDK_INC_PATH)\ntrtl.h \
                 $(NTOSINC)\ke.h \
@@ -145,8 +138,7 @@ NTIFS_DEPENDS = $(SDK_INC_PATH)\ntseapi.h \
                 $(SDK_INC_PATH)\ntkeapi.h
 
 NTIFS_DEPENDS1= $(SDK_INC_PATH)\nti386.h \
-                $(SDK_INC_PATH)\ntamd64.h \
-                $(SDK_INC_PATH)\ntia64.h
+                $(SDK_INC_PATH)\ntamd64.h
 
 NTIFS_DEPENDS2= $(SDK_INC_PATH)\ntrtl.h \
                 $(SDK_INC_PATH)\ntpoapi.h \
@@ -163,7 +155,6 @@ NTIFS_DEPENDS2= $(SDK_INC_PATH)\ntrtl.h \
 
 NTIFS_DEPENDS3= $(NTOSINC)\i386.h \
                 $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h \
                 $(BASE_INC_PATH)\arc.h \
                 $(SDK_INC_PATH)\ntobapi.h \
                 $(PUBLISHEDDIR)\ntconfig.w \
@@ -205,7 +196,6 @@ NTOSP_DEPENDS = $(NTOSINC)\ntosdef.h \
                 $(NTOSINC)\i386.h \
                 $(NTOSINC)\init.h \
                 $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h \
                 $(SDK_INC_PATH)\ntseapi.h \
                 $(NTOSINC)\cm.h \
                 $(PUBLISHEDDIR)\arc.w \
@@ -234,7 +224,6 @@ NDIS_BASE_DEPENDS = \
                 $(SDK_INC_PATH)\ntiolog.h \
                 $(NTOSINC)\i386.h \
                 $(NTOSINC)\amd64.h \
-                $(NTOSINC)\ia64.h \
                 $(PUBLISHEDDIR)\ntconfig.w \
                 $(NTOSINC)\ke.h \
                 $(NTOSINC)\io.h \

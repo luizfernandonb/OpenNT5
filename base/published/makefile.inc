@@ -4,9 +4,6 @@ $(O)\winerror.h : winerror.mc
 $(O)\dpfilter.h : componentid.tab
     genlvl -t $(O)
 
-$(O)\mcaia64.mof: mcaia64.mof
-    $(C_PREPROCESSOR_NAME) $(C_PREPROCESSOR_FLAGS) mcaia64.mof > $(O)\mcaia64.mof
-
 $(O)\ntrtl.h : ntrtl.w $(O)\dpfilter.h makefile.inc
     type ntrtl.w > $@
     type $(O)\dpfilter.h >> $@
@@ -63,7 +60,6 @@ WINNT_DEPENDS = ntdef.w \
                 ntmips.w \
                 ntppc.w \
                 ntmppc.w \
-                ntia64.w \
                 ntxcapi.w \
                 $(SDK_INC_PATH)\ntseapi.h \
                 ntpsapi.w \
@@ -82,7 +78,6 @@ WINNT_DEPENDS = ntdef.w \
                 $(SDK_INC_PATH)\ntddtape.h \
                 nxalpha.w \
                 nxamd64.w \
-                nxia64.w \
                 nxi386.w \
                 sxstypes.w \
 

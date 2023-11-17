@@ -24,15 +24,10 @@ Revision History:
 
 #include "precomp.h"
 #include "i386.h"
-#include "ia64.h"
 #include "amd64.h"
 
 ULONG64 MmNonPagedPoolEnd=0;
 ULONG64 MmSubsectionBase=0;
-
-ULONG64 KiIA64VaSignedFill;
-ULONG64 KiIA64PtaBase;
-ULONG64 KiIA64PtaSign;
 
 ULONG
 DbgGetPageFileHigh(
@@ -83,154 +78,6 @@ DbgGetPageFileHigh(
 #define MiGetVirtualAddressMappedByPteAMD64(PTE) \
     ((ULONG64)((LONG64)(((LONG64)(PTE) - PTE_BASE_AMD64) << (PAGE_SHIFT_AMD64 + AMD64_VA_SHIFT - PTE_SHIFT_AMD64)) >> AMD64_VA_SHIFT))
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
-// IA64
-//
-////////////////////////////////////////////////////////////////////////////////
-//
-// MiGetPdeAddress returns the address of the PTE which maps the
-// given virtual address.  Note we must redefine some of the MM
-// macros here because they cast values to pointers which does not work
-// on systems where pointers are only 32 bits.
-//
-
-#define MiGetPteOffsetIA64(va)   ((((ULONG_PTR) (va)) >> 13) & 0x3ff)
-
-VOID
-DbgGetPteBaseIA64(
-    VOID
-    )
-{
-    ULONG64 PtaValue;
-    ULONG i;
-
-    if (KiIA64PtaBase != 0) {
-
-        return;
-
-    }
-
-    if (g_ExtData == NULL ||
-        g_ExtData->lpVtbl->
-        ReadProcessorSystemData(g_ExtData, 0,
-                                DEBUG_DATA_BASE_TRANSLATION_VIRTUAL_OFFSET,
-                                &PtaValue, sizeof(PtaValue), NULL) != S_OK) {
-        PtaValue = (ULONG64) GetExpression("@pta");
-    }
-
-    KiIA64PtaBase = PtaValue & ~0xffffUI64;
-    
-    KiIA64VaSignedFill = 
-        (KiIA64PtaBase << (PAGE_SHIFT_IA64 - PTE_SHIFT_IA64)) & ~VRN_MASK_IA64;
-
-    KiIA64PtaSign = KiIA64PtaBase;
-
-    for (i = 0; i < 64; i += 1) {
-
-        KiIA64PtaSign >>= 1;
-
-        if (KiIA64PtaSign & 1) {
-            KiIA64PtaSign = (ULONG64)1 << i;
-            break;
-        }
-    }
-}
-
-ULONG64
-MiGetPteAddressIA64 (
-    IN ULONG64 Va
-    )
-{
-
-    DbgGetPteBaseIA64();
-
-    if (((((ULONG64)(Va)) & PDE_TBASE_IA64) == PDE_TBASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PDE_TBASE_IA64)) < PageSize)) {
-
-        return (ULONG64) ((((ULONG64)(Va)) & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    return (ULONG64) (((((ULONG64)(Va)) & VRN_MASK_IA64)) |
-             ((((((ULONG64)(Va)) >> PTI_SHIFT_IA64) << PTE_SHIFT_IA64) & (~(PTE_BASE_IA64|VRN_MASK_IA64))) + PTE_BASE_IA64));
-}
-
-ULONG64
-MiGetPdeAddressIA64 (
-    IN ULONG64 Va
-    )
-{
-    DbgGetPteBaseIA64();
-
-    if (((((ULONG64)(Va)) & PDE_BASE_IA64) == PDE_BASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PDE_BASE_IA64)) < ((ULONG64)1 << PDI_SHIFT_IA64))) {
-
-        return (ULONG64) ((((ULONG64)(Va)) & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    if (((((ULONG64)(Va)) & PDE_TBASE_IA64) == PDE_TBASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PDE_TBASE_IA64)) < PageSize)) {
-
-        return (ULONG64) ((((ULONG64)(Va)) & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    return (ULONG64) (((((ULONG64)(Va)) & VRN_MASK_IA64)) |
-             ((((((ULONG64)(Va)) >> PDI_SHIFT_IA64) << PTE_SHIFT_IA64) & (~(PDE_BASE_IA64|VRN_MASK_IA64))) + PDE_BASE_IA64));
-}
-
-ULONG64
-MiGetPpeAddressIA64 (
-    IN ULONG64 Va
-    )
-{
-    DbgGetPteBaseIA64();
-
-    if ((((ULONG64)(Va) & PTE_BASE_IA64) == PTE_BASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PTE_BASE_IA64)) < ((ULONG64)1 << PDI1_SHIFT_IA64))) {
-
-        return (ULONG64) (((ULONG64)Va & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    if (((((ULONG64)(Va)) & PDE_BASE_IA64) == PDE_BASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PDE_BASE_IA64)) < ((ULONG64)1 << PDI_SHIFT_IA64))) {
-
-        return (ULONG64) ((((ULONG64)(Va)) & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    if (((((ULONG64)(Va)) & PDE_TBASE_IA64) == PDE_TBASE_IA64) &&
-        ((((ULONG64)(Va)) & ~(VRN_MASK_IA64|PDE_TBASE_IA64)) < PageSize)) {
-
-        return (ULONG64) ((((ULONG64)(Va)) & VRN_MASK_IA64) |
-                         (PDE_TBASE_IA64 + PageSize - GetTypeSize("nt!_MMPTE")));
-    }
-
-    return (ULONG64) (((((ULONG64)(Va)) & VRN_MASK_IA64)) |
-              ((((((ULONG64)(Va)) >> PDI1_SHIFT_IA64) << PTE_SHIFT_IA64) &
-                (~(PDE_TBASE_IA64|VRN_MASK_IA64))) + PDE_TBASE_IA64));
-}
-
-ULONG64
-MiGetVirtualAddressMappedByPteIA64(
-    IN ULONG64 PTE
-    ) 
-{
-    DbgGetPteBaseIA64();
-
-    return (((ULONG64)(PTE) & PTA_SIGN_IA64) ?
-            (ULONG64)(((ULONG64)(PTE) & VRN_MASK_IA64) | VA_FILL_IA64 | 
-                      (((ULONG64)(PTE)-PTE_BASE_IA64) << (PAGE_SHIFT_IA64 - PTE_SHIFT_IA64))) : 
-            (ULONG64)(((ULONG64)(PTE) & VRN_MASK_IA64) | (((ULONG64)(PTE)-PTE_BASE_IA64) << (PAGE_SHIFT_IA64 - PTE_SHIFT_IA64))));
-
-}
 
 #define MiGetSubsectionAddress(lpte)                              \
     (((lpte)->u.Subsect.WhichPool == 1) ?                              \
@@ -299,9 +146,6 @@ DbgPteLookupNeeded (
         case IMAGE_FILE_MACHINE_AMD64:
             return MI_PTE_LOOKUP_NEEDED_AMD64;
             break;
-
-        case IMAGE_FILE_MACHINE_IA64:
-            return MI_PTE_LOOKUP_NEEDED_IA64;
 
         default:
             break;
@@ -378,9 +222,6 @@ Arguments:
             return 0xFFFFF;
 
         case IMAGE_FILE_MACHINE_AMD64:
-            return 0xFFFFFFFF;
-
-        case IMAGE_FILE_MACHINE_IA64:
             return 0xFFFFFFFF;
 
         default:
@@ -918,16 +759,6 @@ DbgGetSplit(
     ULONG64 Pte_Long;
     ULONG Split=0;
 
-    if (TargetMachine == IMAGE_FILE_MACHINE_IA64) {
-        GetFieldValue(Pte, "nt!_MMPTE", "u.Long", Pte_Long);
-        if (Pte_Long & 0x1) {
-            GetFieldValue(Pte, "nt!_MMPTE", "u.Hard.Cache", Split);
-        }
-        else {
-            GetFieldValue(Pte, "nt!_MMPTE", "u.Soft.SplitPermissions", Split);
-        }
-    }
-
     if (Split == 1) {
         return 1;
     }
@@ -1043,24 +874,6 @@ DbgGetSubsectionAddress(
         SubsectionAddress = (ULONG64) SignedSubsectionAddress;
         break;
                                    }
-    case IMAGE_FILE_MACHINE_IA64: {
-        ULONG64 WhichPool=0, SubsectionAddress2=0;
-
-        GetFieldValue(Pte, "nt!_MMPTE", "u.Subsect.SubsectionAddress", SubsectionAddress2);
-        GetFieldValue(Pte, "nt!_MMPTE", "u.Subsect.WhichPool", WhichPool);
-
-        if (!MmNonPagedPoolEnd) {
-            MmNonPagedPoolEnd = GetNtDebuggerDataPtrValue(MmNonPagedPoolEnd);
-        }
-
-        SubsectionAddress =
-            ((WhichPool == 1) ? 
-             ((MmSubsectionBase + (SubsectionAddress2))) 
-             : 
-            ((MmNonPagedPoolEnd -
-                    (SubsectionAddress2))));
-        break;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1083,9 +896,6 @@ DbgGetPdeAddress(
         case IMAGE_FILE_MACHINE_AMD64:
             return MiGetPdeAddressAMD64(VirtualAddress);
 
-        case IMAGE_FILE_MACHINE_IA64:
-            return MiGetPdeAddressIA64(VirtualAddress);
-
         default:
             break;
     }
@@ -1101,9 +911,6 @@ DbgGetPpeAddress(
 
         case IMAGE_FILE_MACHINE_AMD64:
             return MiGetPpeAddressAMD64(VirtualAddress);
-
-        case IMAGE_FILE_MACHINE_IA64:
-            return MiGetPpeAddressIA64(VirtualAddress);
 
         default:
             break;
@@ -1145,9 +952,6 @@ DbgGetVirtualAddressMappedByPte(
         case IMAGE_FILE_MACHINE_AMD64:
             return MiGetVirtualAddressMappedByPteAMD64 (Pte);
 
-        case IMAGE_FILE_MACHINE_IA64:
-            return MiGetVirtualAddressMappedByPteIA64 (Pte);
-
         default:
             break;
     }
@@ -1171,9 +975,6 @@ DbgGetPteAddress(
     case IMAGE_FILE_MACHINE_AMD64: {
         return MiGetPteAddressAMD64(VirtualAddress);
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MiGetPteAddressIA64(VirtualAddress);
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1193,9 +994,6 @@ DbgGetPteOffset(
         return MiGetPteOffsetX86(VirtualAddress);
     }
     case IMAGE_FILE_MACHINE_AMD64: {
-        return (ULONG) MiGetPteOffsetIA64(VirtualAddress);
-    }
-    case IMAGE_FILE_MACHINE_IA64: {
         return (ULONG) MiGetPteOffsetAMD64(VirtualAddress);
     }
     default:
@@ -1210,10 +1008,6 @@ Mi_Is_Physical_Address (
     )
 {
     switch (TargetMachine) { 
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MI_IS_PHYSICAL_ADDRESS_IA64(VirtualAddress);
-
-    }
     case IMAGE_FILE_MACHINE_I386:{
         ULONG64 Addr;
         ULONG LongVal;
@@ -1271,9 +1065,6 @@ DBG_GET_PAGE_SHIFT (
     case IMAGE_FILE_MACHINE_AMD64: {
         return PAGE_SHIFT_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return PAGE_SHIFT_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1292,9 +1083,6 @@ DBG_GET_MM_SESSION_SPACE_DEFAULT (
     case IMAGE_FILE_MACHINE_AMD64: {
         return MM_SESSION_SPACE_DEFAULT_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_SESSION_SPACE_DEFAULT_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1312,9 +1100,6 @@ GET_MM_PTE_VALID_MASK (
     }
     case IMAGE_FILE_MACHINE_AMD64: {
         return MM_PTE_VALID_MASK_AMD64;
-    }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_VALID_MASK_IA64;
     }
     default:
         return FALSE;
@@ -1335,9 +1120,6 @@ GET_MM_PTE_LARGE_PAGE_MASK (
     case IMAGE_FILE_MACHINE_AMD64:{
         return MM_PTE_LARGE_PAGE_MASK_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_LARGE_PAGE_MASK_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1356,9 +1138,6 @@ GET_MM_PTE_TRANSITION_MASK (
     }
     case IMAGE_FILE_MACHINE_AMD64:{
         return MM_PTE_TRANSITION_MASK_AMD64;
-    }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_TRANSITION_MASK_IA64;
     }
     default:
         return FALSE;
@@ -1379,9 +1158,6 @@ GET_MM_PTE_PROTOTYPE_MASK (
     case IMAGE_FILE_MACHINE_AMD64:{
         return MM_PTE_PROTOTYPE_MASK_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_PROTOTYPE_MASK_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1401,9 +1177,6 @@ GET_MM_PTE_PROTECTION_MASK (
     case IMAGE_FILE_MACHINE_AMD64:{
         return MM_PTE_PROTECTION_MASK_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_PROTECTION_MASK_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1422,9 +1195,6 @@ GET_MM_PTE_PAGEFILE_MASK (
     case IMAGE_FILE_MACHINE_AMD64:{
         return MM_PTE_PAGEFILE_MASK_AMD64;
     }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return MM_PTE_PAGEFILE_MASK_IA64;
-    }
     default:
         return FALSE;
     } /* switch */
@@ -1440,9 +1210,6 @@ GET_PTE_TOP (
     switch (TargetMachine) { 
     case IMAGE_FILE_MACHINE_I386:{
         return PTE_TOP_X86;
-    }
-    case IMAGE_FILE_MACHINE_IA64: {
-        return PDE_TOP_IA64;
     }
     case IMAGE_FILE_MACHINE_AMD64: {
         return PTE_TOP_AMD64;
@@ -1470,10 +1237,6 @@ GET_PTE_BASE (
     switch (TargetMachine) { 
     case IMAGE_FILE_MACHINE_I386:{
         return PTE_BASE_X86;
-    }
-    case IMAGE_FILE_MACHINE_IA64: {
-        DbgGetPteBaseIA64();
-        return PTE_BASE_IA64;
     }
     case IMAGE_FILE_MACHINE_AMD64: {
         return PTE_BASE_AMD64;
@@ -1650,20 +1413,6 @@ DbgDisplayValidPte (
                         Pte_Long & 0x2 ? 'W' : 'R');
             break;
 
-        case IMAGE_FILE_MACHINE_IA64:
-
-            dprintf("pfn %x %c%c%c%c%c%c%cV",
-                        (ULONG) DbgGetFrameNumber(Pte),
-                        DbgGetExecute(Pte) ? 'E' : '-',
-                        DbgGetSplit(Pte) ? 'S' : '-',
-                        DbgGetCopyOnWrite(Pte) ? 'C' : '-',
-                        DbgGetDirty(Pte) ? 'D' : '-',
-                        DbgGetAccessed(Pte) ? 'A' : '-',
-                        DbgGetOwner(Pte) ? 'U' : 'K',
-                        DbgGetWrite(Pte) ? 'W' : 'R');
-
-            break;
-
         default:
             break;
     }
@@ -1680,25 +1429,6 @@ DbgAddressSelfMapped (
             if ((Address >= GET_PTE_BASE()) && (Address < GET_PTE_TOP())) {
                 return TRUE;
             }
-            break;
-
-        case IMAGE_FILE_MACHINE_IA64:
-
-            DbgGetPteBaseIA64();
-    
-            if (((Address & PTE_BASE_IA64) == PTE_BASE_IA64) &&
-                ((Address & ~(VRN_MASK_IA64|PTE_BASE_IA64)) < ((ULONG64)1 << PDI1_SHIFT_IA64))) {
-                return TRUE;
-            }
-            else if (((Address & PDE_BASE_IA64) == PDE_BASE_IA64) &&
-                ((Address & ~(VRN_MASK_IA64|PDE_BASE_IA64)) < ((ULONG64)1 << PDI_SHIFT_IA64))) {
-                return TRUE;
-            }
-            else if (((Address & PDE_TBASE_IA64) == PDE_TBASE_IA64) &&
-                ((Address & ~(VRN_MASK_IA64|PDE_TBASE_IA64)) < PageSize)) {
-                return TRUE;
-            }
-
             break;
 
         case IMAGE_FILE_MACHINE_AMD64:
@@ -1771,26 +1501,6 @@ DumpPte (
 
         case IMAGE_FILE_MACHINE_I386:
             Levels = 2;
-            break;
-
-        case IMAGE_FILE_MACHINE_IA64:
-            if (DbgAddressSuperPaged (Address, &PageFrameIndex)) {
-                Ppe = DbgGetPpeAddress (Address);
-                Pde = DbgGetPdeAddress (Address);
-                Pte = DbgGetPteAddress (Address);
-                dprintf("                                 VA %016p\n", Address);
-
-                //
-                // Print the calculated PPE/PDE/PTE addresses (but not the
-                // contents) for debugging Mm large page problems.
-                //
-
-                dprintf("PPE at %016P    PDE at %016P    PTE at %016P\n",
-                    Ppe, Pde, Pte);
-                dprintf("LARGE PAGE pfn %016p\n", PageFrameIndex);
-                return;
-            }
-            Levels = 3;
             break;
 
         case IMAGE_FILE_MACHINE_AMD64:
@@ -2055,10 +1765,6 @@ DumpPte (
             case IMAGE_FILE_MACHINE_AMD64:
                 PageFrameIndex += MiGetPteOffsetAMD64 (Address);
                 break;
-
-            case IMAGE_FILE_MACHINE_IA64:
-                PageFrameIndex += MiGetPteOffsetIA64 (Address);
-                break;
         }
         dprintf ("LARGE PAGE %x\n", PageFrameIndex);
     }
@@ -2114,9 +1820,6 @@ Return Value:
     switch (TargetMachine) { 
     case IMAGE_FILE_MACHINE_I386:
         Address = (ULONG64) (LONG64) (LONG) Address;
-        DumpPte (Address, flags);
-        break;
-    case IMAGE_FILE_MACHINE_IA64:
         DumpPte (Address, flags);
         break;
     case IMAGE_FILE_MACHINE_AMD64:
@@ -2208,9 +1911,6 @@ Return Value:
                     PageFrameIndex += (ULONG) MiGetPteOffsetAMD64 (Address);
                     break;
 
-                case IMAGE_FILE_MACHINE_IA64:
-                    PageFrameIndex += (ULONG) MiGetPteOffsetIA64 (Address);
-                    break;
             }
 
             *PhysAddress =

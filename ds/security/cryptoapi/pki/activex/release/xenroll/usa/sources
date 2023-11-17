@@ -3,7 +3,6 @@ ALT_PROJECT_TARGET=.
 
 MISCFILES= \
     $(O)\xenrx86.dll \
-    $(O)\xenria64.dll \
     $(TARGET_DIRECTORY)\xenroll.dll \
 !if !$(WIN64)
     $(TARGET_DIRECTORY)\xenroll.pdb \

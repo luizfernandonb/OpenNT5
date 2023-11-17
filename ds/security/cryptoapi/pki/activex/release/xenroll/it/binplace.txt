@@ -1,3 +1,2 @@
 xenrx86.dll   retail
-xenria64.dll  retail
 xenroll.dll   retail

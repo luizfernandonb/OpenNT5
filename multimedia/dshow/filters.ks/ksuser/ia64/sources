@@ -1,6 +1,0 @@
-# Suck in makefile.inc
-NTTARGETFILES=
-# Emit LTCG codegen
-LTCG_WKS=1
-# Generate the POGO package in $(_NTTREE)\POGO\$(TARGETNAME)
-NTPOGO=1

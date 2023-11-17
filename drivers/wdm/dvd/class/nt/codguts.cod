@@ -394,13 +394,13 @@ _TEXT	SEGMENT
 _ListHead$ = 8						; size = 4
 _InitializeListHead@4 PROC NEAR				; COMDAT
 
-; 1519 :     ListHead->Flink = ListHead->Blink = ListHead;
+; 1515 :     ListHead->Flink = ListHead->Blink = ListHead;
 
   00000	8b 44 24 04	 mov	 eax, DWORD PTR _ListHead$[esp-4]
   00004	89 40 04	 mov	 DWORD PTR [eax+4], eax
   00007	89 00		 mov	 DWORD PTR [eax], eax
 
-; 1520 : }
+; 1516 : }
 
   00009	c2 04 00	 ret	 4
 _InitializeListHead@4 ENDP
@@ -412,30 +412,30 @@ _TEXT	SEGMENT
 _Entry$ = 8						; size = 4
 _RemoveEntryList@4 PROC NEAR				; COMDAT
 
-; 1540 :     PLIST_ENTRY Blink;
-; 1541 :     PLIST_ENTRY Flink;
-; 1542 : 
-; 1543 :     Flink = Entry->Flink;
+; 1536 :     PLIST_ENTRY Blink;
+; 1537 :     PLIST_ENTRY Flink;
+; 1538 : 
+; 1539 :     Flink = Entry->Flink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _Entry$[esp-4]
   00004	8b 01		 mov	 eax, DWORD PTR [ecx]
 
-; 1544 :     Blink = Entry->Blink;
+; 1540 :     Blink = Entry->Blink;
 
   00006	8b 49 04	 mov	 ecx, DWORD PTR [ecx+4]
 
-; 1545 :     Blink->Flink = Flink;
+; 1541 :     Blink->Flink = Flink;
 
   00009	89 01		 mov	 DWORD PTR [ecx], eax
 
-; 1546 :     Flink->Blink = Blink;
-; 1547 :     return (BOOLEAN)(Flink == Blink);
+; 1542 :     Flink->Blink = Blink;
+; 1543 :     return (BOOLEAN)(Flink == Blink);
 
   0000b	3b c1		 cmp	 eax, ecx
   0000d	89 48 04	 mov	 DWORD PTR [eax+4], ecx
   00010	0f 94 c0	 sete	 al
 
-; 1548 : }
+; 1544 : }
 
   00013	c2 04 00	 ret	 4
 _RemoveEntryList@4 ENDP
@@ -447,28 +447,28 @@ _TEXT	SEGMENT
 _ListHead$ = 8						; size = 4
 _RemoveHeadList@4 PROC NEAR				; COMDAT
 
-; 1556 :     PLIST_ENTRY Flink;
-; 1557 :     PLIST_ENTRY Entry;
-; 1558 : 
-; 1559 :     Entry = ListHead->Flink;
+; 1552 :     PLIST_ENTRY Flink;
+; 1553 :     PLIST_ENTRY Entry;
+; 1554 : 
+; 1555 :     Entry = ListHead->Flink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _ListHead$[esp-4]
   00004	8b 01		 mov	 eax, DWORD PTR [ecx]
 
-; 1560 :     Flink = Entry->Flink;
+; 1556 :     Flink = Entry->Flink;
 
   00006	8b 10		 mov	 edx, DWORD PTR [eax]
 
-; 1561 :     ListHead->Flink = Flink;
+; 1557 :     ListHead->Flink = Flink;
 
   00008	89 11		 mov	 DWORD PTR [ecx], edx
 
-; 1562 :     Flink->Blink = ListHead;
+; 1558 :     Flink->Blink = ListHead;
 
   0000a	89 4a 04	 mov	 DWORD PTR [edx+4], ecx
 
-; 1563 :     return Entry;
-; 1564 : }
+; 1559 :     return Entry;
+; 1560 : }
 
   0000d	c2 04 00	 ret	 4
 _RemoveHeadList@4 ENDP
@@ -480,28 +480,28 @@ _TEXT	SEGMENT
 _ListHead$ = 8						; size = 4
 _RemoveTailList@4 PROC NEAR				; COMDAT
 
-; 1574 :     PLIST_ENTRY Blink;
-; 1575 :     PLIST_ENTRY Entry;
-; 1576 : 
-; 1577 :     Entry = ListHead->Blink;
+; 1570 :     PLIST_ENTRY Blink;
+; 1571 :     PLIST_ENTRY Entry;
+; 1572 : 
+; 1573 :     Entry = ListHead->Blink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _ListHead$[esp-4]
   00004	8b 41 04	 mov	 eax, DWORD PTR [ecx+4]
 
-; 1578 :     Blink = Entry->Blink;
+; 1574 :     Blink = Entry->Blink;
 
   00007	8b 50 04	 mov	 edx, DWORD PTR [eax+4]
 
-; 1579 :     ListHead->Blink = Blink;
+; 1575 :     ListHead->Blink = Blink;
 
   0000a	89 51 04	 mov	 DWORD PTR [ecx+4], edx
 
-; 1580 :     Blink->Flink = ListHead;
+; 1576 :     Blink->Flink = ListHead;
 
   0000d	89 0a		 mov	 DWORD PTR [edx], ecx
 
-; 1581 :     return Entry;
-; 1582 : }
+; 1577 :     return Entry;
+; 1578 : }
 
   0000f	c2 04 00	 ret	 4
 _RemoveTailList@4 ENDP
@@ -514,31 +514,31 @@ _ListHead$ = 8						; size = 4
 _Entry$ = 12						; size = 4
 _InsertHeadList@8 PROC NEAR				; COMDAT
 
-; 1609 :     PLIST_ENTRY Flink;
-; 1610 : 
-; 1611 :     Flink = ListHead->Flink;
+; 1605 :     PLIST_ENTRY Flink;
+; 1606 : 
+; 1607 :     Flink = ListHead->Flink;
 
   00000	8b 4c 24 04	 mov	 ecx, DWORD PTR _ListHead$[esp-4]
   00004	8b 11		 mov	 edx, DWORD PTR [ecx]
 
-; 1612 :     Entry->Flink = Flink;
+; 1608 :     Entry->Flink = Flink;
 
   00006	8b 44 24 08	 mov	 eax, DWORD PTR _Entry$[esp-4]
   0000a	89 10		 mov	 DWORD PTR [eax], edx
 
-; 1613 :     Entry->Blink = ListHead;
+; 1609 :     Entry->Blink = ListHead;
 
   0000c	89 48 04	 mov	 DWORD PTR [eax+4], ecx
 
-; 1614 :     Flink->Blink = Entry;
+; 1610 :     Flink->Blink = Entry;
 
   0000f	89 42 04	 mov	 DWORD PTR [edx+4], eax
 
-; 1615 :     ListHead->Flink = Entry;
+; 1611 :     ListHead->Flink = Entry;
 
   00012	89 01		 mov	 DWORD PTR [ecx], eax
 
-; 1616 : }
+; 1612 : }
 
   00014	c2 08 00	 ret	 8
 _InsertHeadList@8 ENDP
@@ -554,25 +554,25 @@ _ExecutionRoutine$ = 20					; size = 4
 _Context$ = 24						; size = 4
 _IoAllocateAdapterChannel@20 PROC NEAR			; COMDAT
 
-; 15027:     ){
+; 14258:     ){
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
 
-; 15028: 
-; 15029:     PALLOCATE_ADAPTER_CHANNEL allocateAdapterChannel;
-; 15030:     NTSTATUS status;
-; 15031: 
-; 15032:     allocateAdapterChannel =
-; 15033:         *(DmaAdapter)->DmaOperations->AllocateAdapterChannel;
-; 15034: 
-; 15035:     ASSERT( allocateAdapterChannel != NULL );
-; 15036: 
-; 15037:     status = allocateAdapterChannel( DmaAdapter,
-; 15038:                                      DeviceObject,
-; 15039:                                      NumberOfMapRegisters,
-; 15040:                                      ExecutionRoutine,
-; 15041:                                      Context );
+; 14259: 
+; 14260:     PALLOCATE_ADAPTER_CHANNEL allocateAdapterChannel;
+; 14261:     NTSTATUS status;
+; 14262: 
+; 14263:     allocateAdapterChannel =
+; 14264:         *(DmaAdapter)->DmaOperations->AllocateAdapterChannel;
+; 14265: 
+; 14266:     ASSERT( allocateAdapterChannel != NULL );
+; 14267: 
+; 14268:     status = allocateAdapterChannel( DmaAdapter,
+; 14269:                                      DeviceObject,
+; 14270:                                      NumberOfMapRegisters,
+; 14271:                                      ExecutionRoutine,
+; 14272:                                      Context );
 
   00003	ff 75 18	 push	 DWORD PTR _Context$[ebp]
   00006	8b 45 08	 mov	 eax, DWORD PTR _DmaAdapter$[ebp]
@@ -584,9 +584,9 @@ _IoAllocateAdapterChannel@20 PROC NEAR			; COMDAT
   00018	50		 push	 eax
   00019	ff d1		 call	 ecx
 
-; 15042: 
-; 15043:     return status;
-; 15044: }
+; 14273: 
+; 14274:     return status;
+; 14275: }
 
   0001b	5d		 pop	 ebp
   0001c	c2 14 00	 ret	 20			; 00000014H
@@ -604,24 +604,24 @@ _Length$ = 24						; size = 4
 _WriteToDevice$ = 28					; size = 1
 _IoFlushAdapterBuffers@24 PROC NEAR			; COMDAT
 
-; 15056:     ){
+; 14287:     ){
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
 
-; 15057: 
-; 15058:     PFLUSH_ADAPTER_BUFFERS flushAdapterBuffers;
-; 15059:     BOOLEAN result;
-; 15060: 
-; 15061:     flushAdapterBuffers = *(DmaAdapter)->DmaOperations->FlushAdapterBuffers;
-; 15062:     ASSERT( flushAdapterBuffers != NULL );
-; 15063: 
-; 15064:     result = flushAdapterBuffers( DmaAdapter,
-; 15065:                                   Mdl,
-; 15066:                                   MapRegisterBase,
-; 15067:                                   CurrentVa,
-; 15068:                                   Length,
-; 15069:                                   WriteToDevice );
+; 14288: 
+; 14289:     PFLUSH_ADAPTER_BUFFERS flushAdapterBuffers;
+; 14290:     BOOLEAN result;
+; 14291: 
+; 14292:     flushAdapterBuffers = *(DmaAdapter)->DmaOperations->FlushAdapterBuffers;
+; 14293:     ASSERT( flushAdapterBuffers != NULL );
+; 14294: 
+; 14295:     result = flushAdapterBuffers( DmaAdapter,
+; 14296:                                   Mdl,
+; 14297:                                   MapRegisterBase,
+; 14298:                                   CurrentVa,
+; 14299:                                   Length,
+; 14300:                                   WriteToDevice );
 
   00003	ff 75 1c	 push	 DWORD PTR _WriteToDevice$[ebp]
   00006	8b 45 08	 mov	 eax, DWORD PTR _DmaAdapter$[ebp]
@@ -634,8 +634,8 @@ _IoFlushAdapterBuffers@24 PROC NEAR			; COMDAT
   0001b	50		 push	 eax
   0001c	ff d1		 call	 ecx
 
-; 15070:     return result;
-; 15071: }
+; 14301:     return result;
+; 14302: }
 
   0001e	5d		 pop	 ebp
   0001f	c2 18 00	 ret	 24			; 00000018H
@@ -650,15 +650,15 @@ _MapRegisterBase$ = 12					; size = 4
 _NumberOfMapRegisters$ = 16				; size = 4
 _IoFreeMapRegisters@12 PROC NEAR			; COMDAT
 
-; 15096: 
-; 15097:     PFREE_MAP_REGISTERS freeMapRegisters;
-; 15098: 
-; 15099:     freeMapRegisters = *(DmaAdapter)->DmaOperations->FreeMapRegisters;
-; 15100:     ASSERT( freeMapRegisters != NULL );
-; 15101: 
-; 15102:     freeMapRegisters( DmaAdapter,
-; 15103:                       MapRegisterBase,
-; 15104:                       NumberOfMapRegisters );
+; 14327: 
+; 14328:     PFREE_MAP_REGISTERS freeMapRegisters;
+; 14329: 
+; 14330:     freeMapRegisters = *(DmaAdapter)->DmaOperations->FreeMapRegisters;
+; 14331:     ASSERT( freeMapRegisters != NULL );
+; 14332: 
+; 14333:     freeMapRegisters( DmaAdapter,
+; 14334:                       MapRegisterBase,
+; 14335:                       NumberOfMapRegisters );
 
   00000	ff 74 24 0c	 push	 DWORD PTR _NumberOfMapRegisters$[esp-4]
   00004	8b 44 24 08	 mov	 eax, DWORD PTR _DmaAdapter$[esp]
@@ -667,7 +667,7 @@ _IoFreeMapRegisters@12 PROC NEAR			; COMDAT
   0000f	50		 push	 eax
   00010	ff 51 1c	 call	 DWORD PTR [ecx+28]
 
-; 15105: }
+; 14336: }
 
   00013	c2 0c 00	 ret	 12			; 0000000cH
 _IoFreeMapRegisters@12 ENDP
@@ -684,24 +684,24 @@ _Length$ = 24						; size = 4
 _WriteToDevice$ = 28					; size = 1
 _IoMapTransfer@24 PROC NEAR				; COMDAT
 
-; 15118:     ){
+; 14349:     ){
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
 
-; 15119: 
-; 15120:     PHYSICAL_ADDRESS physicalAddress;
-; 15121:     PMAP_TRANSFER mapTransfer;
-; 15122: 
-; 15123:     mapTransfer = *(DmaAdapter)->DmaOperations->MapTransfer;
-; 15124:     ASSERT( mapTransfer != NULL );
-; 15125: 
-; 15126:     physicalAddress = mapTransfer( DmaAdapter,
-; 15127:                                    Mdl,
-; 15128:                                    MapRegisterBase,
-; 15129:                                    CurrentVa,
-; 15130:                                    Length,
-; 15131:                                    WriteToDevice );
+; 14350: 
+; 14351:     PHYSICAL_ADDRESS physicalAddress;
+; 14352:     PMAP_TRANSFER mapTransfer;
+; 14353: 
+; 14354:     mapTransfer = *(DmaAdapter)->DmaOperations->MapTransfer;
+; 14355:     ASSERT( mapTransfer != NULL );
+; 14356: 
+; 14357:     physicalAddress = mapTransfer( DmaAdapter,
+; 14358:                                    Mdl,
+; 14359:                                    MapRegisterBase,
+; 14360:                                    CurrentVa,
+; 14361:                                    Length,
+; 14362:                                    WriteToDevice );
 
   00003	ff 75 1c	 push	 DWORD PTR _WriteToDevice$[ebp]
   00006	8b 45 08	 mov	 eax, DWORD PTR _DmaAdapter$[ebp]
@@ -713,9 +713,9 @@ _IoMapTransfer@24 PROC NEAR				; COMDAT
   00018	50		 push	 eax
   00019	ff 51 20	 call	 DWORD PTR [ecx+32]
 
-; 15132: 
-; 15133:     return physicalAddress;
-; 15134: }
+; 14363: 
+; 14364:     return physicalAddress;
+; 14365: }
 
   0001c	5d		 pop	 ebp
   0001d	c2 18 00	 ret	 24			; 00000018H

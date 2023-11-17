@@ -103,7 +103,6 @@ EXPORTS
     SymSetSearchPath
     UnDecorateSymbolName
     EnumerateLoadedModules64
-    StackWalk64
     SymEnumerateModules64
     SymEnumerateSymbols64
     SymEnumerateSymbolsW64
@@ -136,7 +135,6 @@ EXPORTS
 
 #ifdef _WIN64
     EnumerateLoadedModules=EnumerateLoadedModules64
-    StackWalk=StackWalk64
     SymEnumerateModules=SymEnumerateModules64
     SymEnumerateSymbols=SymEnumerateSymbols64
     SymEnumerateSymbolsW=SymEnumerateSymbolsW64

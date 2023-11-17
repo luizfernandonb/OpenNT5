@@ -946,21 +946,6 @@ StackTrace(
 
         if (Status == S_FALSE)
         {
-            // SwReadMemory doesn't currently use the thread handle
-            // but send in something reasonable in case of future changes.
-            if (!StackWalk64(g_Machine->m_ExecTypes[0],
-                             OS_HANDLE(g_Process->m_SysHandle),
-                             OS_HANDLE(g_Thread->m_Handle),
-                             &VirtualFrame,
-                             &Context,
-                             SwReadMemory,
-                             SwFunctionTableAccess,
-                             SwGetModuleBase,
-                             SwTranslateAddress))
-            {
-                break;
-            }
-
             StackFrames[i].InstructionOffset  = VirtualFrame.AddrPC.Offset;
             StackFrames[i].ReturnOffset       = VirtualFrame.AddrReturn.Offset;
             StackFrames[i].FrameOffset        = VirtualFrame.AddrFrame.Offset;

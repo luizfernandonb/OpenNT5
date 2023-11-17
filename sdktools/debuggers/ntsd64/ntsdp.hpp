@@ -51,7 +51,6 @@
 #include <math.h>
 #undef OVERFLOW
 
-#include <ia64inst.h>
 #include <dbhpriv.h>
 #include <dbgimage.h>
 #include <cmnutil.hpp>
@@ -452,13 +451,11 @@ typedef struct _DESCRIPTOR64
 #include "amd64_reg.h"
 #include "arm_reg.h"
 #include "i386_reg.h"
-#include "ia64_reg.h"
 
 #include "arm_mach.hpp"
 #include "i386_mach.hpp"
 // Must come after i386_mach.hpp.
 #include "amd64_mach.hpp"
-#include "ia64_mach.hpp"
 
 // Must come after target.hpp.
 #include "dump.hpp"
