@@ -15,3 +15,14 @@ publish.log
 *.bin
 *.pdb
 *.tlb
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.vcxproj*
+*.sln
+*.ninja
+.ninja_log
+x64/
+Win32/
+.vs/
+out/

@@ -410,21 +410,12 @@ set BUILD_PATH=%BUILD_PATH%%RazzleToolPath_Native%;%RazzleToolPath_Perl%%RazzleT
 
 :_NoManagedPath
 
-set PATH=%RazzleToolPath_CrossPlatform%%RazzleToolPath_Native%;%RazzleToolPath_Perl%%RazzleToolPath%;%RazzleToolPath_Prefast%;%PATH%
+set PATH=%PATH%;%RazzleToolPath_CrossPlatform%%RazzleToolPath_Native%;%RazzleToolPath_Perl%%RazzleToolPath%;%RazzleToolPath_Prefast%;
 set RazzleToolPath_CrossPlatform=
 set RazzleToolPath_Perl=
 set RazzleToolPath_Native=
 set RazzleToolPath_Prefast=
 set BASE_OS_PATH=
-
-if "%UseUnsupportedOS%" == "" (
-    if %OS_BUILDNUMBER% LEQ 2599 (
-        echo Old OS build detected - Upgrade to XP ^(bld 2600^) or one of the .NET OS's ^(bld 35xx^)
-        echo Old OS build detected - Upgrade to XP ^(bld 2600^) or one of the .NET OS's ^(bld 35xx^)
-        sleep 5
-        exit
-    )
-)
 
 REM
 REM Install the URT.
